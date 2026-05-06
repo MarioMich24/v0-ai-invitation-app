@@ -63,6 +63,11 @@ export default function LoginPage() {
                   autoComplete="email"
                   disabled={isLoading}
                 />
+                {errors.email && (
+  <p className="text-sm text-red-500">
+    {errors.email}
+  </p>
+)}
               </Field>
               <Field>
                 <div className="flex items-center justify-between">
@@ -83,6 +88,11 @@ export default function LoginPage() {
                   autoComplete="current-password"
                   disabled={isLoading}
                 />
+                {errors.password && (
+  <p className="text-sm text-red-500">
+    {errors.password}
+  </p>
+)}
               </Field>
             </FieldGroup>
 
