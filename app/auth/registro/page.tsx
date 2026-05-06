@@ -5,7 +5,7 @@ import Link from 'next/link'
 import { Button } from '@/components/ui/button'
 import { Input } from '@/components/ui/input'
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card'
-import { Field, FieldGroup, FieldLabel, FieldMessage } from '@/components/ui/field'
+import { Field, FieldGroup, FieldLabel } from '@/components/ui/field'
 import { Spinner } from '@/components/ui/spinner'
 import { signUp } from '@/app/auth/actions'
 import { toast } from 'sonner'
@@ -105,7 +105,11 @@ export default function RegisterPage() {
                   autoComplete="name"
                   disabled={isLoading}
                 />
-                {errors.fullName && <FieldMessage variant="error">{errors.fullName}</FieldMessage>}
+                {errors.email && (
+  <p className="text-sm text-red-500">
+    {errors.email}
+  </p>
+)}
               </Field>
               <Field>
                 <FieldLabel htmlFor="email">Correo Electronico</FieldLabel>
@@ -118,7 +122,11 @@ export default function RegisterPage() {
                   autoComplete="email"
                   disabled={isLoading}
                 />
-                {errors.email && <FieldMessage variant="error">{errors.email}</FieldMessage>}
+                {errors.email && (
+  <p className="text-sm text-red-500">
+    {errors.email}
+  </p>
+)}
               </Field>
               <Field>
                 <FieldLabel htmlFor="password">Contrasena</FieldLabel>
@@ -131,7 +139,11 @@ export default function RegisterPage() {
                   autoComplete="new-password"
                   disabled={isLoading}
                 />
-                {errors.password && <FieldMessage variant="error">{errors.password}</FieldMessage>}
+                {errors.password && (
+  <p className="text-sm text-red-500">
+    {errors.password}
+  </p>
+)}
               </Field>
               <Field>
                 <FieldLabel htmlFor="confirmPassword">Confirmar Contrasena</FieldLabel>
@@ -144,7 +156,11 @@ export default function RegisterPage() {
                   autoComplete="new-password"
                   disabled={isLoading}
                 />
-                {errors.confirmPassword && <FieldMessage variant="error">{errors.confirmPassword}</FieldMessage>}
+                {errors.confirmPassword && (
+  <p className="text-sm text-red-500">
+    {errors.confirmPassword}
+  </p>
+)}
               </Field>
             </FieldGroup>
 
