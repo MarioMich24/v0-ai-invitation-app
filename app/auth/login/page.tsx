@@ -6,7 +6,7 @@ import { useRouter } from 'next/navigation'
 import { Button } from '@/components/ui/button'
 import { Input } from '@/components/ui/input'
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card'
-import { Field, FieldGroup, FieldLabel, FieldMessage } from '@/components/ui/field'
+import { Field, FieldGroup, FieldLabel } from '@/components/ui/field'
 import { Spinner } from '@/components/ui/spinner'
 import { signIn } from '@/app/auth/actions'
 import { toast } from 'sonner'
@@ -63,7 +63,6 @@ export default function LoginPage() {
                   autoComplete="email"
                   disabled={isLoading}
                 />
-                {errors.email && <FieldMessage variant="error">{errors.email}</FieldMessage>}
               </Field>
               <Field>
                 <div className="flex items-center justify-between">
@@ -84,7 +83,6 @@ export default function LoginPage() {
                   autoComplete="current-password"
                   disabled={isLoading}
                 />
-                {errors.password && <FieldMessage variant="error">{errors.password}</FieldMessage>}
               </Field>
             </FieldGroup>
 
