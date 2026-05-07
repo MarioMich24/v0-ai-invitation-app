@@ -33,13 +33,8 @@ async function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
         toast.error(result.error)
       }
     }
-  } catch (error: any) {
-    if (error?.digest?.includes('NEXT_REDIRECT')) {
-      throw error
-    }
+  } catch (error) {
 
-    setIsLoading(false)
-    toast.error('Ocurrio un error inesperado')
   }
 }
 
