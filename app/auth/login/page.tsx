@@ -2,7 +2,6 @@
 
 import { useState } from 'react'
 import Link from 'next/link'
-import { useRouter } from 'next/navigation'
 import { Button } from '@/components/ui/button'
 import { Input } from '@/components/ui/input'
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card'
@@ -14,28 +13,30 @@ import { toast } from 'sonner'
 export default function LoginPage() {
   const [isLoading, setIsLoading] = useState(false)
   const [errors, setErrors] = useState<Record<string, string>>({})
-  const router = useRouter()
 
   async function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
-    e.preventDefault()
-    setIsLoading(true)
-    setErrors({})
+  e.preventDefault()
+  setIsLoading(true)
+  setErrors({})
 
-    const formData = new FormData(e.currentTarget)
+  const formData = new FormData(e.currentTarget)
+
+  try {
     const result = await signIn(formData)
 
     if (result?.error) {
       setIsLoading(false)
+
       if (result.error.includes('Invalid login credentials')) {
         toast.error('Credenciales invalidas. Verifica tu correo y contrasena.')
       } else {
         toast.error(result.error)
       }
-      return
     }
-
-    router.push('/dashboard')
+  } catch (error) {
+    // Next.js redirect() entra aqui automaticamente
   }
+}
 
   return (
     <div className="flex min-h-screen items-center justify-center bg-gradient-to-b from-primary/5 via-background to-background px-4 py-12">
