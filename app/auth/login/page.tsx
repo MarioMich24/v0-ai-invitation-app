@@ -1,13 +1,50 @@
 'use client'
 
 import Link from 'next/link'
+import { useRouter } from 'next/navigation'
+import { toast } from 'sonner'
+
 import { Button } from '@/components/ui/button'
 import { Input } from '@/components/ui/input'
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card'
-import { Field, FieldGroup, FieldLabel } from '@/components/ui/field'
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardHeader,
+  CardTitle,
+} from '@/components/ui/card'
+
+import {
+  Field,
+  FieldGroup,
+  FieldLabel,
+} from '@/components/ui/field'
+
 import { signIn } from '@/app/auth/actions'
 
 export default function LoginPage() {
+  const router = useRouter()
+
+  async function handleSubmit(
+    e: React.FormEvent<HTMLFormElement>
+  ) {
+    e.preventDefault()
+
+    const formData = new FormData(e.currentTarget)
+
+    const result = await signIn(formData)
+
+    if (!result.success) {
+      toast.error(
+        result.error || 'Error al iniciar sesion'
+      )
+      return
+    }
+
+    router.push('/dashboard')
+    router.refresh()
+  }
+
   return (
     <div className="flex min-h-screen items-center justify-center bg-gradient-to-b from-primary/5 via-background to-background px-4 py-12">
       <Card className="w-full max-w-md rounded-2xl shadow-xl">
@@ -29,7 +66,10 @@ export default function LoginPage() {
         </CardHeader>
 
         <CardContent>
-          <form action={signIn} className="space-y-4">
+          <form
+            onSubmit={handleSubmit}
+            className="space-y-4"
+          >
             <FieldGroup>
               <Field>
                 <FieldLabel htmlFor="email">
