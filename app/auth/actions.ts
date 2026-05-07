@@ -40,7 +40,7 @@ export async function signUp(formData: FormData) {
   return { success: true, message: 'Revisa tu correo para confirmar tu cuenta' }
 }
 
-export async function signIn(formData: FormData): Promise<void> {
+export async function signIn(formData: FormData) {
   const supabase = await createClient()
 
   const email = formData.get('email') as string
@@ -52,10 +52,15 @@ export async function signIn(formData: FormData): Promise<void> {
   })
 
   if (error) {
-    throw new Error(error.message)
+    return {
+      success: false,
+      error: error.message,
+    }
   }
 
-  redirect('/dashboard')
+  return {
+    success: true,
+  }
 }
 
 export async function signOut() {
@@ -95,6 +100,4 @@ export async function updatePassword(formData: FormData) {
   if (error) {
     return { error: error.message }
   }
-
-  redirect('/dashboard')
 }
