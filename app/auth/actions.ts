@@ -40,7 +40,7 @@ export async function signUp(formData: FormData) {
   return { success: true, message: 'Revisa tu correo para confirmar tu cuenta' }
 }
 
-export async function signIn(formData: FormData) {
+export async function signIn(formData: FormData): Promise<void> {
   const supabase = await createClient()
 
   const email = formData.get('email') as string
@@ -52,7 +52,7 @@ export async function signIn(formData: FormData) {
   })
 
   if (error) {
-    return { error: error.message }
+    throw new Error(error.message)
   }
 
   redirect('/dashboard')
