@@ -6,6 +6,7 @@ import { toast } from 'sonner'
 
 import { Button } from '@/components/ui/button'
 import { Input } from '@/components/ui/input'
+
 import {
   Card,
   CardContent,
@@ -26,32 +27,32 @@ export default function LoginPage() {
   const router = useRouter()
 
   async function handleSubmit(
-  e: React.FormEvent<HTMLFormElement>
-) {
-  e.preventDefault()
+    e: React.FormEvent<HTMLFormElement>
+  ) {
+    e.preventDefault()
 
-  try {
-    const formData = new FormData(e.currentTarget)
+    try {
+      const formData = new FormData(e.currentTarget)
 
-    const result = await signIn(formData)
+      const result = await signIn(formData)
 
-    console.log(result)
+      console.log(result)
 
-    if (!result?.success) {
-      toast.error(
-        result?.error || 'Error al iniciar sesion'
-      )
-      return
+      if (!result?.success) {
+        toast.error(
+          result?.error || 'Error al iniciar sesion'
+        )
+        return
+      }
+
+      router.push('/dashboard')
+      router.refresh()
+    } catch (error) {
+      console.error(error)
+
+      toast.error('Ocurrio un error inesperado')
     }
-
-    router.push('/dashboard')
-    router.refresh()
-  } catch (error) {
-    console.error(error)
-
-    toast.error('Ocurrio un error inesperado')
   }
-}
 
   return (
     <div className="flex min-h-screen items-center justify-center bg-gradient-to-b from-primary/5 via-background to-background px-4 py-12">
