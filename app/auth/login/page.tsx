@@ -14,7 +14,7 @@ export default function LoginPage() {
   const [isLoading, setIsLoading] = useState(false)
   const [errors, setErrors] = useState<Record<string, string>>({})
 
-  async function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
+async function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
   e.preventDefault()
   setIsLoading(true)
   setErrors({})
@@ -33,8 +33,13 @@ export default function LoginPage() {
         toast.error(result.error)
       }
     }
-  } catch (error) {
-    // Next.js redirect() entra aqui automaticamente
+  } catch (error: any) {
+    if (error?.digest?.includes('NEXT_REDIRECT')) {
+      throw error
+    }
+
+    setIsLoading(false)
+    toast.error('Ocurrio un error inesperado')
   }
 }
 
