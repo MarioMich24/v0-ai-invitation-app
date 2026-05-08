@@ -45,8 +45,15 @@ export default function LoginPage() {
         return
       }
 
-      router.push('/dashboard')
-      router.refresh()
+      if (!result?.success) {//hola aqui hice una modificacion xd
+  toast.error(
+    result?.error || 'Error al iniciar sesion'
+  )
+  return
+}
+
+window.location.href = '/dashboard'
+
     } catch (error) {
       console.error(error)
 
