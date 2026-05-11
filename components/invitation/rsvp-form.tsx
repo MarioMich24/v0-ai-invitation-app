@@ -6,7 +6,7 @@ import { Button } from '@/components/ui/button'
 import { Input } from '@/components/ui/input'
 import { Textarea } from '@/components/ui/textarea'
 import { RadioGroup, RadioGroupItem } from '@/components/ui/radio-group'
-import { Field, FieldGroup, FieldLabel, FieldMessage } from '@/components/ui/field'
+import { Field, FieldGroup, FieldLabel } from '@/components/ui/field' //aqui lo cambie por q chatsito me lo dijo xd
 import { Spinner } from '@/components/ui/spinner'
 import { Check, X, Users } from 'lucide-react'
 import { createClient } from '@/lib/supabase/client'
