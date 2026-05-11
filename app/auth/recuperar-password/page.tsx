@@ -5,7 +5,7 @@ import Link from 'next/link'
 import { Button } from '@/components/ui/button'
 import { Input } from '@/components/ui/input'
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card'
-import { Field, FieldGroup, FieldLabel, FieldMessage } from '@/components/ui/field'
+import { Field, FieldGroup, FieldLabel } from '@/components/ui/field'//aqui estaba fieldmessage
 import { Spinner } from '@/components/ui/spinner'
 import { resetPassword } from '@/app/auth/actions'
 import { toast } from 'sonner'
@@ -87,7 +87,11 @@ export default function RecoverPasswordPage() {
                   autoComplete="email"
                   disabled={isLoading}
                 />
-                {errors.email && <FieldMessage variant="error">{errors.email}</FieldMessage>}
+               {errors.email && (
+  <p className="text-sm text-red-500 mt-1">
+    {errors.email}
+  </p>
+)}//me lo dio chatsito
               </Field>
             </FieldGroup>
 
