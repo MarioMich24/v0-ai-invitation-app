@@ -38,13 +38,6 @@ export default function LoginPage() {
 
       console.log(result)
 
-      if (!result?.success) {
-        toast.error(
-          result?.error || 'Error al iniciar sesion'
-        )
-        return
-      }
-
       if (!result?.success) {//hola aqui hice una modificacion xd
   toast.error(
     result?.error || 'Error al iniciar sesion'
