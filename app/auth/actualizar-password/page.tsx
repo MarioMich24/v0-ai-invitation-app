@@ -6,7 +6,7 @@ import { useRouter } from 'next/navigation'
 import { Button } from '@/components/ui/button'
 import { Input } from '@/components/ui/input'
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card'
-import { Field, FieldGroup, FieldLabel, FieldMessage } from '@/components/ui/field'
+import { Field, FieldGroup, FieldLabel } from '@/components/ui/field'//aqui lo cambie por chatsito me lo dijo fieldmessage
 import { Spinner } from '@/components/ui/spinner'
 import { updatePassword } from '@/app/auth/actions'
 import { toast } from 'sonner'
@@ -76,7 +76,11 @@ export default function UpdatePasswordPage() {
                   autoComplete="new-password"
                   disabled={isLoading}
                 />
-                {errors.password && <FieldMessage variant="error">{errors.password}</FieldMessage>}
+                {errors.password && (
+  <p className="text-sm text-red-500 mt-1">
+    {errors.password}
+  </p>
+)}//este chatsito me lo dio
               </Field>
               <Field>
                 <FieldLabel htmlFor="confirmPassword">Confirmar Contrasena</FieldLabel>
@@ -89,7 +93,11 @@ export default function UpdatePasswordPage() {
                   autoComplete="new-password"
                   disabled={isLoading}
                 />
-                {errors.confirmPassword && <FieldMessage variant="error">{errors.confirmPassword}</FieldMessage>}
+                {errors.confirmPassword && (
+  <p className="text-sm text-red-500 mt-1">
+    {errors.confirmPassword}
+  </p>
+)}//este chatsito me lo dio
               </Field>
             </FieldGroup>
 
