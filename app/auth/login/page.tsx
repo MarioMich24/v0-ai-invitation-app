@@ -105,7 +105,7 @@ window.location.href = '/dashboard'
               <Field>
                 <div className="flex items-center justify-between">
                   <FieldLabel htmlFor="password">
-                    Contrasena
+                    Contraseña
                   </FieldLabel>
 
                   <Link
