@@ -28,32 +28,16 @@ export async function signUp(formData: FormData) {
     return { error: error.message }
   }
 
- // Create profile manually since trigger might not exist
-const {
-  data: { user },
-  error: userError,
-} = await supabase.auth.getUser()
+  // Create profile manually since trigger might not exist
+  const { data: { user } } = await supabase.auth.getUser()
+  if (user) {
+    await supabase.from('profiles').upsert({
+      id: user.id,
+      full_name: fullName,
+    }, { onConflict: 'id' })
+  }
 
-console.log('USER:', user)
-console.log('USER ERROR:', userError)
-
-if (user) {
-  const { data, error: profileError } = await supabase
-    .from('profiles')
-    .upsert(
-      {
-        id: user.id,
-        full_name: fullName,
-        email: email,
-      },
-      { onConflict: 'id' }
-    )
-
-  console.log('PROFILE DATA:', data)
-  console.log('PROFILE ERROR:', profileError)
-} else {
-  console.log('NO USER FOUND AFTER SIGNUP')
-}
+  return { success: true, message: 'Revisa tu correo para confirmar tu cuenta' }
 }
 
 export async function signIn(formData: FormData) {
