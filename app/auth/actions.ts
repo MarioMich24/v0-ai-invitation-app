@@ -10,10 +10,11 @@ export async function signUp(formData: FormData) {
   const password = formData.get('password') as string
   const fullName = formData.get('fullName') as string
 
-  const redirectUrl = process.env.NEXT_PUBLIC_DEV_SUPABASE_REDIRECT_URL ??
+  const redirectUrl =
+    process.env.NEXT_PUBLIC_DEV_SUPABASE_REDIRECT_URL ??
     `${process.env.NEXT_PUBLIC_SITE_URL || 'http://localhost:3000'}/auth/callback`
 
-  const { error } = await supabase.auth.signUp({
+  const { data, error } = await supabase.auth.signUp({
     email,
     password,
     options: {
@@ -28,16 +29,27 @@ export async function signUp(formData: FormData) {
     return { error: error.message }
   }
 
-  // Create profile manually since trigger might not exist
-  const { data: { user } } = await supabase.auth.getUser()
-  if (user) {
-    await supabase.from('profiles').upsert({
-      id: user.id,
-      full_name: fullName,
-    }, { onConflict: 'id' })
+  // Create profile manually
+  if (data.user) {
+    const { error: profileError } = await supabase
+      .from('profiles')
+      .upsert(
+        {
+          id: data.user.id,
+          full_name: fullName,
+        },
+        { onConflict: 'id' }
+      )
+
+    if (profileError) {
+      console.error('PROFILE ERROR:', profileError)
+    }
   }
 
-  return { success: true, message: 'Revisa tu correo para confirmar tu cuenta' }
+  return {
+    success: true,
+    message: 'Revisa tu correo para confirmar tu cuenta',
+  }
 }
 
 export async function signIn(formData: FormData) {
@@ -74,7 +86,8 @@ export async function resetPassword(formData: FormData) {
 
   const email = formData.get('email') as string
 
-  const redirectUrl = process.env.NEXT_PUBLIC_DEV_SUPABASE_REDIRECT_URL ??
+  const redirectUrl =
+    process.env.NEXT_PUBLIC_DEV_SUPABASE_REDIRECT_URL ??
     `${process.env.NEXT_PUBLIC_SITE_URL || 'http://localhost:3000'}/auth/actualizar-password`
 
   const { error } = await supabase.auth.resetPasswordForEmail(email, {
@@ -85,7 +98,10 @@ export async function resetPassword(formData: FormData) {
     return { error: error.message }
   }
 
-  return { success: true, message: 'Revisa tu correo para restablecer tu contrasena' }
+  return {
+    success: true,
+    message: 'Revisa tu correo para restablecer tu contrasena',
+  }
 }
 
 export async function updatePassword(formData: FormData) {
