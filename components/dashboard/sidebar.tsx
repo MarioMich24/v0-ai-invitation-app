@@ -27,7 +27,7 @@ interface DashboardSidebarProps {
 }
 
 const navItems = [
-  { href: '/dashboard', icon: LayoutDashboard, label: 'Inicio' },
+  //{ href: '/dashboard', icon: LayoutDashboard, label: 'Inicio' },
   { href: '/dashboard/eventos', icon: Calendar, label: 'Mis Eventos' },
   //{ href: '/dashboard/invitados', icon: Users, label: 'Invitados' },
   //{ href: '/dashboard/regalos', icon: Gift, label: 'Regalos' },
