@@ -17,7 +17,7 @@ import { useRouter } from 'next/navigation'
 import { useState } from 'react'
 
 interface NavbarProps {
-  user: {
+  user?: {
     id: string
     email?: string
     user_metadata?: {
@@ -26,7 +26,9 @@ interface NavbarProps {
   } | null
 }
 
-export function Navbar({ user }: NavbarProps) {
+
+
+export default function Navbar({ user }: NavbarProps) {
   const pathname = usePathname()
   const router = useRouter()
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
