@@ -1,8 +1,18 @@
+import * as React from 'react'
 import { cva, type VariantProps } from 'class-variance-authority'
 
 import { cn } from '@/lib/utils'
 
-function Empty({ className, ...props }: React.ComponentProps<'div'>) {
+// 1. Definimos las propiedades que el componente va a aceptar
+interface EmptyProps extends React.ComponentProps<'div'> {
+  icon?: React.ReactNode;
+  title?: string;
+  description?: string;
+  action?: React.ReactNode;
+}
+
+// 2. Actualizamos el componente principal Empty
+function Empty({ className, icon, title, description, action, ...props }: EmptyProps) {
   return (
     <div
       data-slot="empty"
@@ -11,7 +21,18 @@ function Empty({ className, ...props }: React.ComponentProps<'div'>) {
         className,
       )}
       {...props}
-    />
+    >
+      {icon && <EmptyMedia>{icon}</EmptyMedia>}
+      
+      {(title || description) && (
+        <EmptyHeader>
+          {title && <EmptyTitle>{title}</EmptyTitle>}
+          {description && <EmptyDescription>{description}</EmptyDescription>}
+        </EmptyHeader>
+      )}
+
+      {action && <EmptyContent>{action}</EmptyContent>}
+    </div>
   )
 }
 
