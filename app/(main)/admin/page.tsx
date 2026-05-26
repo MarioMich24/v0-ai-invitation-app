@@ -8,8 +8,7 @@ import { Badge } from '@/components/ui/badge'
 import { Users, Calendar, Gift, TrendingUp, ArrowLeft } from 'lucide-react'
 import { EVENT_TYPE_LABELS } from '@/lib/types'
 
-// ESTA LÍNEA ES CLAVE: Obliga a Next.js a no usar caché y consultar siempre la base de datos fresca
-export const dynamic = 'force-dynamic'
+export const dynamic = 'force-dynamic' //esto yo lo agregue xd
 
 export default async function AdminPage() {
   const supabase = await createClient()
@@ -20,24 +19,16 @@ export default async function AdminPage() {
     redirect('/auth/login')
   }
 
-  // Obtenemos el perfil Y los posibles errores
-  const { data: profile, error } = await supabase
+  // Check if user is admin
+  const { data: profile } = await supabase
     .from('profiles')
     .select('role')
     .eq('id', user.id)
     .single()
 
-  // 👇 IMPRIMIMOS EL DIAGNÓSTICO EN LA TERMINAL 👇
-  console.log("================ DIAGNÓSTICO ADMIN ================");
-  console.log("1. ID del Usuario Logueado:", user.id);
-  console.log("2. Perfil devuelto por Supabase:", profile);
-  console.log("3. ¿Hubo algún error?:", error);
-  console.log("===================================================");
-
-  // COMENTAMOS TEMPORALMENTE LA REDIRECCIÓN
-  // if (profile?.role !== 'admin') {
-  //   redirect('/dashboard')
-  // }
+  if (profile?.role !== 'admin') {
+    redirect('/dashboard')
+  }
 
   // Get stats
   const { count: totalUsers } = await supabase
