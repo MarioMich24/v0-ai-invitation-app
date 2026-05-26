@@ -27,7 +27,7 @@ export default async function AdminPage() {
     .single()
 
   if (profile?.role !== 'admin') {
-    redirect('/dashboard/admin')
+    redirect('/dashboard')
   }
 
   // Get stats
