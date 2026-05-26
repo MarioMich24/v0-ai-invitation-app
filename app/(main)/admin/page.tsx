@@ -8,6 +8,8 @@ import { Badge } from '@/components/ui/badge'
 import { Users, Calendar, Gift, TrendingUp, ArrowLeft } from 'lucide-react'
 import { EVENT_TYPE_LABELS } from '@/lib/types'
 
+export const dynamic = 'force-dynamic' //esto yo lo agregue xd
+
 export default async function AdminPage() {
   const supabase = await createClient()
   
