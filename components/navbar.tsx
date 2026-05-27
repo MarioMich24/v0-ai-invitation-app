@@ -92,7 +92,7 @@ export function Navbar({ user }: NavbarProps) {
           {user ? (
             <>
               <Button asChild variant="default" className="hidden sm:inline-flex">
-                <Link href="/crear-evento">Crear Invitacion</Link>
+                <Link href="/crear-evento">Crear Invitación</Link>
               </Button>
               <DropdownMenu>
                 <DropdownMenuTrigger asChild>
@@ -127,13 +127,13 @@ export function Navbar({ user }: NavbarProps) {
                   <DropdownMenuItem asChild>
                     <Link href="/dashboard/configuracion" className="flex items-center gap-2">
                       <Settings className="h-4 w-4" />
-                      Configuracion
+                      Configuración
                     </Link>
                   </DropdownMenuItem>
                   <DropdownMenuSeparator />
                   <DropdownMenuItem onClick={handleSignOut} className="text-destructive">
                     <LogOut className="mr-2 h-4 w-4" />
-                    Cerrar Sesion
+                    Cerrar Sesión
                   </DropdownMenuItem>
                 </DropdownMenuContent>
               </DropdownMenu>
@@ -194,7 +194,7 @@ export function Navbar({ user }: NavbarProps) {
                 onClick={() => setMobileMenuOpen(false)}
                 className="block rounded-lg px-4 py-2 text-sm font-medium text-muted-foreground hover:bg-muted hover:text-foreground"
               >
-                Iniciar Sesion
+                Iniciar Sesión
               </Link>
             )}
           </div>
