@@ -31,7 +31,7 @@ const navItems = [
   { href: '/dashboard/eventos', icon: Calendar, label: 'Mis Eventos' },
   { href: '/dashboard/invitados', icon: Users, label: 'Invitados' },
   { href: '/dashboard/regalos', icon: Gift, label: 'Regalos' },
-  { href: '/dashboard/configuracion', icon: Settings, label: 'Configuracion' },
+  { href: '/dashboard/configuracion', icon: Settings, label: 'Configuración' },
 ]
 
 export function DashboardSidebar({ user }: DashboardSidebarProps) {
