@@ -76,11 +76,10 @@ export function Navbar({ user }: NavbarProps) {
             <Link
               key={link.href}
               href={link.href}
-              className={`rounded-lg px-4 py-2 text-sm font-medium transition-colors ${
-                isActive(link.href)
+              className={`rounded-lg px-4 py-2 text-sm font-medium transition-colors ${isActive(link.href)
                   ? 'bg-primary/10 text-primary'
                   : 'text-muted-foreground hover:bg-muted hover:text-foreground'
-              }`}
+                }`}
             >
               {link.label}
             </Link>
@@ -170,11 +169,10 @@ export function Navbar({ user }: NavbarProps) {
                 key={link.href}
                 href={link.href}
                 onClick={() => setMobileMenuOpen(false)}
-                className={`block rounded-lg px-4 py-2 text-sm font-medium transition-colors ${
-                  isActive(link.href)
+                className={`block rounded-lg px-4 py-2 text-sm font-medium transition-colors ${isActive(link.href)
                     ? 'bg-primary/10 text-primary'
                     : 'text-muted-foreground hover:bg-muted hover:text-foreground'
-                }`}
+                  }`}
               >
                 {link.label}
               </Link>
