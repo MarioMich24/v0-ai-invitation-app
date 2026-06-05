@@ -74,7 +74,7 @@ export function Navbar({ user }: NavbarProps) {
   
   {/* Logo para computadoras (logo completo, se oculta en celulares) */}
   <Image
-    src="/cookie-logo_2.jpg"
+    src="/cookie-logo.png"
     alt="Logo Cookie Print"
     width={140}
     height={55}
