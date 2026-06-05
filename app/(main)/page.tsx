@@ -1,15 +1,15 @@
 import Link from 'next/link'
 import { Button } from '@/components/ui/button'
 import { Card, CardContent } from '@/components/ui/card'
-import { Sparkles, Calendar, Users, Gift, Heart, GraduationCap, Baby, Cake } from 'lucide-react'
+import { Sparkles, Calendar, Users, Gift, Heart, GraduationCap, Baby, Cake, Crown } from 'lucide-react'
 import { EVENT_TYPE_LABELS, type EventType } from '@/lib/types'
 
 const eventTypes: { type: EventType; icon: React.ReactNode; description: string }[] = [
   { type: 'boda', icon: <Heart className="h-8 w-8" />, description: 'Celebra el amor con invitaciones elegantes' },
-  { type: 'xv', icon: <Sparkles className="h-8 w-8" />, description: 'Invitaciones magicas para tus XV anos' },
-  { type: 'bautizo', icon: <Baby className="h-8 w-8" />, description: 'Anuncia el bautizo de tu pequeno angel' },
-  { type: 'graduacion', icon: <GraduationCap className="h-8 w-8" />, description: 'Celebra tus logros academicos' },
-  { type: 'cumpleanos', icon: <Cake className="h-8 w-8" />, description: 'Fiestas de cumpleanos inolvidables' },
+  { type: 'xv', icon: <Crown className="h-8 w-8" />, description: 'Invitaciones magicas para tus XV años' },
+  { type: 'bautizo', icon: <Baby className="h-8 w-8" />, description: 'Anuncia el bautizo de tu pequeño angel' },
+  { type: 'graduacion', icon: <GraduationCap className="h-8 w-8" />, description: 'Celebra tus logros académicos' },
+  { type: 'cumpleanos', icon: <Cake className="h-8 w-8" />, description: 'Fiestas de cumpleaños inolvidables' },
 ]
 
 const features = [
