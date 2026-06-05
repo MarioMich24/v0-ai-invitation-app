@@ -10,7 +10,7 @@ const _geistMono = Geist_Mono({ subsets: ["latin"] });
 export const metadata: Metadata = {
   title: {
     default: 'Invitaciones Digitales - Crea Invitaciones con IA',
-    template: '%s | Invitaciones Digitales z900'
+    template: '%s | Invitaciones Digitales '
   },
   description: 'Crea invitaciones digitales hermosas para bodas, XV anos, bautizos, graduaciones y mas con la ayuda de inteligencia artificial.',
   keywords: ['invitaciones digitales', 'bodas', 'XV anos', 'bautizos', 'graduaciones', 'invitaciones online'],
