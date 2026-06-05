@@ -20,31 +20,31 @@ const eventTypeConfig: { type: EventType; icon: React.ReactNode; description: st
   { 
     type: 'xv', 
     icon: <Sparkles className="h-8 w-8" />, 
-    description: 'Celebra tus XV anos con estilo',
+    description: 'Celebra tus XV años con estilo',
     color: 'text-violet-500'
   },
   { 
     type: 'bautizo', 
     icon: <Baby className="h-8 w-8" />, 
-    description: 'Anuncia el bautizo de tu bebe',
+    description: 'Anuncia el bautizo de tu bebé',
     color: 'text-sky-500'
   },
   { 
     type: 'graduacion', 
     icon: <GraduationCap className="h-8 w-8" />, 
-    description: 'Festeja tus logros academicos',
+    description: 'Festeja tus logros acádemicos',
     color: 'text-amber-500'
   },
   { 
     type: 'cumpleanos', 
     icon: <Cake className="h-8 w-8" />, 
-    description: 'Invitaciones para fiestas de cumpleanos',
+    description: 'Invitaciones para fiestas de cumpleaños',
     color: 'text-pink-500'
   },
   { 
     type: 'otros', 
     icon: <CalendarDays className="h-8 w-8" />, 
-    description: 'Cualquier otro tipo de celebracion',
+    description: 'Cualquier otro tipo de celebración',
     color: 'text-emerald-500'
   },
 ]
@@ -55,7 +55,7 @@ export function EventTypeSelector({ selected, onSelect }: EventTypeSelectorProps
       <div className="text-center">
         <h2 className="text-xl font-semibold text-foreground">Que tipo de evento estas organizando?</h2>
         <p className="mt-2 text-muted-foreground">
-          Selecciona el tipo de evento para personalizar tu invitacion
+          Selecciona el tipo de evento para personalizar tu invitación
         </p>
       </div>
 
