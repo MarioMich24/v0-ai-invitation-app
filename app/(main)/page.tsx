@@ -51,7 +51,7 @@ export default function HomePage() {
               <span className="text-primary">Momentos Especiales</span>
             </h1>
             <p className="mx-auto mt-6 max-w-2xl text-pretty text-lg text-muted-foreground sm:text-xl">
-              Crea invitaciones hermosas y personalizadas para bodas, XV anos, bautizos, graduaciones y mas. 
+              Crea invitaciones hermosas y personalizadas para bodas, XV años, bautizos, graduaciones y mas. 
               Nuestra IA te ayuda a escribir los textos perfectos.
             </p>
             <div className="mt-10 flex flex-col items-center justify-center gap-4 sm:flex-row">
