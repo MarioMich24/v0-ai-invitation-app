@@ -20,7 +20,7 @@ export function Footer() {
               />
               {/* Logo para computadoras (logo completo) */}
               <Image 
-                src="/cookie-logo_2.jpg" 
+                src="/cookie-logo.png" 
                 alt="Cookie Print" 
                 width={140} 
                 height={55} 
