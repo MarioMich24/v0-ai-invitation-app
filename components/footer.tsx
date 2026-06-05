@@ -68,12 +68,12 @@ export function Footer() {
             <ul className="space-y-3 text-sm">
               <li>
                 <Link href="/privacidad" className="text-muted-foreground hover:text-foreground transition-colors">
-                  Politica de Privacidad
+                  Política de Privacidad
                 </Link>
               </li>
               <li>
                 <Link href="/terminos" className="text-muted-foreground hover:text-foreground transition-colors">
-                  Terminos de Servicio
+                  Términos de Servicio
                 </Link>
               </li>
             </ul>
@@ -82,7 +82,7 @@ export function Footer() {
 
         <div className="mt-12 border-t border-border pt-8">
           <p className="text-center text-sm text-muted-foreground">
-            © {new Date().getFullYear()} Invitaciones Digitales. Cookie Print. Todos los derechos reservados.
+            © {new Date().getFullYear()} Invitaciones Digitales. 2026 Cookie Print | Una plataforma impulsada por PROCEL TI, S.A.S. DE C.V. Todos los derechos reservados. 
           </p>
         </div>
       </div>
