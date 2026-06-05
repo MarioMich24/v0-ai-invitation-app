@@ -1,4 +1,5 @@
 import Link from 'next/link'
+import Image from "next/image"
 
 export function Footer() {
   return (
@@ -7,16 +8,27 @@ export function Footer() {
         <div className="grid gap-8 sm:grid-cols-2 lg:grid-cols-4">
           {/* Brand */}
           <div className="space-y-4">
-            <div className="flex items-center gap-2">
-              <div className="flex h-9 w-9 items-center justify-center rounded-xl bg-primary text-primary-foreground font-bold text-lg">
-                I
-              </div>
-              <span className="font-semibold text-foreground">
-                Invitaciones Digitales
-              </span>
-            </div>
-            <p className="text-sm text-muted-foreground">
-              Crea invitaciones digitales hermosas para todos tus eventos especiales con la ayuda de inteligencia artificial.
+            {/* AQUÍ ESTÁ EL CAMBIO DE LOS LOGOS */}
+            <Link href="/" className="flex items-center gap-2">
+              {/* Logo para celulares (solo la galletita) */}
+              <Image 
+                src="/GALLETITA.svg" 
+                alt="Cookie Print" 
+                width={40} 
+                height={40} 
+                className="block md:hidden object-contain"
+              />
+              {/* Logo para computadoras (logo completo) */}
+              <Image 
+                src="/cookie-logo_2.jpg" 
+                alt="Cookie Print" 
+                width={140} 
+                height={55} 
+                className="hidden md:block object-contain"
+              />
+            </Link>
+            <p className="text-sm text-muted-foreground mt-4">
+              Crea invitaciones digitales únicas para tus eventos especiales con el respaldo y la calidad de Cookie Print.
             </p>
           </div>
 
