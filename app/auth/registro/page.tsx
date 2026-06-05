@@ -66,13 +66,13 @@ export default function RegisterPage() {
             </div>
             <CardTitle className="text-2xl">Revisa tu Correo</CardTitle>
             <CardDescription className="text-base">
-              Te hemos enviado un enlace de confirmacion a tu correo electronico.
+              Te hemos enviado un enlace de confirmacion a tu correo electrónico.
               Por favor, revisa tu bandeja de entrada y haz clic en el enlace para activar tu cuenta.
             </CardDescription>
           </CardHeader>
           <CardContent>
             <Button asChild variant="outline" className="w-full rounded-xl">
-              <Link href="/auth/login">Ir a Iniciar Sesion</Link>
+              <Link href="/auth/login">Ir a Iniciar Sesión</Link>
             </Button>
           </CardContent>
         </Card>
