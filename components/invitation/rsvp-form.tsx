@@ -176,7 +176,7 @@ export function RsvpForm({ eventId, guestLimit }: RsvpFormProps) {
                   value={formData.num_attendees}
                   onChange={(e) => setFormData({ ...formData, num_attendees: e.target.value })}
                 />
-                <p>Incluyendote a ti</p> //aqui tambien estaba FieldMessage pero lo cambie por p 
+                <p>Incluyendote a ti</p>
               </Field>
             )}
 

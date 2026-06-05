@@ -47,13 +47,13 @@ export default function RecoverPasswordPage() {
             </div>
             <CardTitle className="text-2xl">Revisa tu Correo</CardTitle>
             <CardDescription className="text-base">
-              Te hemos enviado un enlace para restablecer tu contrasena.
+              Te hemos enviado un enlace para restablecer tu contraseña.
               Por favor, revisa tu bandeja de entrada.
             </CardDescription>
           </CardHeader>
           <CardContent>
             <Button asChild variant="outline" className="w-full rounded-xl">
-              <Link href="/auth/login">Volver a Iniciar Sesion</Link>
+              <Link href="/auth/login">Volver a Iniciar Sesión</Link>
             </Button>
           </CardContent>
         </Card>
@@ -68,16 +68,16 @@ export default function RecoverPasswordPage() {
           <Link href="/" className="mx-auto mb-4 flex h-12 w-12 items-center justify-center rounded-xl bg-primary text-primary-foreground font-bold text-xl">
             I
           </Link>
-          <CardTitle className="text-2xl">Recuperar Contrasena</CardTitle>
+          <CardTitle className="text-2xl">Recuperar Contraseña</CardTitle>
           <CardDescription>
-            Ingresa tu correo electronico y te enviaremos un enlace para restablecer tu contrasena
+            Ingresa tu correo electrónico y te enviaremos un enlace para restablecer tu contraseña
           </CardDescription>
         </CardHeader>
         <CardContent>
           <form onSubmit={handleSubmit} className="space-y-4">
             <FieldGroup>
               <Field>
-                <FieldLabel htmlFor="email">Correo Electronico</FieldLabel>
+                <FieldLabel htmlFor="email">Correo Electrónico</FieldLabel>
                 <Input
                   id="email"
                   name="email"
@@ -91,7 +91,7 @@ export default function RecoverPasswordPage() {
   <p className="text-sm text-red-500 mt-1">
     {errors.email}
   </p>
-)}//me lo dio chatsito
+)}
               </Field>
             </FieldGroup>
 
@@ -113,7 +113,7 @@ export default function RecoverPasswordPage() {
               className="flex items-center justify-center gap-2 text-sm text-muted-foreground hover:text-foreground"
             >
               <ArrowLeft className="h-4 w-4" />
-              Volver a Iniciar Sesion
+              Volver a Iniciar Sesión
             </Link>
           </div>
         </CardContent>
