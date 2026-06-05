@@ -25,21 +25,21 @@ export default function ContactoPage() {
                 <Mail className="h-6 w-6 text-primary shrink-0" />
                 <div>
                   <p className="font-medium text-foreground">Correo</p>
-                  <p className="text-sm text-muted-foreground">soporte@invitaciones.com</p>
+                  <p className="text-sm text-muted-foreground">galletitasdigitales@gmail.com</p>
                 </div>
               </div>
               <div className="flex items-start gap-4">
                 <Phone className="h-6 w-6 text-primary shrink-0" />
                 <div>
                   <p className="font-medium text-foreground">Teléfono</p>
-                  <p className="text-sm text-muted-foreground">+52 (55) 1234-5678</p>
+                  <p className="text-sm text-muted-foreground">786 129 8174</p>
                 </div>
               </div>
               <div className="flex items-start gap-4">
                 <MapPin className="h-6 w-6 text-primary shrink-0" />
                 <div>
-                  <p className="font-medium text-foreground">Oficina</p>
-                  <p className="text-sm text-muted-foreground">Ciudad de México, México</p>
+                  <p className="font-medium text-foreground">Sucursal</p>
+                  <p className="text-sm text-muted-foreground">De Cuauhtémoc Nte. 169, La Estación, Cdad. Hidalgo, Mich.</p>
                 </div>
               </div>
             </CardContent>
