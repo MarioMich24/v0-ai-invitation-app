@@ -140,10 +140,10 @@ export function Navbar({ user }: NavbarProps) {
           ) : (
             <>
               <Button asChild variant="ghost" className="hidden sm:inline-flex">
-                <Link href="/auth/login">Iniciar Sesion</Link>
+                <Link href="/auth/login">Iniciar Sesión</Link>
               </Button>
               <Button asChild>
-                <Link href="/auth/registro">Registrarse</Link>
+                <Link href="/auth/registro">Regístrarse</Link>
               </Button>
             </>
           )}
