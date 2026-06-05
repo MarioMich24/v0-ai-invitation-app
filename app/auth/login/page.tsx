@@ -69,15 +69,15 @@ export default function LoginPage() {
     <div className="flex min-h-screen items-center justify-center bg-gradient-to-b from-primary/5 via-background to-background px-4 py-12">
       <Card className="w-full max-w-md rounded-2xl shadow-xl">
         <CardHeader className="text-center">
-          <div className="mx-auto flex justify-center">
-    <Image 
-      src="/GALLETITA.svg" 
-      alt="Cookie Print" 
-      width={60} 
-      height={60} 
-      className="object-contain"
-    />
-  </div>
+          <Link href="/" className="mx-auto mb-4 flex justify-center">
+            <Image 
+              src="/GALLETITA.svg" 
+              alt="Volver al inicio - Cookie Print" 
+              width={60} 
+              height={60} 
+              className="object-contain"
+            />
+          </Link>
           <CardTitle className="text-2xl">Bienvenido de Nuevo</CardTitle>
           <CardDescription>Ingresa tus datos para acceder a tu cuenta</CardDescription>
         </CardHeader>
