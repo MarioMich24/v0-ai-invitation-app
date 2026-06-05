@@ -170,10 +170,10 @@ export interface Template {
 
 export const EVENT_TYPE_LABELS: Record<EventType, string> = {
   boda: 'Boda',
-  xv: 'XV Anos',
+  xv: 'XV Años',
   bautizo: 'Bautizo',
-  graduacion: 'Graduacion',
-  cumpleanos: 'Cumpleanos',
+  graduacion: 'Graduación',
+  cumpleanos: 'Cumpleaños',
   otros: 'Otro Evento'
 }
 
@@ -189,7 +189,7 @@ export const PADRINO_TYPE_LABELS: Record<PadrinoType, string> = {
   brindis: 'Padrinos de Brindis',
   pastel: 'Padrinos de Pastel',
   vals: 'Padrinos de Vals',
-  ultima_muneca: 'Padrinos de Ultima Muneca',
+  ultima_muneca: 'Padrinos de Última Muñeca',
   zapato: 'Padrinos de Zapato',
   corona: 'Padrinos de Corona',
   cojin: 'Padrinos de Cojin',
