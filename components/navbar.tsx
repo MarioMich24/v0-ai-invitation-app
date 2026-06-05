@@ -1,5 +1,6 @@
 'use client'
 
+import Image from "next/image";
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
 import { Button } from '@/components/ui/button'
@@ -62,13 +63,24 @@ export function Navbar({ user }: NavbarProps) {
       <div className="mx-auto flex h-16 max-w-7xl items-center justify-between px-4 sm:px-6 lg:px-8">
         {/* Logo */}
         <Link href="/" className="flex items-center gap-2">
-          <div className="flex h-9 w-9 items-center justify-center rounded-xl bg-primary text-primary-foreground font-bold text-lg">
-            I
-          </div>
-          <span className="hidden font-semibold text-foreground sm:inline-block">
-            Invitaciones Digitales
-          </span>
-        </Link>
+  {/* Logo para celulares (solo la galletita, se oculta en pantallas medianas) */}
+  <Image
+    src="/GALLETITA.svg"
+    alt="Icono Cookie Print"
+    width={40}
+    height={40}
+    className="block md:hidden object-contain"
+  />
+  
+  {/* Logo para computadoras (logo completo, se oculta en celulares) */}
+  <Image
+    src="/cookie-logo_2.jpg"
+    alt="Logo Cookie Print"
+    width={140}
+    height={55}
+    className="hidden md:block object-contain"
+  />
+</Link>
 
         {/* Desktop Navigation */}
         <div className="hidden items-center gap-1 md:flex">
