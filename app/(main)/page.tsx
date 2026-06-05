@@ -128,10 +128,10 @@ export default function HomePage() {
           <Card className="overflow-hidden rounded-3xl bg-gradient-to-r from-primary to-primary/80">
             <CardContent className="p-8 text-center sm:p-12 lg:p-16">
               <h2 className="text-3xl font-bold text-primary-foreground sm:text-4xl">
-                Comienza a Crear tu Invitacion Hoy
+                Comienza a Crear tu Invitación Hoy
               </h2>
               <p className="mx-auto mt-4 max-w-2xl text-primary-foreground/90">
-                Registrate gratis y descubre lo facil que es crear invitaciones digitales profesionales
+                Regístrate gratis y descubre lo fácil que es crear invitaciones digitales profesionales
               </p>
               <div className="mt-8 flex flex-col items-center justify-center gap-4 sm:flex-row">
                 <Button asChild size="lg" variant="secondary" className="rounded-2xl px-8 shadow-lg">
