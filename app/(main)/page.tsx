@@ -74,7 +74,7 @@ export default function HomePage() {
               Invitaciones para Todo Tipo de Eventos
             </h2>
             <p className="mx-auto mt-4 max-w-2xl text-muted-foreground">
-              Selecciona el tipo de evento y comienza a crear tu invitacion perfecta
+              Selecciona el tipo de evento y comienza a crear tu invitación perfecta
             </p>
           </div>
           <div className="mt-12 grid gap-6 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5">
