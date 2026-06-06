@@ -49,12 +49,10 @@ export default function HomePage() {
               src="/img-banner.png" 
               alt="Cookie Print Banner" 
               fill
-              className="object-cover object-center " 
+              className="object-cover object-center opacity-100" 
               priority
             />
-            {/* Degradado para que el texto sea legible sobre la imagen */}
-            <div className="absolute inset-0 bg-background/50 bg-gradient-to-t from-background/90 via-background/40 to-transparent" />
-          </div>
+            
 
           {/* CAPA 1: TEXTO Y BOTONES (ENCIMA DE LA IMAGEN) */}
           <div className="relative z-10 px-4 py-24 sm:py-32 lg:px-8 text-center">
