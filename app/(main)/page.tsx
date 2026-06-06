@@ -46,7 +46,7 @@ export default function HomePage() {
           {/* CAPA 0: BANNER DE FONDO */}
           <div className="absolute inset-0 z-0">
             <Image 
-              src="/img-banner.jpg" 
+              src="/img-banner.png" 
               alt="Cookie Print Banner" 
               fill
               className="object-cover object-center opacity-60" 
