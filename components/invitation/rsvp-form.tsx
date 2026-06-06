@@ -159,7 +159,7 @@ export function RsvpForm({ eventId, guestLimit }: RsvpFormProps) {
                   type="tel"
                   value={formData.guest_phone}
                   onChange={(e) => setFormData({ ...formData, guest_phone: e.target.value })}
-                  placeholder="+52 55 1234 5678"
+                  placeholder="+52 "
                 />
               </Field>
             </div>
