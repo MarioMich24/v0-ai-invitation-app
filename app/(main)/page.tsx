@@ -3,6 +3,7 @@ import { Button } from '@/components/ui/button'
 import { Card, CardContent } from '@/components/ui/card'
 import { Sparkles, Calendar, Users, Gift, Heart, GraduationCap, Baby, Cake, Crown } from 'lucide-react'
 import { EVENT_TYPE_LABELS, type EventType } from '@/lib/types'
+import Image from "next/image"
 
 const eventTypes: { type: EventType; icon: React.ReactNode; description: string }[] = [
   { type: 'boda', icon: <Heart className="h-8 w-8" />, description: 'Celebra el amor con invitaciones elegantes' },
@@ -62,6 +63,17 @@ export default function HomePage() {
                 <Link href="/como-funciona">Ver Como Funciona</Link>
               </Button>
             </div>
+            {/* BANNER PRINCIPAL DE COOKIE PRINT */}
+<div className="mx-auto mt-16 w-full max-w-5xl overflow-hidden rounded-3xl shadow-2xl border border-border">
+  <Image 
+    src="/img-banner.png" 
+    alt="Cookie Print - Invitaciones Digitales" 
+    width={1200} 
+    height={600} 
+    className="w-full object-cover"
+    priority
+  />
+</div>
           </div>
         </div>
       </section>
