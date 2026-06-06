@@ -53,6 +53,7 @@ export default function HomePage() {
               priority
             />
             
+          </div>
 
           {/* CAPA 1: TEXTO Y BOTONES (ENCIMA DE LA IMAGEN) */}
           <div className="relative z-10 px-4 py-24 sm:py-32 lg:px-8 text-center">
