@@ -34,9 +34,9 @@ export function ReviewStep({ formData }: ReviewStepProps) {
   return (
     <div className="space-y-6">
       <div className="text-center">
-        <h2 className="text-xl font-semibold text-foreground">Revisa tu Invitacion</h2>
+        <h2 className="text-xl font-semibold text-foreground">Revisa tu Invitación</h2>
         <p className="mt-2 text-muted-foreground">
-          Verifica que toda la informacion sea correcta antes de crear tu evento
+          Verifica que toda la información sea correcta antes de crear tu evento
         </p>
       </div>
 
@@ -44,7 +44,7 @@ export function ReviewStep({ formData }: ReviewStepProps) {
       <Card className="rounded-2xl">
         <CardHeader className="pb-3">
           <div className="flex items-center justify-between">
-            <CardTitle className="text-lg">Informacion del Evento</CardTitle>
+            <CardTitle className="text-lg">Información del Evento</CardTitle>
             <Badge variant="secondary" className="text-sm">
               {formData.eventType && EVENT_TYPE_LABELS[formData.eventType]}
             </Badge>
@@ -123,7 +123,7 @@ export function ReviewStep({ formData }: ReviewStepProps) {
           <CardHeader className="pb-3">
             <CardTitle className="flex items-center gap-2 text-lg">
               <Sparkles className="h-5 w-5 text-violet-500" />
-              La Quinceanera
+              La Quinceañera
             </CardTitle>
           </CardHeader>
           <CardContent>
@@ -228,7 +228,7 @@ export function ReviewStep({ formData }: ReviewStepProps) {
           <CardHeader className="pb-3">
             <CardTitle className="flex items-center gap-2 text-lg">
               <Sparkles className="h-5 w-5 text-primary" />
-              Mensaje de Invitacion
+              Mensaje de Invitación
             </CardTitle>
           </CardHeader>
           <CardContent>
