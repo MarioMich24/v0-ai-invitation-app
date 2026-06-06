@@ -49,7 +49,7 @@ export default function HomePage() {
               src="/img-banner.png" 
               alt="Cookie Print Banner" 
               fill
-              className="object-cover object-center opacity-100" 
+              className="object-cover object-center " 
               priority
             />
             {/* Degradado para que el texto sea legible sobre la imagen */}
