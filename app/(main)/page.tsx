@@ -144,21 +144,36 @@ export default function HomePage() {
       </section>
 
       {/* CTA Section */}
+      {/* CTA Section */}
       <section className="py-20">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-          <Card className="overflow-hidden rounded-3xl bg-gradient-to-r from-primary to-primary/80 shadow-2xl">
-            <CardContent className="p-8 text-center sm:p-12 lg:p-16">
-              <h2 className="text-3xl font-bold text-primary-foreground sm:text-4xl">
+          <Card className="relative overflow-hidden rounded-3xl shadow-2xl border-0">
+            
+            {/* CAPA 0: IMAGEN DE FONDO */}
+            <div className="absolute inset-0 z-0">
+              <Image 
+                src="/Fondo-Cookie.png" 
+                alt="Fondo Cookie Print" 
+                fill
+                className="object-cover object-center" 
+              />
+              {/* Filtro oscuro muy suave para asegurar que las letras blancas se lean bien */}
+              <div className="absolute inset-0 bg-black/20" />
+            </div>
+
+            {/* CAPA 1: TEXTO Y BOTONES */}
+            <CardContent className="relative z-10 p-8 text-center sm:p-12 lg:p-16">
+              <h2 className="text-3xl font-bold text-white sm:text-4xl drop-shadow-md">
                 Comienza a Crear tu Invitación Hoy
               </h2>
-              <p className="mx-auto mt-4 max-w-2xl text-primary-foreground/90">
+              <p className="mx-auto mt-4 max-w-2xl text-white/90 drop-shadow">
                 Regístrate gratis y descubre lo fácil que es crear invitaciones digitales profesionales
               </p>
               <div className="mt-8 flex flex-col items-center justify-center gap-4 sm:flex-row">
                 <Button asChild size="lg" variant="secondary" className="rounded-2xl px-8 shadow-lg h-12">
                   <Link href="/auth/registro">Crear Cuenta Gratis</Link>
                 </Button>
-                <Button asChild size="lg" variant="ghost" className="rounded-2xl px-8 h-12 text-primary-foreground hover:bg-primary-foreground/10 hover:text-primary-foreground">
+                <Button asChild size="lg" variant="outline" className="rounded-2xl px-8 h-12 text-white border-white/40 hover:bg-white/20 hover:text-white backdrop-blur-sm transition-all">
                   <Link href="/plantillas">Ver Plantillas</Link>
                 </Button>
               </div>
