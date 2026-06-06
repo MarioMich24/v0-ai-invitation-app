@@ -152,7 +152,7 @@ export default function HomePage() {
             {/* CAPA 0: IMAGEN DE FONDO */}
             <div className="absolute inset-0 z-0">
               <Image 
-                src="/Fondo-Cookie.png" 
+                src="/fondoCookie.png" 
                 alt="Fondo Cookie Print" 
                 fill
                 className="object-cover object-center" 
