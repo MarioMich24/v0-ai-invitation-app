@@ -296,12 +296,12 @@ export function InvitationContent({ event }: InvitationContentProps) {
             {(event.dress_code || event.pet_friendly || event.no_kids) && (
               <Card className="rounded-2xl">
                 <CardHeader>
-                  <CardTitle>Informacion Adicional</CardTitle>
+                  <CardTitle>Información Adicional</CardTitle>
                 </CardHeader>
                 <CardContent className="space-y-3">
                   {event.dress_code && (
                     <div className="flex items-center justify-between">
-                      <span className="text-muted-foreground">Codigo de Vestimenta</span>
+                      <span className="text-muted-foreground">Código de Vestimenta</span>
                       <Badge variant="secondary" className="capitalize">
                         {event.dress_code.replace('-', ' ')}
                       </Badge>
