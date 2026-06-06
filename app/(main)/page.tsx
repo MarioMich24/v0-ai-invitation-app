@@ -173,7 +173,7 @@ export default function HomePage() {
                 <Button asChild size="lg" variant="secondary" className="rounded-2xl px-8 shadow-lg h-12">
                   <Link href="/auth/registro">Crear Cuenta Gratis</Link>
                 </Button>
-                <Button asChild size="lg" variant="outline" className="rounded-2xl px-8 h-12 text-white border-white/40 hover:bg-white/20 hover:text-white backdrop-blur-sm transition-all">
+                <Button asChild size="lg" variant="outline" className="rounded-2xl px-8 h-12 text-black border-white/40 hover:bg-white/20 hover:text-white backdrop-blur-sm transition-all">
                   <Link href="/plantillas">Ver Plantillas</Link>
                 </Button>
               </div>
