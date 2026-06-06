@@ -168,7 +168,7 @@ export function InvitationContent({ event }: InvitationContentProps) {
               onClick={() => setActiveSection('info')}
               className="flex-1 rounded-xl"
             >
-              Informacion
+              Información
             </Button>
             <Button
               variant={activeSection === 'rsvp' ? 'default' : 'ghost'}
@@ -315,7 +315,7 @@ export function InvitationContent({ event }: InvitationContentProps) {
                   )}
                   {event.no_kids && (
                     <div className="flex items-center justify-between">
-                      <span className="text-muted-foreground">Ninos</span>
+                      <span className="text-muted-foreground">Niños</span>
                       <Badge variant="outline" className="text-amber-600">Solo Adultos</Badge>
                     </div>
                   )}
@@ -337,7 +337,7 @@ export function InvitationContent({ event }: InvitationContentProps) {
       {/* Footer */}
       <div className="border-t border-border bg-muted/30 py-8 text-center">
         <p className="text-sm text-muted-foreground">
-          Creado con Invitaciones Digitales
+          Invitaciones Digitales. Cookie Print | Una plataforma impulsada por PROCEL TI, S.A.S. DE C.V. Todos los derechos reservados. 
         </p>
       </div>
     </div>
