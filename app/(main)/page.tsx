@@ -8,7 +8,7 @@ import Image from "next/image"
 const eventTypes: { type: EventType; icon: React.ReactNode; description: string }[] = [
   { type: 'boda', icon: <Heart className="h-8 w-8" />, description: 'Celebra el amor con invitaciones elegantes' },
   { type: 'xv', icon: <Crown className="h-8 w-8" />, description: 'Invitaciones mágicas para tus XV años' },
-  { type: 'bautizo', icon: <Baby className="h-8 w-8" />, description: 'Anuncia el bautizo de tu pequeño angel' },
+  { type: 'bautizo', icon: <Baby className="h-8 w-8" />, description: 'Anuncia el bautizo de tu pequeño ángel' },
   { type: 'graduacion', icon: <GraduationCap className="h-8 w-8" />, description: 'Celebra tus logros académicos' },
   { type: 'cumpleanos', icon: <Cake className="h-8 w-8" />, description: 'Fiestas de cumpleaños inolvidables' },
 ]
@@ -21,7 +21,7 @@ const features = [
   },
   {
     icon: <Calendar className="h-6 w-6" />,
-    title: 'Gestion de Eventos',
+    title: 'Gestión de Eventos',
     description: 'Organiza todos los detalles de tu evento en un solo lugar'
   },
   {
@@ -32,7 +32,7 @@ const features = [
   {
     icon: <Gift className="h-6 w-6" />,
     title: 'Mesa de Regalos',
-    description: 'Crea tu lista de regalos y comparte con tus invitados'
+    description: 'Crea tu lista de regalos y compártela con tus invitados'
   },
 ]
 
@@ -51,29 +51,34 @@ export default function HomePage() {
               Invitaciones Digitales para{' '}
               <span className="text-primary">Momentos Especiales</span>
             </h1>
-            <p className="mx-auto mt-6 max-w-2xl text-pretty text-lg text-muted-foreground sm:text-xl">
-              Crea invitaciones hermosas y personalizadas para bodas, XV años, bautizos, graduaciones y mas. 
-              Nuestra IA te ayuda a escribir los textos perfectos.
-            </p>
+            
             <div className="mt-10 flex flex-col items-center justify-center gap-4 sm:flex-row">
               <Button asChild size="lg" className="rounded-2xl px-8 shadow-lg shadow-primary/25">
                 <Link href="/auth/registro">Comenzar Gratis</Link>
               </Button>
               <Button asChild variant="outline" size="lg" className="rounded-2xl px-8">
-                <Link href="/como-funciona">Ver Como Funciona</Link>
+                <Link href="/como-funciona">Ver Cómo Funciona</Link>
               </Button>
             </div>
+
             {/* BANNER PRINCIPAL DE COOKIE PRINT */}
-<div className="mx-auto mt-16 w-full max-w-5xl overflow-hidden rounded-3xl shadow-2xl border border-border">
-  <Image 
-    src="/img-banner.png" 
-    alt="Cookie Print - Invitaciones Digitales" 
-    width={1200} 
-    height={600} 
-    className="w-full object-cover"
-    priority
-  />
-</div>
+            <div className="mx-auto mt-16 w-full max-w-5xl overflow-hidden rounded-3xl shadow-2xl border border-border">
+              <Image 
+                src="/img-banner.png" 
+                alt="Cookie Print - Invitaciones Digitales" 
+                width={1200} 
+                height={600} 
+                className="w-full object-cover"
+                priority
+              />
+            </div>
+
+            {/* TEXTO DESCRIPTIVO MOVIDO DEBAJO DEL BANNER */}
+            <p className="mx-auto mt-12 max-w-2xl text-pretty text-lg text-muted-foreground sm:text-xl">
+              Crea invitaciones hermosas y personalizadas para bodas, XV años, bautizos, graduaciones y más. 
+              Nuestra IA te ayuda a escribir los textos perfectos.
+            </p>
+
           </div>
         </div>
       </section>
@@ -86,7 +91,7 @@ export default function HomePage() {
               Invitaciones para Todo Tipo de Eventos
             </h2>
             <p className="mx-auto mt-4 max-w-2xl text-muted-foreground">
-              Selecciona el tipo de evento y comienza a crear tu invitación perfecta
+              Selecciona el tipo de evento y comienza a crear tu invitación perfecta.
             </p>
           </div>
           <div className="mt-12 grid gap-6 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5">
@@ -115,7 +120,7 @@ export default function HomePage() {
               Todo lo que Necesitas
             </h2>
             <p className="mx-auto mt-4 max-w-2xl text-muted-foreground">
-              Herramientas poderosas para crear invitaciones impresionantes
+              Herramientas poderosas para crear invitaciones impresionantes.
             </p>
           </div>
           <div className="mt-12 grid gap-8 sm:grid-cols-2 lg:grid-cols-4">
@@ -143,7 +148,7 @@ export default function HomePage() {
                 Comienza a Crear tu Invitación Hoy
               </h2>
               <p className="mx-auto mt-4 max-w-2xl text-primary-foreground/90">
-                Regístrate gratis y descubre lo fácil que es crear invitaciones digitales profesionales
+                Regístrate gratis y descubre lo fácil que es crear invitaciones digitales profesionales.
               </p>
               <div className="mt-8 flex flex-col items-center justify-center gap-4 sm:flex-row">
                 <Button asChild size="lg" variant="secondary" className="rounded-2xl px-8 shadow-lg">
