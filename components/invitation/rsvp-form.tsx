@@ -101,7 +101,7 @@ export function RsvpForm({ eventId, guestLimit }: RsvpFormProps) {
           <FieldGroup>
             {/* Attendance Choice */}
             <Field>
-              <FieldLabel>Podras asistir?</FieldLabel>
+              <FieldLabel>¿Podrás asistir?</FieldLabel>
               <RadioGroup
                 value={formData.status}
                 onValueChange={(value) => setFormData({ ...formData, status: value as 'confirmed' | 'declined' })}
@@ -114,7 +114,7 @@ export function RsvpForm({ eventId, guestLimit }: RsvpFormProps) {
                 }`}>
                   <RadioGroupItem value="confirmed" className="sr-only" />
                   <Check className="h-5 w-5" />
-                  <span className="font-medium">Si, asistire</span>
+                  <span className="font-medium">Si, asistiré</span>
                 </label>
                 <label className={`flex items-center justify-center gap-2 rounded-xl border-2 p-4 cursor-pointer transition-all ${
                   formData.status === 'declined' 
@@ -123,7 +123,7 @@ export function RsvpForm({ eventId, guestLimit }: RsvpFormProps) {
                 }`}>
                   <RadioGroupItem value="declined" className="sr-only" />
                   <X className="h-5 w-5" />
-                  <span className="font-medium">No podre asistir</span>
+                  <span className="font-medium">No podré asistir</span>
                 </label>
               </RadioGroup>
             </Field>
@@ -143,7 +143,7 @@ export function RsvpForm({ eventId, guestLimit }: RsvpFormProps) {
             {/* Contact Info */}
             <div className="grid gap-4 sm:grid-cols-2">
               <Field>
-                <FieldLabel htmlFor="guest_email">Correo Electronico</FieldLabel>
+                <FieldLabel htmlFor="guest_email">Correo Electrónico</FieldLabel>
                 <Input
                   id="guest_email"
                   type="email"
@@ -167,7 +167,7 @@ export function RsvpForm({ eventId, guestLimit }: RsvpFormProps) {
             {/* Number of Attendees - Only show if confirmed */}
             {formData.status === 'confirmed' && (
               <Field>
-                <FieldLabel htmlFor="num_attendees">Numero de Asistentes</FieldLabel>
+                <FieldLabel htmlFor="num_attendees">Número de Asistentes</FieldLabel>
                 <Input
                   id="num_attendees"
                   type="number"
