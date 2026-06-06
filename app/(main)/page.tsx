@@ -39,45 +39,50 @@ const features = [
 export default function HomePage() {
   return (
     <div className="flex flex-col">
-      {/* Hero Section */}
-      <section className="relative overflow-hidden bg-gradient-to-b from-primary/5 via-background to-background">
-        <div className="mx-auto max-w-7xl px-4 py-20 sm:px-6 sm:py-28 lg:px-8">
-          <div className="text-center">
-            <div className="mb-6 inline-flex items-center gap-2 rounded-full bg-primary/10 px-4 py-2 text-sm font-medium text-primary">
+      {/* Hero Section con Imagen de Fondo */}
+      <section className="relative w-full pt-8 px-4 sm:px-6 lg:px-8">
+        <div className="relative mx-auto max-w-7xl overflow-hidden rounded-[2.5rem] shadow-2xl border border-border">
+          
+          {/* CAPA 0: BANNER DE FONDO */}
+          <div className="absolute inset-0 z-0">
+            <Image 
+              src="/img-banner.jpg" 
+              alt="Cookie Print Banner" 
+              fill
+              className="object-cover object-center opacity-60" 
+              priority
+            />
+            {/* Degradado para que el texto sea legible sobre la imagen */}
+            <div className="absolute inset-0 bg-background/50 bg-gradient-to-t from-background/90 via-background/40 to-transparent" />
+          </div>
+
+          {/* CAPA 1: TEXTO Y BOTONES (ENCIMA DE LA IMAGEN) */}
+          <div className="relative z-10 px-4 py-24 sm:py-32 lg:px-8 text-center">
+            
+            {/* Etiqueta flotante */}
+            <div className="mb-6 inline-flex items-center gap-2 rounded-full bg-background/90 backdrop-blur-md px-5 py-2 text-sm font-medium text-primary shadow-sm border border-primary/20">
               <Sparkles className="h-4 w-4" />
               Potenciado por Inteligencia Artificial
             </div>
-            <h1 className="text-balance text-4xl font-bold tracking-tight text-foreground sm:text-5xl lg:text-6xl">
+            
+            <h1 className="text-balance text-4xl font-extrabold tracking-tight text-foreground sm:text-5xl lg:text-6xl drop-shadow-lg">
               Invitaciones Digitales para{' '}
               <span className="text-primary">Momentos Especiales</span>
             </h1>
             
-            <div className="mt-10 flex flex-col items-center justify-center gap-4 sm:flex-row">
-              <Button asChild size="lg" className="rounded-2xl px-8 shadow-lg shadow-primary/25">
-                <Link href="/auth/registro">Comenzar Gratis</Link>
-              </Button>
-              <Button asChild variant="outline" size="lg" className="rounded-2xl px-8">
-                <Link href="/como-funciona">Ver Cómo Funciona</Link>
-              </Button>
-            </div>
-
-            {/* BANNER PRINCIPAL DE COOKIE PRINT */}
-            <div className="mx-auto mt-16 w-full max-w-5xl overflow-hidden rounded-3xl shadow-2xl border border-border">
-              <Image 
-                src="/img-banner.png" 
-                alt="Cookie Print - Invitaciones Digitales" 
-                width={1200} 
-                height={600} 
-                className="w-full object-cover"
-                priority
-              />
-            </div>
-
-            {/* TEXTO DESCRIPTIVO MOVIDO DEBAJO DEL BANNER */}
-            <p className="mx-auto mt-12 max-w-2xl text-pretty text-lg text-muted-foreground sm:text-xl">
+            <p className="mx-auto mt-6 max-w-2xl text-pretty text-lg text-foreground font-medium sm:text-xl drop-shadow-md">
               Crea invitaciones hermosas y personalizadas para bodas, XV años, bautizos, graduaciones y más. 
               Nuestra IA te ayuda a escribir los textos perfectos.
             </p>
+            
+            <div className="mt-10 flex flex-col items-center justify-center gap-4 sm:flex-row">
+              <Button asChild size="lg" className="rounded-2xl px-8 shadow-lg shadow-primary/25 h-14 text-base">
+                <Link href="/auth/registro">Comenzar Gratis</Link>
+              </Button>
+              <Button asChild variant="outline" size="lg" className="rounded-2xl px-8 h-14 text-base bg-background/80 backdrop-blur-sm border-2 hover:bg-background">
+                <Link href="/como-funciona">Ver Cómo Funciona</Link>
+              </Button>
+            </div>
 
           </div>
         </div>
@@ -91,7 +96,7 @@ export default function HomePage() {
               Invitaciones para Todo Tipo de Eventos
             </h2>
             <p className="mx-auto mt-4 max-w-2xl text-muted-foreground">
-              Selecciona el tipo de evento y comienza a crear tu invitación perfecta.
+              Selecciona el tipo de evento y comienza a crear tu invitación perfecta
             </p>
           </div>
           <div className="mt-12 grid gap-6 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5">
@@ -120,7 +125,7 @@ export default function HomePage() {
               Todo lo que Necesitas
             </h2>
             <p className="mx-auto mt-4 max-w-2xl text-muted-foreground">
-              Herramientas poderosas para crear invitaciones impresionantes.
+              Herramientas poderosas para crear invitaciones impresionantes
             </p>
           </div>
           <div className="mt-12 grid gap-8 sm:grid-cols-2 lg:grid-cols-4">
@@ -142,19 +147,19 @@ export default function HomePage() {
       {/* CTA Section */}
       <section className="py-20">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-          <Card className="overflow-hidden rounded-3xl bg-gradient-to-r from-primary to-primary/80">
+          <Card className="overflow-hidden rounded-3xl bg-gradient-to-r from-primary to-primary/80 shadow-2xl">
             <CardContent className="p-8 text-center sm:p-12 lg:p-16">
               <h2 className="text-3xl font-bold text-primary-foreground sm:text-4xl">
                 Comienza a Crear tu Invitación Hoy
               </h2>
               <p className="mx-auto mt-4 max-w-2xl text-primary-foreground/90">
-                Regístrate gratis y descubre lo fácil que es crear invitaciones digitales profesionales.
+                Regístrate gratis y descubre lo fácil que es crear invitaciones digitales profesionales
               </p>
               <div className="mt-8 flex flex-col items-center justify-center gap-4 sm:flex-row">
-                <Button asChild size="lg" variant="secondary" className="rounded-2xl px-8 shadow-lg">
+                <Button asChild size="lg" variant="secondary" className="rounded-2xl px-8 shadow-lg h-12">
                   <Link href="/auth/registro">Crear Cuenta Gratis</Link>
                 </Button>
-                <Button asChild size="lg" variant="ghost" className="rounded-2xl px-8 text-primary-foreground hover:bg-primary-foreground/10 hover:text-primary-foreground">
+                <Button asChild size="lg" variant="ghost" className="rounded-2xl px-8 h-12 text-primary-foreground hover:bg-primary-foreground/10 hover:text-primary-foreground">
                   <Link href="/plantillas">Ver Plantillas</Link>
                 </Button>
               </div>
