@@ -34,7 +34,7 @@ export function ReviewStep({ formData }: ReviewStepProps) {
 
   // Constantes inteligentes para saber si hay información de ubicación (igual que en la invitación)
   const hasChurch = formData.churchInfo && (formData.churchInfo.name || formData.churchInfo.address || formData.churchInfo.maps_url);
-  const hasVenue = formData.venueInfo && (formData.venueInfo.name || formData.venueInfo.address || formData.venueInfo.city || formData.venueInfo.maps_url);
+  const hasVenue = formData.venueInfo && (formData.venueInfo.name || formData.venueInfo.address || formData.venueInfo.time || formData.venueInfo.maps_url);
 
   return (
     <div className="space-y-6">
