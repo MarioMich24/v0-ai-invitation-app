@@ -133,11 +133,12 @@ export function EventDetailsForm({ eventType, formData, updateFormData }: EventD
             />
           </Field>
           <div className="grid gap-4 sm:grid-cols-2">
-            <Field>
+              <Field>
               <FieldLabel htmlFor="eventDate">Fecha del Evento</FieldLabel>
               <Input
                 id="eventDate"
                 type="date"
+                min={new Date().toISOString().split('T')[0]}
                 value={formData.eventDate}
                 onChange={(e) => updateFormData({ eventDate: e.target.value })}
               />
