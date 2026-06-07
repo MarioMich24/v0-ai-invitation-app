@@ -315,6 +315,12 @@ export function InvitationContent({ event }: InvitationContentProps) {
                           </Badge>
                         )}
                       </div>
+                      {details.venue_info?.name && (
+                        <p className="text-foreground">{details.venue_info.name}</p>
+                      )}
+                      {details.venue_info?.address && (
+                        <p className="text-sm text-muted-foreground mt-1">{details.venue_info.address}</p>
+                      )}
                       {details.venue_info?.maps_url && (
                         <Button asChild variant="link" size="sm" className="mt-2 px-0">
                           <a href={details.venue_info.maps_url} target="_blank" rel="noopener noreferrer">
