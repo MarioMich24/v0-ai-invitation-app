@@ -2,7 +2,7 @@
 
 import { useState } from 'react'
 import { useRouter } from 'next/navigation'
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card'
+import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
 import { Input } from '@/components/ui/input'
 import { Textarea } from '@/components/ui/textarea'
 import { Button } from '@/components/ui/button'
@@ -10,7 +10,6 @@ import { Switch } from '@/components/ui/switch'
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select'
 import { Field, FieldGroup, FieldLabel } from '@/components/ui/field'
 import { Spinner } from '@/components/ui/spinner'
-import { Badge } from '@/components/ui/badge'
 import { ArrowLeft, Save, Plus, Trash2, Sparkles, Heart, Church, MapPin, Users, Baby } from 'lucide-react'
 import { toast } from 'sonner'
 import { updateFullEvent } from '@/app/actions/update-full-event'
@@ -25,7 +24,6 @@ export function EditEventForm({ initialEvent }: { initialEvent: any }) {
 
   const details = initialEvent.event_details?.[0] || {}
 
-  // Inicializamos el estado completo con los datos que ya existen en la BD
   const [formData, setFormData] = useState({
     title: initialEvent.title || '',
     eventDate: initialEvent.event_date || '',
@@ -56,9 +54,8 @@ export function EditEventForm({ initialEvent }: { initialEvent: any }) {
     const result = await generateInvitationText(initialEvent.event_type, { names, date: formData.eventDate, venue: formData.venueInfo?.name })
     setIsGenerating(false)
     if (result.text) setFormData(prev => ({ ...prev, invitationPhrase: result.text }))
-  };
+  }
 
-  // Funciones para gestionar Padrinos dinámicamente
   const addPadrino = () => {
     setFormData(prev => ({
       ...prev,
@@ -84,7 +81,7 @@ export function EditEventForm({ initialEvent }: { initialEvent: any }) {
       case 'boda':
         return ['honor', 'velacion', 'lazo', 'arras', 'anillos', 'biblia', 'rosario', 'ramo', 'brindis', 'pastel']
       case 'xv':
-        return ['honor', 'vals', 'ultima_muneca', 'zapato', 'corona', 'brindis', 'pastel']
+        return ['honor', 'vals', 'ultima_muneca', 'zapato', 'corona', 'cojin', 'brindis', 'pastel']
       case 'bautizo':
         return ['honor', 'general']
       default:
@@ -94,12 +91,12 @@ export function EditEventForm({ initialEvent }: { initialEvent: any }) {
 
   const handleSave = async (e: React.FormEvent) => {
     e.preventDefault()
+    
     if (!formData.title.trim()) {
       toast.error('El título del evento es requerido')
       return
     }
 
-    // --- REGLAS DE OBLIGATORIEDAD PARA LA RECEPCIÓN AL EDITAR ---
     if (!formData.venueInfo?.name || formData.venueInfo.name.trim() === '') {
       toast.error('El nombre del lugar de la Recepción es obligatorio.')
       return
@@ -113,13 +110,11 @@ export function EditEventForm({ initialEvent }: { initialEvent: any }) {
       return
     }
 
-    // Validación del límite de invitados no negativo
     if (formData.guestLimit !== '' && Number(formData.guestLimit) < 1) {
       toast.error('El límite de invitados debe ser al menos 1')
       return
     }
 
-    // Validación explícita de enlaces de Google Maps
     const mapRegex = /^https?:\/\/(www\.)?(google\.com\/maps|maps\.app\.goo\.gl|goo\.gl\/maps).*/;
     
     if (formData.churchInfo?.maps_url && formData.churchInfo.maps_url.trim() !== '') {
@@ -132,41 +127,6 @@ export function EditEventForm({ initialEvent }: { initialEvent: any }) {
     if (!mapRegex.test(formData.venueInfo.maps_url.trim())) {
       toast.error('El enlace de la Recepción debe ser de Google Maps')
       return
-    }
-
-    setIsSubmitting(true)
-    const res = await updateFullEvent(initialEvent.id, formData)
-    setIsSubmitting(false)
-
-    if (res.error) {
-      toast.error(res.error)
-    } else {
-      toast.success('¡Invitación modificada exitosamente!')
-      router.push(`/dashboard/eventos/${initialEvent.id}`)
-    }
-  }
-
-    // Validación del límite de invitados no negativo
-    if (formData.guestLimit !== '' && Number(formData.guestLimit) < 1) {
-      toast.error('El límite de invitados debe ser al menos 1')
-      return
-    }
-
-    // Validación explícita de enlaces de Google Maps para evitar bloqueos silenciosos
-    const mapRegex = /^https?:\/\/(www\.)?(google\.com\/maps|maps\.app\.goo\.gl|goo\.gl\/maps).*/;
-    
-    if (formData.churchInfo?.maps_url && formData.churchInfo.maps_url.trim() !== '') {
-      if (!mapRegex.test(formData.churchInfo.maps_url.trim())) {
-        toast.error('El enlace de la Ceremonia Religiosa debe ser de Google Maps')
-        return
-      }
-    }
-    
-    if (formData.venueInfo?.maps_url && formData.venueInfo.maps_url.trim() !== '') {
-      if (!mapRegex.test(formData.venueInfo.maps_url.trim())) {
-        toast.error('El enlace de la Recepción debe ser de Google Maps')
-        return
-      }
     }
 
     setIsSubmitting(true)
@@ -199,7 +159,6 @@ export function EditEventForm({ initialEvent }: { initialEvent: any }) {
         </Button>
       </div>
 
-      {/* 1. Información Básica */}
       <Card className="rounded-2xl">
         <CardHeader><CardTitle className="text-lg">Información Básica</CardTitle></CardHeader>
         <CardContent>
@@ -211,12 +170,7 @@ export function EditEventForm({ initialEvent }: { initialEvent: any }) {
             <div className="grid gap-4 sm:grid-cols-2">
               <Field>
                 <FieldLabel>Fecha</FieldLabel>
-                <Input 
-                  type="date" 
-                  min={new Date().toISOString().split('T')[0]} 
-                  value={formData.eventDate} 
-                  onChange={e => setFormData({ ...formData, eventDate: e.target.value })} 
-                />
+                <Input type="date" min={new Date().toISOString().split('T')[0]} value={formData.eventDate} onChange={e => setFormData({ ...formData, eventDate: e.target.value })} />
               </Field>
               <Field>
                 <FieldLabel>Hora</FieldLabel>
@@ -227,7 +181,6 @@ export function EditEventForm({ initialEvent }: { initialEvent: any }) {
         </CardContent>
       </Card>
 
-      {/* 2. Dinámico por Tipo de Evento: Boda */}
       {initialEvent.event_type === 'boda' && (
         <Card className="rounded-2xl">
           <CardHeader>
@@ -239,11 +192,11 @@ export function EditEventForm({ initialEvent }: { initialEvent: any }) {
           <CardContent>
             <div className="grid gap-4 sm:grid-cols-2 mb-4">
               <Field>
-                <FieldLabel>Nombre de la Novia</FieldLabel>
+                <FieldLabel>Nombre Novio/a 1</FieldLabel>
                 <Input value={formData.coupleInfo.partner1_name} onChange={e => setFormData({ ...formData, coupleInfo: { ...formData.coupleInfo, partner1_name: e.target.value } })} />
               </Field>
               <Field>
-                <FieldLabel>Nombre del Novio</FieldLabel>
+                <FieldLabel>Nombre Novio/a 2</FieldLabel>
                 <Input value={formData.coupleInfo.partner2_name} onChange={e => setFormData({ ...formData, coupleInfo: { ...formData.coupleInfo, partner2_name: e.target.value } })} />
               </Field>
             </div>
@@ -255,7 +208,6 @@ export function EditEventForm({ initialEvent }: { initialEvent: any }) {
         </Card>
       )}
 
-      {/* 2. Dinámico por Tipo de Evento: XV Años */}
       {initialEvent.event_type === 'xv' && (
         <Card className="rounded-2xl">
           <CardHeader>
@@ -279,7 +231,6 @@ export function EditEventForm({ initialEvent }: { initialEvent: any }) {
         </Card>
       )}
 
-      {/* 2. Dinámico por Tipo de Evento: Bautizo */}
       {initialEvent.event_type === 'bautizo' && (
         <Card className="rounded-2xl">
           <CardHeader>
@@ -303,7 +254,6 @@ export function EditEventForm({ initialEvent }: { initialEvent: any }) {
         </Card>
       )}
 
-      {/* 3. Padrinos Dinámicos */}
       {['boda', 'xv', 'bautizo'].includes(initialEvent.event_type) && (
         <Card className="rounded-2xl">
           <CardHeader>
@@ -346,7 +296,6 @@ export function EditEventForm({ initialEvent }: { initialEvent: any }) {
         </Card>
       )}
 
-      {/* 4. Ceremonia Religiosa */}
       {['boda', 'xv', 'bautizo'].includes(initialEvent.event_type) && (
         <Card className="rounded-2xl">
           <CardHeader>
@@ -380,7 +329,6 @@ export function EditEventForm({ initialEvent }: { initialEvent: any }) {
         </Card>
       )}
 
-      {/* 5. Ubicación de la Recepción */}
       <Card className="rounded-2xl">
         <CardHeader>
           <div className="flex items-center gap-2">
@@ -412,7 +360,6 @@ export function EditEventForm({ initialEvent }: { initialEvent: any }) {
         </CardContent>
       </Card>
 
-      {/* 6. Texto de la Invitación */}
       <Card className="rounded-2xl">
         <CardHeader>
           <div className="flex items-center justify-between">
@@ -428,7 +375,6 @@ export function EditEventForm({ initialEvent }: { initialEvent: any }) {
         </CardContent>
       </Card>
 
-      {/* 7. Configuraciones Adicionales */}
       <Card className="rounded-2xl">
         <CardHeader><CardTitle className="text-lg">Configuraciones del Evento</CardTitle></CardHeader>
         <CardContent>
