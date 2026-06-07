@@ -541,7 +541,7 @@ export function EventDetailsForm({ eventType, formData, updateFormData }: EventD
       {/* Additional Options */}
       <CardSection 
         title="Opciones Adicionales" 
-        description="Configuracion extra para tu evento"
+        description="Configuración extra para tu evento"
       >
         <FieldGroup>
           <Field>
