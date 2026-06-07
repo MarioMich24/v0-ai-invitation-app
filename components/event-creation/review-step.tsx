@@ -2,7 +2,8 @@
 
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
 import { Badge } from '@/components/ui/badge'
-import { Calendar, Clock, MapPin, Users, Heart, Church, Sparkles, PawPrint, Baby } from 'lucide-react'
+import { Button } from '@/components/ui/button'
+import { Calendar, Clock, MapPin, Users, Heart, Church, Sparkles, PawPrint, Baby, ExternalLink } from 'lucide-react'
 import { EVENT_TYPE_LABELS, PADRINO_TYPE_LABELS } from '@/lib/types'
 import type { EventFormData } from '@/app/(main)/crear-evento/page'
 
@@ -31,6 +32,10 @@ export function ReviewStep({ formData }: ReviewStepProps) {
     return `${hour12}:${minutes} ${ampm}`
   }
 
+  // Constantes inteligentes para saber si hay información de ubicación (igual que en la invitación)
+  const hasChurch = formData.churchInfo && (formData.churchInfo.name || formData.churchInfo.address || formData.churchInfo.maps_url);
+  const hasVenue = formData.venueInfo && (formData.venueInfo.name || formData.venueInfo.address || formData.venueInfo.city || formData.venueInfo.maps_url);
+
   return (
     <div className="space-y-6">
       <div className="text-center">
@@ -52,7 +57,7 @@ export function ReviewStep({ formData }: ReviewStepProps) {
         </CardHeader>
         <CardContent className="space-y-4">
           <div>
-            <h3 className="text-2xl font-bold text-foreground">{formData.title || 'Sin titulo'}</h3>
+            <h3 className="text-2xl font-bold text-foreground">{formData.title || 'Sin título'}</h3>
           </div>
           
           <div className="grid gap-4 sm:grid-cols-2">
@@ -79,7 +84,7 @@ export function ReviewStep({ formData }: ReviewStepProps) {
             {formData.guestLimit && (
               <Badge variant="outline">
                 <Users className="mr-1 h-3 w-3" />
-                {formData.guestLimit} invitados max
+                {formData.guestLimit} invitados máx
               </Badge>
             )}
             {formData.petFriendly && (
@@ -177,7 +182,7 @@ export function ReviewStep({ formData }: ReviewStepProps) {
       )}
 
       {/* Locations */}
-      {(formData.churchInfo?.name || formData.venueInfo?.name) && (
+      {(hasChurch || hasVenue) && (
         <Card className="rounded-2xl">
           <CardHeader className="pb-3">
             <CardTitle className="flex items-center gap-2 text-lg">
@@ -186,35 +191,51 @@ export function ReviewStep({ formData }: ReviewStepProps) {
             </CardTitle>
           </CardHeader>
           <CardContent className="space-y-4">
-            {formData.churchInfo?.name && (
+            {hasChurch && (
               <div className="rounded-xl bg-muted/50 p-4">
                 <div className="flex items-center gap-2 mb-2">
                   <Church className="h-4 w-4 text-primary" />
                   <span className="font-medium text-foreground">Ceremonia</span>
-                  {formData.churchInfo.time && (
+                  {formData.churchInfo?.time && (
                     <Badge variant="outline" className="ml-auto">
                       {formatTime(formData.churchInfo.time)}
                     </Badge>
                   )}
                 </div>
-                <p className="text-foreground">{formData.churchInfo.name}</p>
-                {formData.churchInfo.address && (
-                  <p className="text-sm text-muted-foreground">{formData.churchInfo.address}</p>
+                {formData.churchInfo?.name && <p className="text-foreground">{formData.churchInfo.name}</p>}
+                {formData.churchInfo?.address && (
+                  <p className="text-sm text-muted-foreground mt-1">{formData.churchInfo.address}</p>
+                )}
+                {formData.churchInfo?.maps_url && (
+                  <Button asChild variant="link" size="sm" className="mt-2 px-0">
+                    <a href={formData.churchInfo.maps_url} target="_blank" rel="noopener noreferrer">
+                      <ExternalLink className="mr-2 h-4 w-4" />
+                      Ver en Google Maps
+                    </a>
+                  </Button>
                 )}
               </div>
             )}
-            {formData.venueInfo?.name && (
+            {hasVenue && (
               <div className="rounded-xl bg-muted/50 p-4">
                 <div className="flex items-center gap-2 mb-2">
                   <MapPin className="h-4 w-4 text-primary" />
-                  <span className="font-medium text-foreground">Recepcion</span>
+                  <span className="font-medium text-foreground">Recepción</span>
                 </div>
-                <p className="text-foreground">{formData.venueInfo.name}</p>
-                {formData.venueInfo.address && (
-                  <p className="text-sm text-muted-foreground">{formData.venueInfo.address}</p>
+                {formData.venueInfo?.name && <p className="text-foreground">{formData.venueInfo.name}</p>}
+                {formData.venueInfo?.address && (
+                  <p className="text-sm text-muted-foreground mt-1">{formData.venueInfo.address}</p>
                 )}
-                {formData.venueInfo.city && (
+                {formData.venueInfo?.city && (
                   <p className="text-sm text-muted-foreground">{formData.venueInfo.city}</p>
+                )}
+                {formData.venueInfo?.maps_url && (
+                  <Button asChild variant="link" size="sm" className="mt-2 px-0">
+                    <a href={formData.venueInfo.maps_url} target="_blank" rel="noopener noreferrer">
+                      <ExternalLink className="mr-2 h-4 w-4" />
+                      Ver en Google Maps
+                    </a>
+                  </Button>
                 )}
               </div>
             )}
