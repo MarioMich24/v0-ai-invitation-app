@@ -22,13 +22,13 @@ interface EventDetailsFormProps {
 }
 
 // Card Section Component
-function CardSection({ 
-  title, 
-  description, 
-  icon, 
+function CardSection({
+  title,
+  description,
+  icon,
   children,
   className = ''
-}: { 
+}: {
   title: string
   description?: string
   icon?: React.ReactNode
@@ -60,14 +60,14 @@ export function EventDetailsForm({ eventType, formData, updateFormData }: EventD
 
   const handleGenerateText = async () => {
     setIsGenerating(true)
-    
+
     const names = eventType === 'boda' && formData.coupleInfo
       ? `${formData.coupleInfo.partner1_name} y ${formData.coupleInfo.partner2_name}`
       : eventType === 'xv' && formData.quinceaneraInfo
-      ? formData.quinceaneraInfo.name
-      : eventType === 'bautizo' && formData.childInfo
-      ? formData.childInfo.name
-      : formData.title
+        ? formData.quinceaneraInfo.name
+        : eventType === 'bautizo' && formData.childInfo
+          ? formData.childInfo.name
+          : formData.title
 
     const result = await generateInvitationText(eventType, {
       names,
@@ -117,8 +117,8 @@ export function EventDetailsForm({ eventType, formData, updateFormData }: EventD
   return (
     <div className="space-y-6">
       {/* Basic Info */}
-      <CardSection 
-        title="Información Básica" 
+      <CardSection
+        title="Información Básica"
         description="Datos principales de tu evento"
         icon={<PartyPopper className="h-5 w-5" />}
       >
@@ -133,7 +133,7 @@ export function EventDetailsForm({ eventType, formData, updateFormData }: EventD
             />
           </Field>
           <div className="grid gap-4 sm:grid-cols-2">
-              <Field>
+            <Field>
               <FieldLabel htmlFor="eventDate">Fecha del Evento</FieldLabel>
               <Input
                 id="eventDate"
@@ -158,8 +158,8 @@ export function EventDetailsForm({ eventType, formData, updateFormData }: EventD
 
       {/* Event-specific sections */}
       {eventType === 'boda' && (
-        <CardSection 
-          title="Información de la Pareja" 
+        <CardSection
+          title="Información de la Pareja"
           description="Datos de los novios"
           icon={<Heart className="h-5 w-5" />}
         >
@@ -170,8 +170,8 @@ export function EventDetailsForm({ eventType, formData, updateFormData }: EventD
                 <Input
                   id="partner1"
                   value={formData.coupleInfo?.partner1_name || ''}
-                  onChange={(e) => updateFormData({ 
-                    coupleInfo: { 
+                  onChange={(e) => updateFormData({
+                    coupleInfo: {
                       ...formData.coupleInfo,
                       partner1_name: e.target.value,
                       partner2_name: formData.coupleInfo?.partner2_name || ''
@@ -185,8 +185,8 @@ export function EventDetailsForm({ eventType, formData, updateFormData }: EventD
                 <Input
                   id="partner2"
                   value={formData.coupleInfo?.partner2_name || ''}
-                  onChange={(e) => updateFormData({ 
-                    coupleInfo: { 
+                  onChange={(e) => updateFormData({
+                    coupleInfo: {
                       ...formData.coupleInfo,
                       partner1_name: formData.coupleInfo?.partner1_name || '',
                       partner2_name: e.target.value
@@ -201,8 +201,8 @@ export function EventDetailsForm({ eventType, formData, updateFormData }: EventD
               <Textarea
                 id="coupleStory"
                 value={formData.coupleInfo?.story || ''}
-                onChange={(e) => updateFormData({ 
-                  coupleInfo: { 
+                onChange={(e) => updateFormData({
+                  coupleInfo: {
                     ...formData.coupleInfo,
                     partner1_name: formData.coupleInfo?.partner1_name || '',
                     partner2_name: formData.coupleInfo?.partner2_name || '',
@@ -218,8 +218,8 @@ export function EventDetailsForm({ eventType, formData, updateFormData }: EventD
       )}
 
       {eventType === 'xv' && (
-        <CardSection 
-          title="Información de la Quinceañera" 
+        <CardSection
+          title="Información de la Quinceañera"
           description="Datos de la festejada"
           icon={<Sparkles className="h-5 w-5" />}
         >
@@ -229,8 +229,8 @@ export function EventDetailsForm({ eventType, formData, updateFormData }: EventD
               <Input
                 id="quinceaneraName"
                 value={formData.quinceaneraInfo?.name || ''}
-                onChange={(e) => updateFormData({ 
-                  quinceaneraInfo: { 
+                onChange={(e) => updateFormData({
+                  quinceaneraInfo: {
                     ...formData.quinceaneraInfo,
                     name: e.target.value
                   }
@@ -243,8 +243,8 @@ export function EventDetailsForm({ eventType, formData, updateFormData }: EventD
               <Input
                 id="quinceaneraParents"
                 value={formData.quinceaneraInfo?.parents || ''}
-                onChange={(e) => updateFormData({ 
-                  quinceaneraInfo: { 
+                onChange={(e) => updateFormData({
+                  quinceaneraInfo: {
                     ...formData.quinceaneraInfo,
                     name: formData.quinceaneraInfo?.name || '',
                     parents: e.target.value
@@ -258,8 +258,8 @@ export function EventDetailsForm({ eventType, formData, updateFormData }: EventD
       )}
 
       {eventType === 'bautizo' && (
-        <CardSection 
-          title="Información del Bautizo" 
+        <CardSection
+          title="Información del Bautizo"
           description="Datos del bebé y familia"
           icon={<Baby className="h-5 w-5" />}
         >
@@ -269,8 +269,8 @@ export function EventDetailsForm({ eventType, formData, updateFormData }: EventD
               <Input
                 id="childName"
                 value={formData.childInfo?.name || ''}
-                onChange={(e) => updateFormData({ 
-                  childInfo: { 
+                onChange={(e) => updateFormData({
+                  childInfo: {
                     ...formData.childInfo,
                     name: e.target.value
                   }
@@ -283,8 +283,8 @@ export function EventDetailsForm({ eventType, formData, updateFormData }: EventD
               <Input
                 id="childParents"
                 value={formData.childInfo?.parents || ''}
-                onChange={(e) => updateFormData({ 
-                  childInfo: { 
+                onChange={(e) => updateFormData({
+                  childInfo: {
                     ...formData.childInfo,
                     name: formData.childInfo?.name || '',
                     parents: e.target.value
@@ -299,8 +299,8 @@ export function EventDetailsForm({ eventType, formData, updateFormData }: EventD
 
       {/* Padrinos Section - Only for certain event types */}
       {['boda', 'xv', 'bautizo'].includes(eventType) && (
-        <CardSection 
-          title="Padrinos" 
+        <CardSection
+          title="Padrinos"
           description="Agrega a los padrinos del evento"
           icon={<Users className="h-5 w-5" />}
         >
@@ -355,8 +355,8 @@ export function EventDetailsForm({ eventType, formData, updateFormData }: EventD
 
       {/* Church Info */}
       {['boda', 'xv', 'bautizo'].includes(eventType) && (
-        <CardSection 
-          title="Ceremonia Religiosa" 
+        <CardSection
+          title="Ceremonia Religiosa"
           description="Informacion de la iglesia (opcional)"
           icon={<Church className="h-5 w-5" />}
         >
@@ -366,8 +366,8 @@ export function EventDetailsForm({ eventType, formData, updateFormData }: EventD
               <Input
                 id="churchName"
                 value={formData.churchInfo?.name || ''}
-                onChange={(e) => updateFormData({ 
-                  churchInfo: { 
+                onChange={(e) => updateFormData({
+                  churchInfo: {
                     ...formData.churchInfo,
                     name: e.target.value
                   }
@@ -380,8 +380,8 @@ export function EventDetailsForm({ eventType, formData, updateFormData }: EventD
               <Input
                 id="churchAddress"
                 value={formData.churchInfo?.address || ''}
-                onChange={(e) => updateFormData({ 
-                  churchInfo: { 
+                onChange={(e) => updateFormData({
+                  churchInfo: {
                     ...formData.churchInfo,
                     name: formData.churchInfo?.name || '',
                     address: e.target.value
@@ -397,8 +397,8 @@ export function EventDetailsForm({ eventType, formData, updateFormData }: EventD
                   id="churchTime"
                   type="time"
                   value={formData.churchInfo?.time || ''}
-                  onChange={(e) => updateFormData({ 
-                    churchInfo: { 
+                  onChange={(e) => updateFormData({
+                    churchInfo: {
                       ...formData.churchInfo,
                       name: formData.churchInfo?.name || '',
                       time: e.target.value
@@ -415,8 +415,8 @@ export function EventDetailsForm({ eventType, formData, updateFormData }: EventD
                   pattern="^https?:\/\/(www\.)?(google\.com\/maps|maps\.app\.goo\.gl|goo\.gl\/maps).*"
                   title="Debe ser un enlace válido de Google Maps"
                   value={formData.churchInfo?.maps_url || ''}
-                  onChange={(e) => updateFormData({ 
-                    churchInfo: { 
+                  onChange={(e) => updateFormData({
+                    churchInfo: {
                       ...formData.churchInfo,
                       name: formData.churchInfo?.name || '',
                       maps_url: e.target.value
@@ -432,8 +432,8 @@ export function EventDetailsForm({ eventType, formData, updateFormData }: EventD
       )}
 
       {/* Venue Info */}
-      <CardSection 
-        title="Recepción / Lugar del Evento" 
+      <CardSection
+        title="Recepción / Lugar del Evento"
         description="Donde se llevará a cabo la celebración"
         icon={<MapPin className="h-5 w-5" />}
       >
@@ -443,8 +443,8 @@ export function EventDetailsForm({ eventType, formData, updateFormData }: EventD
             <Input
               id="venueName"
               value={formData.venueInfo?.name || ''}
-              onChange={(e) => updateFormData({ 
-                venueInfo: { 
+              onChange={(e) => updateFormData({
+                venueInfo: {
                   ...formData.venueInfo,
                   name: e.target.value
                 }
@@ -457,8 +457,8 @@ export function EventDetailsForm({ eventType, formData, updateFormData }: EventD
             <Input
               id="venueAddress"
               value={formData.venueInfo?.address || ''}
-              onChange={(e) => updateFormData({ 
-                venueInfo: { 
+              onChange={(e) => updateFormData({
+                venueInfo: {
                   ...formData.venueInfo,
                   name: formData.venueInfo?.name || '',
                   address: e.target.value
@@ -473,8 +473,8 @@ export function EventDetailsForm({ eventType, formData, updateFormData }: EventD
               <Input
                 id="venueCity"
                 value={formData.venueInfo?.city || ''}
-                onChange={(e) => updateFormData({ 
-                  venueInfo: { 
+                onChange={(e) => updateFormData({
+                  venueInfo: {
                     ...formData.venueInfo,
                     name: formData.venueInfo?.name || '',
                     city: e.target.value
@@ -492,8 +492,8 @@ export function EventDetailsForm({ eventType, formData, updateFormData }: EventD
                 pattern="^https?:\/\/(www\.)?(google\.com\/maps|maps\.app\.goo\.gl|goo\.gl\/maps).*"
                 title="Debe ser un enlace válido de Google Maps"
                 value={formData.venueInfo?.maps_url || ''}
-                onChange={(e) => updateFormData({ 
-                  venueInfo: { 
+                onChange={(e) => updateFormData({
+                  venueInfo: {
                     ...formData.venueInfo,
                     name: formData.venueInfo?.name || '',
                     maps_url: e.target.value
@@ -508,8 +508,8 @@ export function EventDetailsForm({ eventType, formData, updateFormData }: EventD
       </CardSection>
 
       {/* Invitation Text with AI */}
-      <CardSection 
-        title="Texto de Invitación" 
+      <CardSection
+        title="Texto de Invitación"
         description="Escribe o genera con IA el mensaje de tu invitacion"
         icon={<Sparkles className="h-5 w-5" />}
       >
@@ -550,8 +550,8 @@ export function EventDetailsForm({ eventType, formData, updateFormData }: EventD
       </CardSection>
 
       {/* Additional Options */}
-      <CardSection 
-        title="Opciones Adicionales" 
+      <CardSection
+        title="Opciones Adicionales"
         description="Configuración extra para tu evento"
       >
         <FieldGroup>
