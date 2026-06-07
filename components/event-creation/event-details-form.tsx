@@ -578,9 +578,10 @@ export function EventDetailsForm({ eventType, formData, updateFormData }: EventD
             <Input
               id="guestLimit"
               type="number"
+              min="1"
               value={formData.guestLimit || ''}
               onChange={(e) => updateFormData({ guestLimit: e.target.value ? parseInt(e.target.value) : null })}
-              placeholder="Sin limite"
+              placeholder="Sin límite"
             />
           </Field>
           <div className="flex items-center justify-between py-2">
