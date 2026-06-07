@@ -99,6 +99,53 @@ export function EditEventForm({ initialEvent }: { initialEvent: any }) {
       return
     }
 
+    // --- REGLAS DE OBLIGATORIEDAD PARA LA RECEPCIÓN AL EDITAR ---
+    if (!formData.venueInfo?.name || formData.venueInfo.name.trim() === '') {
+      toast.error('El nombre del lugar de la Recepción es obligatorio.')
+      return
+    }
+    if (!formData.venueInfo?.address || formData.venueInfo.address.trim() === '') {
+      toast.error('La dirección completa de la Recepción es obligatoria.')
+      return
+    }
+    if (!formData.venueInfo?.maps_url || formData.venueInfo.maps_url.trim() === '') {
+      toast.error('El enlace de Google Maps de la Recepción es obligatorio.')
+      return
+    }
+
+    // Validación del límite de invitados no negativo
+    if (formData.guestLimit !== '' && Number(formData.guestLimit) < 1) {
+      toast.error('El límite de invitados debe ser al menos 1')
+      return
+    }
+
+    // Validación explícita de enlaces de Google Maps
+    const mapRegex = /^https?:\/\/(www\.)?(google\.com\/maps|maps\.app\.goo\.gl|goo\.gl\/maps).*/;
+    
+    if (formData.churchInfo?.maps_url && formData.churchInfo.maps_url.trim() !== '') {
+      if (!mapRegex.test(formData.churchInfo.maps_url.trim())) {
+        toast.error('El enlace de la Ceremonia Religiosa debe ser de Google Maps')
+        return
+      }
+    }
+    
+    if (!mapRegex.test(formData.venueInfo.maps_url.trim())) {
+      toast.error('El enlace de la Recepción debe ser de Google Maps')
+      return
+    }
+
+    setIsSubmitting(true)
+    const res = await updateFullEvent(initialEvent.id, formData)
+    setIsSubmitting(false)
+
+    if (res.error) {
+      toast.error(res.error)
+    } else {
+      toast.success('¡Invitación modificada exitosamente!')
+      router.push(`/dashboard/eventos/${initialEvent.id}`)
+    }
+  }
+
     // Validación del límite de invitados no negativo
     if (formData.guestLimit !== '' && Number(formData.guestLimit) < 1) {
       toast.error('El límite de invitados debe ser al menos 1')
