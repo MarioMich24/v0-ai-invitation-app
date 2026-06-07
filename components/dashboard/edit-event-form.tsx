@@ -360,7 +360,8 @@ export function EditEventForm({ initialEvent }: { initialEvent: any }) {
             <div className="grid gap-4 sm:grid-cols-2">
               <Field>
                 <FieldLabel>Ciudad</FieldLabel>
-                <Input value={formData.venueInfo?.city || ''} onChange={e => setFormData({ ...formData, venueInfo: { ...formData.venueInfo, city: e.target.value } })} placeholder="Ciudad" />
+<FieldLabel htmlFor="venueTime">Hora de la Recepción</FieldLabel>
+                <Input id="venueTime" type="time" value={formData.venueInfo?.time || ''} onChange={e => setFormData({ ...formData, venueInfo: { ...formData.venueInfo, time: e.target.value } })} />
               </Field>
               <Field>
                 <FieldLabel htmlFor="venueMaps">Link de Google Maps</FieldLabel>
