@@ -192,11 +192,11 @@ export function EditEventForm({ initialEvent }: { initialEvent: any }) {
           <CardContent>
             <div className="grid gap-4 sm:grid-cols-2 mb-4">
               <Field>
-                <FieldLabel>Nombre Novio/a 1</FieldLabel>
+                <FieldLabel>Nombre de la Novia</FieldLabel>
                 <Input value={formData.coupleInfo.partner1_name} onChange={e => setFormData({ ...formData, coupleInfo: { ...formData.coupleInfo, partner1_name: e.target.value } })} />
               </Field>
               <Field>
-                <FieldLabel>Nombre Novio/a 2</FieldLabel>
+                <FieldLabel>Nombre del Novio</FieldLabel>
                 <Input value={formData.coupleInfo.partner2_name} onChange={e => setFormData({ ...formData, coupleInfo: { ...formData.coupleInfo, partner2_name: e.target.value } })} />
               </Field>
             </div>
