@@ -135,7 +135,7 @@ export default async function EventsPage() {
             <Empty
               icon={<Calendar className="h-12 w-12" />}
               title="No tienes eventos"
-              description="Crea tu primera invitacion digital para comenzar a compartir con tus invitados"
+              description="Crea tu primera invitación digital para comenzar a compartir con tus invitados"
               action={
                 <Button asChild className="rounded-xl">
                   <Link href="/crear-evento">
