@@ -186,7 +186,7 @@ export default async function EventDetailPage({ params }: PageProps) {
               <div className="grid gap-4 sm:grid-cols-2">
                 {event.dress_code && (
                   <div>
-                    <p className="text-sm font-medium text-muted-foreground mb-1">Codigo de Vestimenta</p>
+                    <p className="text-sm font-medium text-muted-foreground mb-1">Código de Vestimenta</p>
                     <p className="text-foreground capitalize">{event.dress_code.replace('-', ' ')}</p>
                   </div>
                 )}
