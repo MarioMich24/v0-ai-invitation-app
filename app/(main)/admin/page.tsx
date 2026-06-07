@@ -72,7 +72,7 @@ export default async function AdminPage() {
             <p className="text-muted-foreground">Gestion general del sistema</p>
           </div>
         </div>
-        <Badge variant="outline" className="text-primary">Admin</Badge>
+        <Badge variant="outline" className="text-primary">Admintrador</Badge>
       </div>
 
       {/* Stats */}
