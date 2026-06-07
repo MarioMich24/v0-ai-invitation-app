@@ -224,7 +224,7 @@ export function EventDetailsForm({ eventType, formData, updateFormData }: EventD
         >
           <FieldGroup>
             <Field>
-              <FieldLabel htmlFor="quinceaneraName">Nombre de la Quinceanera</FieldLabel>
+              <FieldLabel htmlFor="quinceaneraName">Nombre de la Quinceañera</FieldLabel>
               <Input
                 id="quinceaneraName"
                 value={formData.quinceaneraInfo?.name || ''}
@@ -264,7 +264,7 @@ export function EventDetailsForm({ eventType, formData, updateFormData }: EventD
         >
           <FieldGroup>
             <Field>
-              <FieldLabel htmlFor="childName">Nombre del Bebe</FieldLabel>
+              <FieldLabel htmlFor="childName">Nombre del Bebé</FieldLabel>
               <Input
                 id="childName"
                 value={formData.childInfo?.name || ''}
@@ -375,7 +375,7 @@ export function EventDetailsForm({ eventType, formData, updateFormData }: EventD
               />
             </Field>
             <Field>
-              <FieldLabel htmlFor="churchAddress">Direccion</FieldLabel>
+              <FieldLabel htmlFor="churchAddress">Dirección</FieldLabel>
               <Input
                 id="churchAddress"
                 value={formData.churchInfo?.address || ''}
@@ -447,7 +447,7 @@ export function EventDetailsForm({ eventType, formData, updateFormData }: EventD
             />
           </Field>
           <Field>
-            <FieldLabel htmlFor="venueAddress">Direccion</FieldLabel>
+            <FieldLabel htmlFor="venueAddress">Dirección</FieldLabel>
             <Input
               id="venueAddress"
               value={formData.venueInfo?.address || ''}
@@ -505,7 +505,7 @@ export function EventDetailsForm({ eventType, formData, updateFormData }: EventD
         <FieldGroup>
           <Field>
             <div className="flex items-center justify-between mb-2">
-              <FieldLabel htmlFor="invitationPhrase">Mensaje de Invitacion</FieldLabel>
+              <FieldLabel htmlFor="invitationPhrase">Mensaje de Invitación</FieldLabel>
               <Button
                 type="button"
                 variant="outline"
@@ -531,7 +531,7 @@ export function EventDetailsForm({ eventType, formData, updateFormData }: EventD
               id="invitationPhrase"
               value={formData.invitationPhrase}
               onChange={(e) => updateFormData({ invitationPhrase: e.target.value })}
-              placeholder="Escribe el texto de tu invitacion o usa el boton de IA para generarlo automaticamente..."
+              placeholder="Escribe el texto de tu invitacion o usa el boton de IA para generarlo automáticamente..."
               rows={6}
             />
           </Field>
@@ -545,7 +545,7 @@ export function EventDetailsForm({ eventType, formData, updateFormData }: EventD
       >
         <FieldGroup>
           <Field>
-            <FieldLabel htmlFor="dressCode">Codigo de Vestimenta</FieldLabel>
+            <FieldLabel htmlFor="dressCode">Código de Vestimenta</FieldLabel>
             <Select
               value={formData.dressCode}
               onValueChange={(value) => updateFormData({ dressCode: value })}
@@ -558,12 +558,12 @@ export function EventDetailsForm({ eventType, formData, updateFormData }: EventD
                 <SelectItem value="semi-formal">Semi-formal - Vestido cocktail</SelectItem>
                 <SelectItem value="casual-elegante">Casual Elegante</SelectItem>
                 <SelectItem value="casual">Casual</SelectItem>
-                <SelectItem value="tematico">Tematico</SelectItem>
+                <SelectItem value="tematico">Temático</SelectItem>
               </SelectContent>
             </Select>
           </Field>
           <Field>
-            <FieldLabel htmlFor="guestLimit">Limite de Invitados</FieldLabel>
+            <FieldLabel htmlFor="guestLimit">Límite de Invitados</FieldLabel>
             <Input
               id="guestLimit"
               type="number"
@@ -585,7 +585,7 @@ export function EventDetailsForm({ eventType, formData, updateFormData }: EventD
           <div className="flex items-center justify-between py-2">
             <div>
               <p className="font-medium text-foreground">Evento Solo Adultos</p>
-              <p className="text-sm text-muted-foreground">No se permiten ninos</p>
+              <p className="text-sm text-muted-foreground">No se permiten niños</p>
             </div>
             <Switch
               checked={formData.noKids}
