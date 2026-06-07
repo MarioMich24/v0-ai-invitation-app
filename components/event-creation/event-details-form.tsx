@@ -218,7 +218,7 @@ export function EventDetailsForm({ eventType, formData, updateFormData }: EventD
 
       {eventType === 'xv' && (
         <CardSection 
-          title="Informacion de la Quinceanera" 
+          title="Información de la Quinceañera" 
           description="Datos de la festejada"
           icon={<Sparkles className="h-5 w-5" />}
         >
