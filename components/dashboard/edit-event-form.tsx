@@ -38,7 +38,7 @@ export function EditEventForm({ initialEvent }: { initialEvent: any }) {
     childInfo: details.child_info || { name: '', parents: '' },
     padrinos: (details.padrinos || []) as Padrino[],
     churchInfo: details.church_info || { name: '', address: '', time: '', maps_url: '' },
-    venueInfo: details.venue_info || { name: '', address: '', city: '', maps_url: '' },
+    venueInfo: details.venue_info || { name: '', address: '', maps_url: '' },
   })
 
   const handleGenerateText = async () => {
