@@ -575,7 +575,7 @@ export function EventDetailsForm({ eventType, formData, updateFormData }: EventD
           <div className="flex items-center justify-between py-2">
             <div>
               <p className="font-medium text-foreground">Evento Pet Friendly</p>
-              <p className="text-sm text-muted-foreground">Permite mascotas en el evento</p>
+              <p className="text-sm text-muted-foreground">Se permite mascotas en el evento</p>
             </div>
             <Switch
               checked={formData.petFriendly}
