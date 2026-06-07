@@ -258,8 +258,8 @@ export function EventDetailsForm({ eventType, formData, updateFormData }: EventD
 
       {eventType === 'bautizo' && (
         <CardSection 
-          title="Informacion del Bautizo" 
-          description="Datos del bebe y familia"
+          title="Información del Bautizo" 
+          description="Datos del bebé y familia"
           icon={<Baby className="h-5 w-5" />}
         >
           <FieldGroup>
@@ -371,7 +371,7 @@ export function EventDetailsForm({ eventType, formData, updateFormData }: EventD
                     name: e.target.value
                   }
                 })}
-                placeholder="Ej: Parroquia de San Jose"
+                placeholder="Ej: Parroquia de San José"
               />
             </Field>
             <Field>
@@ -386,7 +386,7 @@ export function EventDetailsForm({ eventType, formData, updateFormData }: EventD
                     address: e.target.value
                   }
                 })}
-                placeholder="Direccion completa"
+                placeholder="Dirección completa"
               />
             </Field>
             <div className="grid gap-4 sm:grid-cols-2">
@@ -427,8 +427,8 @@ export function EventDetailsForm({ eventType, formData, updateFormData }: EventD
 
       {/* Venue Info */}
       <CardSection 
-        title="Recepcion / Lugar del Evento" 
-        description="Donde se llevara a cabo la celebracion"
+        title="Recepción / Lugar del Evento" 
+        description="Donde se llevará a cabo la celebración"
         icon={<MapPin className="h-5 w-5" />}
       >
         <FieldGroup>
@@ -443,7 +443,7 @@ export function EventDetailsForm({ eventType, formData, updateFormData }: EventD
                   name: e.target.value
                 }
               })}
-              placeholder="Ej: Salon de Eventos La Hacienda"
+              placeholder="Ej: Salón de Eventos La Hacienda"
             />
           </Field>
           <Field>
@@ -458,7 +458,7 @@ export function EventDetailsForm({ eventType, formData, updateFormData }: EventD
                   address: e.target.value
                 }
               })}
-              placeholder="Direccion completa"
+              placeholder="Dirección completa"
             />
           </Field>
           <div className="grid gap-4 sm:grid-cols-2">
@@ -498,7 +498,7 @@ export function EventDetailsForm({ eventType, formData, updateFormData }: EventD
 
       {/* Invitation Text with AI */}
       <CardSection 
-        title="Texto de Invitacion" 
+        title="Texto de Invitación" 
         description="Escribe o genera con IA el mensaje de tu invitacion"
         icon={<Sparkles className="h-5 w-5" />}
       >
