@@ -88,6 +88,35 @@ export default function CreateEventPage() {
   }
 
   const handleNext = () => {
+    // --- VALIDACIONES DEL PASO 2 ---
+    if (currentStep === 2) {
+      // 1. Validar que el número de invitados no sea negativo o cero
+      if (formData.guestLimit !== null && formData.guestLimit < 1) {
+        toast.error('El límite de invitados debe ser al menos 1')
+        return
+      }
+
+      // 2. Validar que los enlaces sean realmente de Google Maps (si es que escribieron algo)
+      const mapRegex = /^https?:\/\/(www\.)?(google\.com\/maps|maps\.app\.goo\.gl|goo\.gl\/maps).*/;
+      
+      // Valida el de la Iglesia
+      if (formData.churchInfo?.maps_url && formData.churchInfo.maps_url.trim() !== '') {
+        if (!mapRegex.test(formData.churchInfo.maps_url.trim())) {
+          toast.error('El enlace de la Ceremonia Religiosa debe ser de Google Maps')
+          return
+        }
+      }
+      
+      // Valida el de la Recepción
+      if (formData.venueInfo?.maps_url && formData.venueInfo.maps_url.trim() !== '') {
+        if (!mapRegex.test(formData.venueInfo.maps_url.trim())) {
+          toast.error('El enlace de la Recepción debe ser de Google Maps')
+          return
+        }
+      }
+    }
+    // --------------------------------
+
     if (currentStep < STEPS.length && canProceed()) {
       setCurrentStep(prev => prev + 1)
     }
