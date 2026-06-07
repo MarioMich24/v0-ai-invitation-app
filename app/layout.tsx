@@ -7,13 +7,14 @@ import './globals.css'
 const _geist = Geist({ subsets: ["latin"] });
 const _geistMono = Geist_Mono({ subsets: ["latin"] });
 
+
 export const metadata: Metadata = {
-  title: {
-    default: 'Invitaciones Digitales - Crea Invitaciones con IA',
-    template: '%s | Invitaciones Digitales'
+  title: "Invitaciones digitales | Cookie Print 2026",
+  description: "Crea invitaciones digitales hermosas para bodas, XV años, bautizos, graduaciones y más con la ayuda de inteligencia artificial.",
+  icons: {
+    icon: "/GALLETITA.svg",
   },
-  description: 'Crea invitaciones digitales hermosas para bodas, XV anos, bautizos, graduaciones y mas con la ayuda de inteligencia artificial.',
-  keywords: ['invitaciones digitales', 'bodas', 'XV anos', 'bautizos', 'graduaciones', 'invitaciones online'],
+  keywords: ['invitaciones digitales', 'bodas', 'XV años', 'bautizos', 'graduaciones', 'invitaciones online', 'Cookie Print'],
 }
 
 export const viewport: Viewport = {

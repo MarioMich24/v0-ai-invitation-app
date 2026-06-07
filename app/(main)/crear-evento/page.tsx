@@ -33,6 +33,7 @@ export interface EventFormData {
   venueInfo?: LocationInfo
 }
 
+// Inicializamos churchInfo y venueInfo desde el día uno para asegurar que React y Supabase lean los datos siempre
 const initialFormData: EventFormData = {
   eventType: null,
   title: '',
@@ -44,12 +45,14 @@ const initialFormData: EventFormData = {
   eventDate: '',
   eventTime: '',
   padrinos: [],
+  churchInfo: { name: '', address: '', time: '', maps_url: '' },
+  venueInfo: { name: '', address: '', city: '', maps_url: '' },
 }
 
 const STEPS = [
   { id: 1, name: 'Tipo de Evento', description: 'Selecciona el tipo de evento' },
-  { id: 2, name: 'Detalles', description: 'Informacion del evento' },
-  { id: 3, name: 'Revisar', description: 'Confirma tu invitacion' },
+  { id: 2, name: 'Detalles', description: 'Información del evento' },
+  { id: 3, name: 'Revisar', description: 'Confirma tu invitación' },
 ]
 
 export default function CreateEventPage() {
@@ -88,6 +91,44 @@ export default function CreateEventPage() {
   }
 
   const handleNext = () => {
+    // --- VALIDACIONES ESTRICTAS DEL PASO 2 ---
+    if (currentStep === 2) {
+      // 1. OBLIGATORIEDAD DE LA RECEPCIÓN (Tu regla de negocio de que no asistan a la nada)
+      if (!formData.venueInfo?.name || formData.venueInfo.name.trim() === '') {
+        toast.error('El nombre del lugar de la Recepción es obligatorio.')
+        return
+      }
+      if (!formData.venueInfo?.address || formData.venueInfo.address.trim() === '') {
+        toast.error('La dirección completa de la Recepción es obligatoria.')
+        return
+      }
+      if (!formData.venueInfo?.maps_url || formData.venueInfo.maps_url.trim() === '') {
+        toast.error('El enlace de Google Maps de la Recepción es obligatorio para guiar a tus invitados.')
+        return
+      }
+
+      // 2. Validación de formato de Google Maps
+      const mapRegex = /^https?:\/\/(www\.)?(google\.com\/maps|maps\.app\.goo\.gl|goo\.gl\/maps).*/;
+      
+      if (formData.churchInfo?.maps_url && formData.churchInfo.maps_url.trim() !== '') {
+        if (!mapRegex.test(formData.churchInfo.maps_url.trim())) {
+          toast.error('El enlace de la Ceremonia Religiosa debe ser un link válido de Google Maps.')
+          return
+        }
+      }
+      
+      if (!mapRegex.test(formData.venueInfo.maps_url.trim())) {
+        toast.error('El enlace de la Recepción debe ser un link válido de Google Maps.')
+        return
+      }
+
+      // 3. Validación de límite de invitados
+      if (formData.guestLimit !== null && formData.guestLimit < 1) {
+        toast.error('El límite de invitados debe ser al menos 1.')
+        return
+      }
+    }
+
     if (currentStep < STEPS.length && canProceed()) {
       setCurrentStep(prev => prev + 1)
     }
@@ -124,10 +165,12 @@ export default function CreateEventPage() {
     if (formData.parentsInfo) {
       details.parents_info = formData.parentsInfo
     }
-    if (formData.churchInfo) {
+    
+    // Guardamos las estructuras si contienen datos mínimos públicos
+    if (formData.churchInfo?.name || formData.churchInfo?.address || formData.churchInfo?.maps_url) {
       details.church_info = formData.churchInfo
     }
-    if (formData.venueInfo) {
+    if (formData.venueInfo?.name || formData.venueInfo?.address || formData.venueInfo?.maps_url) {
       details.venue_info = formData.venueInfo
     }
 
@@ -152,7 +195,7 @@ export default function CreateEventPage() {
       return
     }
 
-    toast.success('Evento creado exitosamente!')
+    toast.success('¡Evento creado exitosamente!')
     router.push(`/dashboard/eventos/${result.eventId}`)
   }
 
@@ -162,7 +205,7 @@ export default function CreateEventPage() {
       <div className="mb-8">
         <div className="flex items-center justify-between mb-4">
           <div>
-            <h1 className="text-2xl font-bold text-foreground">Crear Nueva Invitacion</h1>
+            <h1 className="text-2xl font-bold text-foreground">Crear Nueva Invitación</h1>
             <p className="text-muted-foreground">
               Paso {currentStep} de {STEPS.length}: {STEPS[currentStep - 1].name}
             </p>
@@ -252,7 +295,7 @@ export default function CreateEventPage() {
             disabled={isSubmitting || !canProceed()}
             className="rounded-xl"
           >
-            {isSubmitting ? 'Creando...' : 'Crear Invitacion'}
+            {isSubmitting ? 'Creando...' : 'Crear Invitación'}
             <Check className="ml-2 h-4 w-4" />
           </Button>
         )}

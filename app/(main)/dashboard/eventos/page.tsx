@@ -32,12 +32,6 @@ export default async function EventsPage() {
           <h1 className="text-2xl font-bold text-foreground">Mis Eventos</h1>
           <p className="text-muted-foreground">Gestiona todas tus invitaciones digitales</p>
         </div>
-        <Button asChild className="rounded-xl">
-          <Link href="/crear-evento">
-            <Plus className="mr-2 h-4 w-4" />
-            Crear Invitacion
-          </Link>
-        </Button>
       </div>
 
       {events && events.length > 0 ? (
@@ -72,7 +66,7 @@ export default async function EventsPage() {
                       <DropdownMenuItem asChild>
                         <Link href={`/i/${event.slug}`} target="_blank">
                           <ExternalLink className="mr-2 h-4 w-4" />
-                          Ver Invitacion
+                          Ver Invitación
                         </Link>
                       </DropdownMenuItem>
                     )}
@@ -135,12 +129,12 @@ export default async function EventsPage() {
             <Empty
               icon={<Calendar className="h-12 w-12" />}
               title="No tienes eventos"
-              description="Crea tu primera invitacion digital para comenzar a compartir con tus invitados"
+              description="Crea tu primera invitación digital para comenzar a compartir con tus invitados"
               action={
                 <Button asChild className="rounded-xl">
                   <Link href="/crear-evento">
                     <Plus className="mr-2 h-4 w-4" />
-                    Crear Invitacion
+                    Crear Invitación
                   </Link>
                 </Button>
               }

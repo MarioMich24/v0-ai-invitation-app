@@ -80,10 +80,10 @@ export default function UpdatePasswordPage() {
   <p className="text-sm text-red-500 mt-1">
     {errors.password}
   </p>
-)}//este chatsito me lo dio
+)} 
               </Field>
               <Field>
-                <FieldLabel htmlFor="confirmPassword">Confirmar Contrasena</FieldLabel>
+                <FieldLabel htmlFor="confirmPassword">Confirmar Contraseña</FieldLabel>
                 <Input
                   id="confirmPassword"
                   name="confirmPassword"
@@ -97,7 +97,7 @@ export default function UpdatePasswordPage() {
   <p className="text-sm text-red-500 mt-1">
     {errors.confirmPassword}
   </p>
-)}//este chatsito me lo dio
+)}
               </Field>
             </FieldGroup>
 

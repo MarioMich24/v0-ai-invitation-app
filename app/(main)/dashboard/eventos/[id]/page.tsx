@@ -5,12 +5,12 @@ import { Button } from '@/components/ui/button'
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card'
 import { Badge } from '@/components/ui/badge'
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs'
-import { 
-  ArrowLeft, 
-  ExternalLink, 
-  Calendar, 
-  Clock, 
-  MapPin, 
+import {
+  ArrowLeft,
+  ExternalLink,
+  Calendar,
+  Clock,
+  MapPin,
   Users,
   Gift,
   Copy,
@@ -28,7 +28,7 @@ interface PageProps {
 export default async function EventDetailPage({ params }: PageProps) {
   const { id } = await params
   const supabase = await createClient()
-  
+
   const { data: { user } } = await supabase.auth.getUser()
 
   const { data: event, error } = await supabase
@@ -94,7 +94,7 @@ export default async function EventDetailPage({ params }: PageProps) {
             <div>
               <p className="text-sm text-muted-foreground">Fecha</p>
               <p className="font-semibold">
-                {event.event_date 
+                {event.event_date
                   ? new Date(event.event_date).toLocaleDateString('es-MX', { day: 'numeric', month: 'short', year: 'numeric' })
                   : 'Sin definir'}
               </p>
@@ -143,7 +143,7 @@ export default async function EventDetailPage({ params }: PageProps) {
         <Card className="rounded-2xl bg-gradient-to-r from-primary/5 to-primary/10">
           <CardContent className="flex items-center justify-between p-4">
             <div>
-              <p className="font-medium text-foreground">Enlace de tu Invitacion</p>
+              <p className="font-medium text-foreground">Enlace de tu Invitación</p>
               <p className="text-sm text-muted-foreground break-all">{invitationUrl}</p>
             </div>
             <div className="flex gap-2">
@@ -174,25 +174,25 @@ export default async function EventDetailPage({ params }: PageProps) {
           {/* Event Details */}
           <Card className="rounded-2xl">
             <CardHeader>
-              <CardTitle>Informacion del Evento</CardTitle>
+              <CardTitle>Información del Evento</CardTitle>
             </CardHeader>
             <CardContent className="space-y-4">
               {event.invitation_phrase && (
                 <div>
-                  <p className="text-sm font-medium text-muted-foreground mb-1">Mensaje de Invitacion</p>
+                  <p className="text-sm font-medium text-muted-foreground mb-1">Mensaje de Invitación</p>
                   <p className="text-foreground whitespace-pre-wrap">{event.invitation_phrase}</p>
                 </div>
               )}
               <div className="grid gap-4 sm:grid-cols-2">
                 {event.dress_code && (
                   <div>
-                    <p className="text-sm font-medium text-muted-foreground mb-1">Codigo de Vestimenta</p>
+                    <p className="text-sm font-medium text-muted-foreground mb-1">Código de Vestimenta</p>
                     <p className="text-foreground capitalize">{event.dress_code.replace('-', ' ')}</p>
                   </div>
                 )}
                 {event.guest_limit && (
                   <div>
-                    <p className="text-sm font-medium text-muted-foreground mb-1">Limite de Invitados</p>
+                    <p className="text-sm font-medium text-muted-foreground mb-1">Límite de Invitados</p>
                     <p className="text-foreground">{event.guest_limit}</p>
                   </div>
                 )}

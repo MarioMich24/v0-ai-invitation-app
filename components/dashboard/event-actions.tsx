@@ -1,5 +1,6 @@
 'use client'
 
+import Link from 'next/link'
 import { useState } from 'react'
 import { useRouter } from 'next/navigation'
 import { Button } from '@/components/ui/button'
@@ -84,9 +85,11 @@ export function EventActions({ event }: EventActionsProps) {
             </Button>
           </DropdownMenuTrigger>
           <DropdownMenuContent align="end">
-            <DropdownMenuItem>
-              <Pencil className="mr-2 h-4 w-4" />
-              Editar Evento
+            <DropdownMenuItem asChild>
+              <Link href={`/dashboard/eventos/${event.id}/editar`}>
+                <Pencil className="mr-2 h-4 w-4" />
+                Editar Evento
+              </Link>
             </DropdownMenuItem>
             {event.status !== 'archived' && (
               <DropdownMenuItem onClick={handleArchive}>
@@ -111,7 +114,7 @@ export function EventActions({ event }: EventActionsProps) {
           <AlertDialogHeader>
             <AlertDialogTitle>Eliminar Evento</AlertDialogTitle>
             <AlertDialogDescription>
-              Esta accion no se puede deshacer. Se eliminara permanentemente el evento
+              Esta acción no se puede deshacer. Se eliminará permanentemente el evento
               &quot;{event.title}&quot; junto con todas sus confirmaciones y regalos.
             </AlertDialogDescription>
           </AlertDialogHeader>

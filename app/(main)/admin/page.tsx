@@ -8,6 +8,8 @@ import { Badge } from '@/components/ui/badge'
 import { Users, Calendar, Gift, TrendingUp, ArrowLeft } from 'lucide-react'
 import { EVENT_TYPE_LABELS } from '@/lib/types'
 
+export const dynamic = 'force-dynamic' //esto yo lo agregue xd
+
 export default async function AdminPage() {
   const supabase = await createClient()
   
@@ -66,11 +68,11 @@ export default async function AdminPage() {
             </Link>
           </Button>
           <div>
-            <h1 className="text-2xl font-bold text-foreground">Panel de Administracion</h1>
-            <p className="text-muted-foreground">Gestion general del sistema</p>
+            <h1 className="text-2xl font-bold text-foreground">Panel de Administración</h1>
+            <p className="text-muted-foreground">Gestión general del sistema</p>
           </div>
         </div>
-        <Badge variant="outline" className="text-primary">Admin</Badge>
+        <Badge variant="outline" className="text-primary">Admintrador</Badge>
       </div>
 
       {/* Stats */}
@@ -107,7 +109,7 @@ export default async function AdminPage() {
         </Card>
         <Card className="rounded-2xl">
           <CardHeader className="flex flex-row items-center justify-between pb-2">
-            <CardTitle className="text-sm font-medium text-muted-foreground">Conversion</CardTitle>
+            <CardTitle className="text-sm font-medium text-muted-foreground">Conversión</CardTitle>
             <Gift className="h-4 w-4 text-muted-foreground" />
           </CardHeader>
           <CardContent>
@@ -128,7 +130,7 @@ export default async function AdminPage() {
           <Table>
             <TableHeader>
               <TableRow>
-                <TableHead>Titulo</TableHead>
+                <TableHead>Título</TableHead>
                 <TableHead>Tipo</TableHead>
                 <TableHead>Usuario</TableHead>
                 <TableHead>Estado</TableHead>

@@ -22,13 +22,13 @@ interface EventDetailsFormProps {
 }
 
 // Card Section Component
-function CardSection({ 
-  title, 
-  description, 
-  icon, 
+function CardSection({
+  title,
+  description,
+  icon,
   children,
   className = ''
-}: { 
+}: {
   title: string
   description?: string
   icon?: React.ReactNode
@@ -60,14 +60,14 @@ export function EventDetailsForm({ eventType, formData, updateFormData }: EventD
 
   const handleGenerateText = async () => {
     setIsGenerating(true)
-    
+
     const names = eventType === 'boda' && formData.coupleInfo
       ? `${formData.coupleInfo.partner1_name} y ${formData.coupleInfo.partner2_name}`
       : eventType === 'xv' && formData.quinceaneraInfo
-      ? formData.quinceaneraInfo.name
-      : eventType === 'bautizo' && formData.childInfo
-      ? formData.childInfo.name
-      : formData.title
+        ? formData.quinceaneraInfo.name
+        : eventType === 'bautizo' && formData.childInfo
+          ? formData.childInfo.name
+          : formData.title
 
     const result = await generateInvitationText(eventType, {
       names,
@@ -106,7 +106,7 @@ export function EventDetailsForm({ eventType, formData, updateFormData }: EventD
       case 'boda':
         return ['honor', 'velacion', 'lazo', 'arras', 'anillos', 'biblia', 'rosario', 'ramo', 'brindis', 'pastel']
       case 'xv':
-        return ['honor', 'vals', 'ultima_muneca', 'zapato', 'corona', 'cojin', 'brindis', 'pastel']
+        return ['honor', 'vals', 'ultima_muneca', 'zapato', 'corona', 'brindis', 'pastel']
       case 'bautizo':
         return ['honor', 'general']
       default:
@@ -117,8 +117,8 @@ export function EventDetailsForm({ eventType, formData, updateFormData }: EventD
   return (
     <div className="space-y-6">
       {/* Basic Info */}
-      <CardSection 
-        title="Informacion Basica" 
+      <CardSection
+        title="Información Básica"
         description="Datos principales de tu evento"
         icon={<PartyPopper className="h-5 w-5" />}
       >
@@ -129,7 +129,7 @@ export function EventDetailsForm({ eventType, formData, updateFormData }: EventD
               id="title"
               value={formData.title}
               onChange={(e) => updateFormData({ title: e.target.value })}
-              placeholder={`Ej: ${eventType === 'boda' ? 'Boda de Maria y Juan' : eventType === 'xv' ? 'XV Anos de Sofia' : 'Mi Evento Especial'}`}
+              placeholder={`Ej: ${eventType === 'boda' ? 'Boda de Maria y Juan' : eventType === 'xv' ? 'XV Años de Sofia' : 'Mi Evento Especial'}`}
             />
           </Field>
           <div className="grid gap-4 sm:grid-cols-2">
@@ -138,6 +138,7 @@ export function EventDetailsForm({ eventType, formData, updateFormData }: EventD
               <Input
                 id="eventDate"
                 type="date"
+                min={new Date().toISOString().split('T')[0]}
                 value={formData.eventDate}
                 onChange={(e) => updateFormData({ eventDate: e.target.value })}
               />
@@ -157,20 +158,20 @@ export function EventDetailsForm({ eventType, formData, updateFormData }: EventD
 
       {/* Event-specific sections */}
       {eventType === 'boda' && (
-        <CardSection 
-          title="Informacion de la Pareja" 
+        <CardSection
+          title="Información de la Pareja"
           description="Datos de los novios"
           icon={<Heart className="h-5 w-5" />}
         >
           <FieldGroup>
             <div className="grid gap-4 sm:grid-cols-2">
               <Field>
-                <FieldLabel htmlFor="partner1">Nombre del Novio/a</FieldLabel>
+                <FieldLabel htmlFor="partner1">Nombre de la Novia</FieldLabel>
                 <Input
                   id="partner1"
                   value={formData.coupleInfo?.partner1_name || ''}
-                  onChange={(e) => updateFormData({ 
-                    coupleInfo: { 
+                  onChange={(e) => updateFormData({
+                    coupleInfo: {
                       ...formData.coupleInfo,
                       partner1_name: e.target.value,
                       partner2_name: formData.coupleInfo?.partner2_name || ''
@@ -180,12 +181,12 @@ export function EventDetailsForm({ eventType, formData, updateFormData }: EventD
                 />
               </Field>
               <Field>
-                <FieldLabel htmlFor="partner2">Nombre del Novio/a</FieldLabel>
+                <FieldLabel htmlFor="partner2">Nombre del Novio</FieldLabel>
                 <Input
                   id="partner2"
                   value={formData.coupleInfo?.partner2_name || ''}
-                  onChange={(e) => updateFormData({ 
-                    coupleInfo: { 
+                  onChange={(e) => updateFormData({
+                    coupleInfo: {
                       ...formData.coupleInfo,
                       partner1_name: formData.coupleInfo?.partner1_name || '',
                       partner2_name: e.target.value
@@ -200,8 +201,8 @@ export function EventDetailsForm({ eventType, formData, updateFormData }: EventD
               <Textarea
                 id="coupleStory"
                 value={formData.coupleInfo?.story || ''}
-                onChange={(e) => updateFormData({ 
-                  coupleInfo: { 
+                onChange={(e) => updateFormData({
+                  coupleInfo: {
                     ...formData.coupleInfo,
                     partner1_name: formData.coupleInfo?.partner1_name || '',
                     partner2_name: formData.coupleInfo?.partner2_name || '',
@@ -217,19 +218,19 @@ export function EventDetailsForm({ eventType, formData, updateFormData }: EventD
       )}
 
       {eventType === 'xv' && (
-        <CardSection 
-          title="Informacion de la Quinceanera" 
+        <CardSection
+          title="Información de la Quinceañera"
           description="Datos de la festejada"
           icon={<Sparkles className="h-5 w-5" />}
         >
           <FieldGroup>
             <Field>
-              <FieldLabel htmlFor="quinceaneraName">Nombre de la Quinceanera</FieldLabel>
+              <FieldLabel htmlFor="quinceaneraName">Nombre de la Quinceañera</FieldLabel>
               <Input
                 id="quinceaneraName"
                 value={formData.quinceaneraInfo?.name || ''}
-                onChange={(e) => updateFormData({ 
-                  quinceaneraInfo: { 
+                onChange={(e) => updateFormData({
+                  quinceaneraInfo: {
                     ...formData.quinceaneraInfo,
                     name: e.target.value
                   }
@@ -242,8 +243,8 @@ export function EventDetailsForm({ eventType, formData, updateFormData }: EventD
               <Input
                 id="quinceaneraParents"
                 value={formData.quinceaneraInfo?.parents || ''}
-                onChange={(e) => updateFormData({ 
-                  quinceaneraInfo: { 
+                onChange={(e) => updateFormData({
+                  quinceaneraInfo: {
                     ...formData.quinceaneraInfo,
                     name: formData.quinceaneraInfo?.name || '',
                     parents: e.target.value
@@ -257,19 +258,19 @@ export function EventDetailsForm({ eventType, formData, updateFormData }: EventD
       )}
 
       {eventType === 'bautizo' && (
-        <CardSection 
-          title="Informacion del Bautizo" 
-          description="Datos del bebe y familia"
+        <CardSection
+          title="Información del Bautizo"
+          description="Datos del bebé y familia"
           icon={<Baby className="h-5 w-5" />}
         >
           <FieldGroup>
             <Field>
-              <FieldLabel htmlFor="childName">Nombre del Bebe</FieldLabel>
+              <FieldLabel htmlFor="childName">Nombre del Bebé</FieldLabel>
               <Input
                 id="childName"
                 value={formData.childInfo?.name || ''}
-                onChange={(e) => updateFormData({ 
-                  childInfo: { 
+                onChange={(e) => updateFormData({
+                  childInfo: {
                     ...formData.childInfo,
                     name: e.target.value
                   }
@@ -282,8 +283,8 @@ export function EventDetailsForm({ eventType, formData, updateFormData }: EventD
               <Input
                 id="childParents"
                 value={formData.childInfo?.parents || ''}
-                onChange={(e) => updateFormData({ 
-                  childInfo: { 
+                onChange={(e) => updateFormData({
+                  childInfo: {
                     ...formData.childInfo,
                     name: formData.childInfo?.name || '',
                     parents: e.target.value
@@ -298,8 +299,8 @@ export function EventDetailsForm({ eventType, formData, updateFormData }: EventD
 
       {/* Padrinos Section - Only for certain event types */}
       {['boda', 'xv', 'bautizo'].includes(eventType) && (
-        <CardSection 
-          title="Padrinos" 
+        <CardSection
+          title="Padrinos"
           description="Agrega a los padrinos del evento"
           icon={<Users className="h-5 w-5" />}
         >
@@ -354,8 +355,8 @@ export function EventDetailsForm({ eventType, formData, updateFormData }: EventD
 
       {/* Church Info */}
       {['boda', 'xv', 'bautizo'].includes(eventType) && (
-        <CardSection 
-          title="Ceremonia Religiosa" 
+        <CardSection
+          title="Ceremonia Religiosa"
           description="Informacion de la iglesia (opcional)"
           icon={<Church className="h-5 w-5" />}
         >
@@ -365,28 +366,28 @@ export function EventDetailsForm({ eventType, formData, updateFormData }: EventD
               <Input
                 id="churchName"
                 value={formData.churchInfo?.name || ''}
-                onChange={(e) => updateFormData({ 
-                  churchInfo: { 
+                onChange={(e) => updateFormData({
+                  churchInfo: {
                     ...formData.churchInfo,
                     name: e.target.value
                   }
                 })}
-                placeholder="Ej: Parroquia de San Jose"
+                placeholder="Ej: Parroquia de San José"
               />
             </Field>
             <Field>
-              <FieldLabel htmlFor="churchAddress">Direccion</FieldLabel>
+              <FieldLabel htmlFor="churchAddress">Dirección</FieldLabel>
               <Input
                 id="churchAddress"
                 value={formData.churchInfo?.address || ''}
-                onChange={(e) => updateFormData({ 
-                  churchInfo: { 
+                onChange={(e) => updateFormData({
+                  churchInfo: {
                     ...formData.churchInfo,
                     name: formData.churchInfo?.name || '',
                     address: e.target.value
                   }
                 })}
-                placeholder="Direccion completa"
+                placeholder="Dirección completa"
               />
             </Field>
             <div className="grid gap-4 sm:grid-cols-2">
@@ -396,8 +397,8 @@ export function EventDetailsForm({ eventType, formData, updateFormData }: EventD
                   id="churchTime"
                   type="time"
                   value={formData.churchInfo?.time || ''}
-                  onChange={(e) => updateFormData({ 
-                    churchInfo: { 
+                  onChange={(e) => updateFormData({
+                    churchInfo: {
                       ...formData.churchInfo,
                       name: formData.churchInfo?.name || '',
                       time: e.target.value
@@ -409,15 +410,20 @@ export function EventDetailsForm({ eventType, formData, updateFormData }: EventD
                 <FieldLabel htmlFor="churchMaps">Link de Google Maps</FieldLabel>
                 <Input
                   id="churchMaps"
+                  name="churchMaps"
+                  type="url"
+                  pattern="^https?:\/\/(www\.)?(google\.com\/maps|maps\.app\.goo\.gl|goo\.gl\/maps).*"
+                  title="Debe ser un enlace válido de Google Maps"
                   value={formData.churchInfo?.maps_url || ''}
-                  onChange={(e) => updateFormData({ 
-                    churchInfo: { 
+                  onChange={(e) => updateFormData({
+                    churchInfo: {
                       ...formData.churchInfo,
                       name: formData.churchInfo?.name || '',
                       maps_url: e.target.value
                     }
                   })}
-                  placeholder="https://maps.google.com/..."
+                  placeholder="https://maps.app.goo.gl/..."
+                  autoComplete="off"
                 />
               </Field>
             </div>
@@ -426,9 +432,9 @@ export function EventDetailsForm({ eventType, formData, updateFormData }: EventD
       )}
 
       {/* Venue Info */}
-      <CardSection 
-        title="Recepcion / Lugar del Evento" 
-        description="Donde se llevara a cabo la celebracion"
+      <CardSection
+        title="Recepción / Lugar del Evento"
+        description="Donde se llevará a cabo la celebración"
         icon={<MapPin className="h-5 w-5" />}
       >
         <FieldGroup>
@@ -437,28 +443,28 @@ export function EventDetailsForm({ eventType, formData, updateFormData }: EventD
             <Input
               id="venueName"
               value={formData.venueInfo?.name || ''}
-              onChange={(e) => updateFormData({ 
-                venueInfo: { 
+              onChange={(e) => updateFormData({
+                venueInfo: {
                   ...formData.venueInfo,
                   name: e.target.value
                 }
               })}
-              placeholder="Ej: Salon de Eventos La Hacienda"
+              placeholder="Ej: Salón de Eventos La Hacienda"
             />
           </Field>
           <Field>
-            <FieldLabel htmlFor="venueAddress">Direccion</FieldLabel>
+            <FieldLabel htmlFor="venueAddress">Dirección</FieldLabel>
             <Input
               id="venueAddress"
               value={formData.venueInfo?.address || ''}
-              onChange={(e) => updateFormData({ 
-                venueInfo: { 
+              onChange={(e) => updateFormData({
+                venueInfo: {
                   ...formData.venueInfo,
                   name: formData.venueInfo?.name || '',
                   address: e.target.value
                 }
               })}
-              placeholder="Direccion completa"
+              placeholder="Dirección completa"
             />
           </Field>
           <div className="grid gap-4 sm:grid-cols-2">
@@ -467,8 +473,8 @@ export function EventDetailsForm({ eventType, formData, updateFormData }: EventD
               <Input
                 id="venueCity"
                 value={formData.venueInfo?.city || ''}
-                onChange={(e) => updateFormData({ 
-                  venueInfo: { 
+                onChange={(e) => updateFormData({
+                  venueInfo: {
                     ...formData.venueInfo,
                     name: formData.venueInfo?.name || '',
                     city: e.target.value
@@ -481,15 +487,20 @@ export function EventDetailsForm({ eventType, formData, updateFormData }: EventD
               <FieldLabel htmlFor="venueMaps">Link de Google Maps</FieldLabel>
               <Input
                 id="venueMaps"
+                name="venueMaps"
+                type="url"
+                pattern="^https?:\/\/(www\.)?(google\.com\/maps|maps\.app\.goo\.gl|goo\.gl\/maps).*"
+                title="Debe ser un enlace válido de Google Maps"
                 value={formData.venueInfo?.maps_url || ''}
-                onChange={(e) => updateFormData({ 
-                  venueInfo: { 
+                onChange={(e) => updateFormData({
+                  venueInfo: {
                     ...formData.venueInfo,
                     name: formData.venueInfo?.name || '',
                     maps_url: e.target.value
                   }
                 })}
-                placeholder="https://maps.google.com/..."
+                placeholder="https://maps.app.goo.gl/..."
+                autoComplete="off"
               />
             </Field>
           </div>
@@ -497,15 +508,15 @@ export function EventDetailsForm({ eventType, formData, updateFormData }: EventD
       </CardSection>
 
       {/* Invitation Text with AI */}
-      <CardSection 
-        title="Texto de Invitacion" 
+      <CardSection
+        title="Texto de Invitación"
         description="Escribe o genera con IA el mensaje de tu invitacion"
         icon={<Sparkles className="h-5 w-5" />}
       >
         <FieldGroup>
           <Field>
             <div className="flex items-center justify-between mb-2">
-              <FieldLabel htmlFor="invitationPhrase">Mensaje de Invitacion</FieldLabel>
+              <FieldLabel htmlFor="invitationPhrase">Mensaje de Invitación</FieldLabel>
               <Button
                 type="button"
                 variant="outline"
@@ -531,7 +542,7 @@ export function EventDetailsForm({ eventType, formData, updateFormData }: EventD
               id="invitationPhrase"
               value={formData.invitationPhrase}
               onChange={(e) => updateFormData({ invitationPhrase: e.target.value })}
-              placeholder="Escribe el texto de tu invitacion o usa el boton de IA para generarlo automaticamente..."
+              placeholder="Escribe el texto de tu invitación o usa el boton de IA para generarlo automáticamente..."
               rows={6}
             />
           </Field>
@@ -539,13 +550,13 @@ export function EventDetailsForm({ eventType, formData, updateFormData }: EventD
       </CardSection>
 
       {/* Additional Options */}
-      <CardSection 
-        title="Opciones Adicionales" 
-        description="Configuracion extra para tu evento"
+      <CardSection
+        title="Opciones Adicionales"
+        description="Configuración extra para tu evento"
       >
         <FieldGroup>
           <Field>
-            <FieldLabel htmlFor="dressCode">Codigo de Vestimenta</FieldLabel>
+            <FieldLabel htmlFor="dressCode">Código de Vestimenta</FieldLabel>
             <Select
               value={formData.dressCode}
               onValueChange={(value) => updateFormData({ dressCode: value })}
@@ -558,24 +569,25 @@ export function EventDetailsForm({ eventType, formData, updateFormData }: EventD
                 <SelectItem value="semi-formal">Semi-formal - Vestido cocktail</SelectItem>
                 <SelectItem value="casual-elegante">Casual Elegante</SelectItem>
                 <SelectItem value="casual">Casual</SelectItem>
-                <SelectItem value="tematico">Tematico</SelectItem>
+                <SelectItem value="tematico">Temático</SelectItem>
               </SelectContent>
             </Select>
           </Field>
           <Field>
-            <FieldLabel htmlFor="guestLimit">Limite de Invitados</FieldLabel>
+            <FieldLabel htmlFor="guestLimit">Límite de Invitados</FieldLabel>
             <Input
               id="guestLimit"
               type="number"
+              min="1"
               value={formData.guestLimit || ''}
               onChange={(e) => updateFormData({ guestLimit: e.target.value ? parseInt(e.target.value) : null })}
-              placeholder="Sin limite"
+              placeholder="Sin límite"
             />
           </Field>
           <div className="flex items-center justify-between py-2">
             <div>
               <p className="font-medium text-foreground">Evento Pet Friendly</p>
-              <p className="text-sm text-muted-foreground">Permite mascotas en el evento</p>
+              <p className="text-sm text-muted-foreground">Se permite mascotas en el evento</p>
             </div>
             <Switch
               checked={formData.petFriendly}
@@ -585,7 +597,7 @@ export function EventDetailsForm({ eventType, formData, updateFormData }: EventD
           <div className="flex items-center justify-between py-2">
             <div>
               <p className="font-medium text-foreground">Evento Solo Adultos</p>
-              <p className="text-sm text-muted-foreground">No se permiten ninos</p>
+              <p className="text-sm text-muted-foreground">No se permiten niños</p>
             </div>
             <Switch
               checked={formData.noKids}

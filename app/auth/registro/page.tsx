@@ -1,5 +1,6 @@
 'use client'
 
+import Image from "next/image"
 import { useState } from 'react'
 import Link from 'next/link'
 import { Button } from '@/components/ui/button'
@@ -65,13 +66,13 @@ export default function RegisterPage() {
             </div>
             <CardTitle className="text-2xl">Revisa tu Correo</CardTitle>
             <CardDescription className="text-base">
-              Te hemos enviado un enlace de confirmacion a tu correo electronico.
+              Te hemos enviado un enlace de confirmacion a tu correo electrónico.
               Por favor, revisa tu bandeja de entrada y haz clic en el enlace para activar tu cuenta.
             </CardDescription>
           </CardHeader>
           <CardContent>
             <Button asChild variant="outline" className="w-full rounded-xl">
-              <Link href="/auth/login">Ir a Iniciar Sesion</Link>
+              <Link href="/auth/login">Ir a Iniciar Sesión</Link>
             </Button>
           </CardContent>
         </Card>
@@ -83,12 +84,18 @@ export default function RegisterPage() {
     <div className="flex min-h-screen items-center justify-center bg-gradient-to-b from-primary/5 via-background to-background px-4 py-12">
       <Card className="w-full max-w-md rounded-2xl shadow-xl">
         <CardHeader className="text-center">
-          <Link href="/" className="mx-auto mb-4 flex h-12 w-12 items-center justify-center rounded-xl bg-primary text-primary-foreground font-bold text-xl">
-            I
+          <Link href="/" className="mx-auto mb-4 flex justify-center">
+            <Image 
+              src="/GALLETITA.svg" 
+              alt="Volver al inicio - Cookie Print" 
+              width={60} 
+              height={60} 
+              className="object-contain"
+            />
           </Link>
           <CardTitle className="text-2xl">Crear Cuenta</CardTitle>
           <CardDescription>
-            Registrate para comenzar a crear invitaciones digitales
+            Regístrate para comenzar a crear invitaciones digitales
           </CardDescription>
         </CardHeader>
         <CardContent>
@@ -112,7 +119,7 @@ export default function RegisterPage() {
 )}
               </Field>
               <Field>
-                <FieldLabel htmlFor="email">Correo Electronico</FieldLabel>
+                <FieldLabel htmlFor="email">Correo Electrónico</FieldLabel>
                 <Input
                   id="email"
                   name="email"
@@ -129,7 +136,7 @@ export default function RegisterPage() {
 )}
               </Field>
               <Field>
-                <FieldLabel htmlFor="password">Contrasena</FieldLabel>
+                <FieldLabel htmlFor="password">Contraseña</FieldLabel>
                 <Input
                   id="password"
                   name="password"
@@ -146,7 +153,7 @@ export default function RegisterPage() {
 )}
               </Field>
               <Field>
-                <FieldLabel htmlFor="confirmPassword">Confirmar Contrasena</FieldLabel>
+                <FieldLabel htmlFor="confirmPassword">Confirmar Contraseña</FieldLabel>
                 <Input
                   id="confirmPassword"
                   name="confirmPassword"
@@ -179,18 +186,18 @@ export default function RegisterPage() {
           <p className="mt-4 text-center text-xs text-muted-foreground">
             Al registrarte, aceptas nuestros{' '}
             <Link href="/terminos" className="text-primary hover:underline">
-              Terminos de Servicio
+              Términos de Servicio
             </Link>{' '}
             y{' '}
             <Link href="/privacidad" className="text-primary hover:underline">
-              Politica de Privacidad
+              Política de Privacidad
             </Link>
           </p>
 
           <div className="mt-6 text-center text-sm text-muted-foreground">
             Ya tienes una cuenta?{' '}
             <Link href="/auth/login" className="font-medium text-primary hover:underline">
-              Inicia Sesion
+              Inicia Sesión
             </Link>
           </div>
         </CardContent>

@@ -72,12 +72,6 @@ export default async function DashboardPage() {
           <h1 className="text-3xl font-bold text-foreground">Hola, {userName}</h1>
           <p className="text-muted-foreground">Aquí tienes un resumen de tus eventos</p>
         </div>
-        <Button asChild className="rounded-xl">
-          <Link href="/crear-evento">
-            <Plus className="mr-2 h-4 w-4" />
-            Crear Invitación
-          </Link>
-        </Button>
       </div>
 
       {/* Stats Cards */}
