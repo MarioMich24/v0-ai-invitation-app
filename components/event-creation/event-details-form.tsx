@@ -538,7 +538,7 @@ export function EventDetailsForm({ eventType, formData, updateFormData }: EventD
               id="invitationPhrase"
               value={formData.invitationPhrase}
               onChange={(e) => updateFormData({ invitationPhrase: e.target.value })}
-              placeholder="Escribe el texto de tu invitacion o usa el boton de IA para generarlo automáticamente..."
+              placeholder="Escribe el texto de tu invitación o usa el boton de IA para generarlo automáticamente..."
               rows={6}
             />
           </Field>
