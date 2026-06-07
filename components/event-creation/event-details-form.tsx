@@ -483,15 +483,16 @@ export function EventDetailsForm({ eventType, formData, updateFormData }: EventD
           </Field>
           <div className="grid gap-4 sm:grid-cols-2">
             <Field>
-              <FieldLabel htmlFor="venueCity">Ciudad</FieldLabel>
+<FieldLabel htmlFor="venueTime">Hora de la Recepción</FieldLabel>
               <Input
-                id="venueCity"
-                value={formData.venueInfo?.city || ''}
+                id="venueTime"
+                type="time"
+                value={formData.venueInfo?.time || ''}
                 onChange={(e) => updateFormData({
                   venueInfo: {
                     ...formData.venueInfo,
                     name: formData.venueInfo?.name || '',
-                    city: e.target.value
+                    time: e.target.value
                   }
                 })}
                 placeholder="Ciudad"
