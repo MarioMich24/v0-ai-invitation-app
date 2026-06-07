@@ -143,7 +143,7 @@ export default async function EventDetailPage({ params }: PageProps) {
         <Card className="rounded-2xl bg-gradient-to-r from-primary/5 to-primary/10">
           <CardContent className="flex items-center justify-between p-4">
             <div>
-              <p className="font-medium text-foreground">Enlace de tu Invitacion</p>
+              <p className="font-medium text-foreground">Enlace de tu Invitación</p>
               <p className="text-sm text-muted-foreground break-all">{invitationUrl}</p>
             </div>
             <div className="flex gap-2">
