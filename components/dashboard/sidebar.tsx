@@ -44,15 +44,6 @@ export function DashboardSidebar({ user }: DashboardSidebarProps) {
       collapsed ? "w-16" : "w-64"
     )}>
       <div className="flex h-full flex-col">
-        {/* Create Button */}
-        <div className="p-4">
-          <Button asChild className={cn("w-full rounded-xl", collapsed && "px-2")}>
-            <Link href="/crear-evento">
-              <Plus className="h-4 w-4" />
-              {!collapsed && <span className="ml-2">Crear Invitacion</span>}
-            </Link>
-          </Button>
-        </div>
 
         {/* Navigation */}
         <nav className="flex-1 space-y-1 px-2">
