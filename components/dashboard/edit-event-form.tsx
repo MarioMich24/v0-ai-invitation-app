@@ -200,6 +200,27 @@ export function EditEventForm({ initialEvent }: { initialEvent: any }) {
                 <Input value={formData.coupleInfo.partner2_name} onChange={e => setFormData({ ...formData, coupleInfo: { ...formData.coupleInfo, partner2_name: e.target.value } })} />
               </Field>
             </div>
+            <div className="grid gap-4 sm:grid-cols-2 mb-4">
+              <Field>
+                <FieldLabel>Nombre de la Novia</FieldLabel>
+                <Input value={formData.coupleInfo.partner1_name} onChange={e => setFormData({ ...formData, coupleInfo: { ...formData.coupleInfo, partner1_name: e.target.value } })} />
+              </Field>
+              <Field>
+                <FieldLabel>Nombre del Novio</FieldLabel>
+                <Input value={formData.coupleInfo.partner2_name} onChange={e => setFormData({ ...formData, coupleInfo: { ...formData.coupleInfo, partner2_name: e.target.value } })} />
+              </Field>
+            </div>
+            {/* NUEVO BLOQUE PARA LOS PADRES */}
+            <div className="grid gap-4 sm:grid-cols-2 mb-4">
+              <Field>
+                <FieldLabel>Padres de la Novia</FieldLabel>
+                <Input placeholder="Ej: Sr. Juan y Sra. María" value={formData.coupleInfo.partner1_parents || ''} onChange={e => setFormData({ ...formData, coupleInfo: { ...formData.coupleInfo, partner1_parents: e.target.value } })} />
+              </Field>
+              <Field>
+                <FieldLabel>Padres del Novio</FieldLabel>
+                <Input placeholder="Ej: Sr. Pedro y Sra. Ana" value={formData.coupleInfo.partner2_parents || ''} onChange={e => setFormData({ ...formData, coupleInfo: { ...formData.coupleInfo, partner2_parents: e.target.value } })} />
+              </Field>
+            </div>
             <Field>
               <FieldLabel>Nuestra Historia (Opcional)</FieldLabel>
               <Textarea rows={3} value={formData.coupleInfo.story || ''} onChange={e => setFormData({ ...formData, coupleInfo: { ...formData.coupleInfo, story: e.target.value } })} />
