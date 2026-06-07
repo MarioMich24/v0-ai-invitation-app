@@ -171,11 +171,7 @@ export function EventDetailsForm({ eventType, formData, updateFormData }: EventD
                   id="partner1"
                   value={formData.coupleInfo?.partner1_name || ''}
                   onChange={(e) => updateFormData({
-                    coupleInfo: {
-                      ...formData.coupleInfo,
-                      partner1_name: e.target.value,
-                      partner2_name: formData.coupleInfo?.partner2_name || ''
-                    }
+                    coupleInfo: { ...formData.coupleInfo, partner1_name: e.target.value } as any
                   })}
                   placeholder="Nombre completo"
                 />
@@ -186,13 +182,31 @@ export function EventDetailsForm({ eventType, formData, updateFormData }: EventD
                   id="partner2"
                   value={formData.coupleInfo?.partner2_name || ''}
                   onChange={(e) => updateFormData({
-                    coupleInfo: {
-                      ...formData.coupleInfo,
-                      partner1_name: formData.coupleInfo?.partner1_name || '',
-                      partner2_name: e.target.value
-                    }
+                    coupleInfo: { ...formData.coupleInfo, partner2_name: e.target.value } as any
                   })}
                   placeholder="Nombre completo"
+                />
+              </Field>
+              <Field>
+                <FieldLabel htmlFor="partner1Parents">Padres de la Novia</FieldLabel>
+                <Input
+                  id="partner1Parents"
+                  value={formData.coupleInfo?.partner1_parents || ''}
+                  onChange={(e) => updateFormData({
+                    coupleInfo: { ...formData.coupleInfo, partner1_parents: e.target.value } as any
+                  })}
+                  placeholder="Ej: Sr. Juan y Sra. María"
+                />
+              </Field>
+              <Field>
+                <FieldLabel htmlFor="partner2Parents">Padres del Novio</FieldLabel>
+                <Input
+                  id="partner2Parents"
+                  value={formData.coupleInfo?.partner2_parents || ''}
+                  onChange={(e) => updateFormData({
+                    coupleInfo: { ...formData.coupleInfo, partner2_parents: e.target.value } as any
+                  })}
+                  placeholder="Ej: Sr. Pedro y Sra. Ana"
                 />
               </Field>
             </div>
