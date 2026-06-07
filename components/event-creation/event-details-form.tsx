@@ -106,7 +106,7 @@ export function EventDetailsForm({ eventType, formData, updateFormData }: EventD
       case 'boda':
         return ['honor', 'velacion', 'lazo', 'arras', 'anillos', 'biblia', 'rosario', 'ramo', 'brindis', 'pastel']
       case 'xv':
-        return ['honor', 'vals', 'ultima_muneca', 'zapato', 'corona', 'cojin', 'brindis', 'pastel']
+        return ['honor', 'vals', 'ultima_muneca', 'zapato', 'corona', 'brindis', 'pastel']
       case 'bautizo':
         return ['honor', 'general']
       default:
