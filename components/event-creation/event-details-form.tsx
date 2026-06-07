@@ -495,7 +495,6 @@ export function EventDetailsForm({ eventType, formData, updateFormData }: EventD
                     time: e.target.value
                   }
                 })}
-                placeholder="Ciudad"
               />
             </Field>
             <Field>
