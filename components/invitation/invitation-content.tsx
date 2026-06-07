@@ -123,19 +123,27 @@ export function InvitationContent({ event }: InvitationContentProps) {
           
           {/* Names */}
           {event.event_type === 'boda' && details?.couple_info && (
-            <div className="mt-4 text-center">
-              <p className="text-4xl font-light text-foreground sm:text-5xl">
+            <>
+              <p className="mt-4 text-2xl font-light text-muted-foreground sm:text-3xl">
                 {details.couple_info.partner1_name} & {details.couple_info.partner2_name}
               </p>
               
+              {/* NUEVO BLOQUE PARA LA INVITACIÓN PÚBLICA */}
               {(details.couple_info.partner1_parents || details.couple_info.partner2_parents) && (
-                <div className="mt-6 text-sm sm:text-base text-muted-foreground">
-                  <p className="font-medium text-foreground mb-1">Con la bendición de sus padres:</p>
-                  {details.couple_info.partner1_parents && <p>{details.couple_info.partner1_parents}</p>}
-                  {details.couple_info.partner2_parents && <p>{details.couple_info.partner2_parents}</p>}
+                <div className="mt-8 text-muted-foreground text-sm sm:text-base font-light">
+                  <p className="mb-2 uppercase tracking-widest text-xs">Con la bendición de nuestros padres</p>
+                  <div className="flex flex-col sm:flex-row justify-center gap-2 sm:gap-12">
+                    {details.couple_info.partner1_parents && (
+                      <span>{details.couple_info.partner1_parents}</span>
+                    )}
+                    {details.couple_info.partner2_parents && (
+                      <span>{details.couple_info.partner2_parents}</span>
+                    )}
+                  </div>
                 </div>
               )}
-            </div>
+              {/* FIN DEL NUEVO BLOQUE */}
+            </>
           )}
           {event.event_type === 'xv' && details?.quinceanera_info && (
             <div className="mt-4 text-center">
