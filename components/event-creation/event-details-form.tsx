@@ -407,20 +407,23 @@ export function EventDetailsForm({ eventType, formData, updateFormData }: EventD
                 />
               </Field>
               <Field>
-                <FieldLabel htmlFor="churchMaps">Link de Google Maps</FieldLabel>
-                <Input
-                  id="churchMaps"
-                  value={formData.churchInfo?.maps_url || ''}
-                  onChange={(e) => updateFormData({ 
-                    churchInfo: { 
-                      ...formData.churchInfo,
-                      name: formData.churchInfo?.name || '',
-                      maps_url: e.target.value
-                    }
-                  })}
-                  placeholder="https://maps.google.com/..."
-                />
-              </Field>
+              <FieldLabel htmlFor="venueMaps">Link de Google Maps</FieldLabel>
+              <Input
+                id="venueMaps"
+                type="url"
+                pattern="^https?:\/\/(www\.)?(google\.com\/maps|maps\.app\.goo\.gl|goo\.gl\/maps).*"
+                title="Debe ser un enlace válido de Google Maps (ej: https://maps.app.goo.gl/...)"
+                value={formData.venueInfo?.maps_url || ''}
+                onChange={(e) => updateFormData({ 
+                  venueInfo: { 
+                    ...formData.venueInfo,
+                    name: formData.venueInfo?.name || '',
+                    maps_url: e.target.value
+                  }
+                })}
+                placeholder="https://maps.app.goo.gl/..."
+              />
+            </Field>
             </div>
           </FieldGroup>
         </CardSection>
