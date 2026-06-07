@@ -130,7 +130,7 @@ export default async function AdminPage() {
           <Table>
             <TableHeader>
               <TableRow>
-                <TableHead>Titulo</TableHead>
+                <TableHead>Título</TableHead>
                 <TableHead>Tipo</TableHead>
                 <TableHead>Usuario</TableHead>
                 <TableHead>Estado</TableHead>
