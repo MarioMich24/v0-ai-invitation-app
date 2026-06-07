@@ -158,14 +158,14 @@ export function EventDetailsForm({ eventType, formData, updateFormData }: EventD
       {/* Event-specific sections */}
       {eventType === 'boda' && (
         <CardSection 
-          title="Informacion de la Pareja" 
+          title="Información de la Pareja" 
           description="Datos de los novios"
           icon={<Heart className="h-5 w-5" />}
         >
           <FieldGroup>
             <div className="grid gap-4 sm:grid-cols-2">
               <Field>
-                <FieldLabel htmlFor="partner1">Nombre del Novio/a</FieldLabel>
+                <FieldLabel htmlFor="partner1">Nombre de la Novia</FieldLabel>
                 <Input
                   id="partner1"
                   value={formData.coupleInfo?.partner1_name || ''}
@@ -180,7 +180,7 @@ export function EventDetailsForm({ eventType, formData, updateFormData }: EventD
                 />
               </Field>
               <Field>
-                <FieldLabel htmlFor="partner2">Nombre del Novio/a</FieldLabel>
+                <FieldLabel htmlFor="partner2">Nombre del Novio</FieldLabel>
                 <Input
                   id="partner2"
                   value={formData.coupleInfo?.partner2_name || ''}
