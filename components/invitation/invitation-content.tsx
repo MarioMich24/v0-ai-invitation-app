@@ -36,7 +36,7 @@ interface InvitationContentProps {
     event_date: string | null
     event_time: string | null
     event_details: Array<{
-      couple_info: { partner1_name: string; partner2_name: string; story?: string } | null
+      couple_info: { partner1_name: string; partner2_name: string; partner1_parents?: string; partner2_parents?: string; story?: string } | null
       quinceanera_info: { name: string; parents?: string } | null
       child_info: { name: string; parents?: string } | null
       padrinos: Array<{ name: string; role_type: string }> | null
@@ -123,19 +123,45 @@ export function InvitationContent({ event }: InvitationContentProps) {
           
           {/* Names */}
           {event.event_type === 'boda' && details?.couple_info && (
-            <p className="mt-4 text-2xl font-light text-muted-foreground sm:text-3xl">
-              {details.couple_info.partner1_name} & {details.couple_info.partner2_name}
-            </p>
+            <div className="mt-4 text-center">
+              <p className="text-4xl font-light text-foreground sm:text-5xl">
+                {details.couple_info.partner1_name} & {details.couple_info.partner2_name}
+              </p>
+              
+              {(details.couple_info.partner1_parents || details.couple_info.partner2_parents) && (
+                <div className="mt-6 text-sm sm:text-base text-muted-foreground">
+                  <p className="font-medium text-foreground mb-1">Con la bendición de sus padres:</p>
+                  {details.couple_info.partner1_parents && <p>{details.couple_info.partner1_parents}</p>}
+                  {details.couple_info.partner2_parents && <p>{details.couple_info.partner2_parents}</p>}
+                </div>
+              )}
+            </div>
           )}
           {event.event_type === 'xv' && details?.quinceanera_info && (
-            <p className="mt-4 text-2xl font-light text-muted-foreground sm:text-3xl">
-              {details.quinceanera_info.name}
-            </p>
+            <div className="mt-4 text-center">
+              <p className="text-4xl font-light text-foreground sm:text-5xl">
+                {details.quinceanera_info.name}
+              </p>
+              {details.quinceanera_info.parents && (
+                <div className="mt-6 text-sm sm:text-base text-muted-foreground">
+                  <p className="font-medium text-foreground mb-1">En compañía de sus padres:</p>
+                  <p>{details.quinceanera_info.parents}</p>
+                </div>
+              )}
+            </div>
           )}
           {event.event_type === 'bautizo' && details?.child_info && (
-            <p className="mt-4 text-2xl font-light text-muted-foreground sm:text-3xl">
-              {details.child_info.name}
-            </p>
+            <div className="mt-4 text-center">
+              <p className="text-4xl font-light text-foreground sm:text-5xl">
+                {details.child_info.name}
+              </p>
+              {details.child_info.parents && (
+                <div className="mt-6 text-sm sm:text-base text-muted-foreground">
+                  <p className="font-medium text-foreground mb-1">En compañía de sus padres:</p>
+                  <p>{details.child_info.parents}</p>
+                </div>
+              )}
+            </div>
           )}
 
           {/* Date & Time */}
@@ -232,7 +258,7 @@ export function InvitationContent({ event }: InvitationContentProps) {
               </Card>
             )}
 
-{/* Locations */}
+            {/* Locations */}
             {(hasChurch || hasVenue) && (
               <Card className="rounded-2xl">
                 <CardHeader>
