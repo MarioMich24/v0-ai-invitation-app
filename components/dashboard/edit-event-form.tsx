@@ -408,7 +408,7 @@ export function EditEventForm({ initialEvent }: { initialEvent: any }) {
             <div className="flex items-center justify-between py-2 border-t">
               <div>
                 <p className="font-medium">Evento Pet Friendly</p>
-                <p className="text-sm text-muted-foreground">Permite mascotas en el evento</p>
+                <p className="text-sm text-muted-foreground">Se permite mascotas en el evento</p>
               </div>
               <Switch checked={formData.petFriendly} onCheckedChange={val => setFormData({ ...formData, petFriendly: val })} />
             </div>
