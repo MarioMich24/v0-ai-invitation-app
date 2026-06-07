@@ -485,9 +485,6 @@ export function EventDetailsForm({ eventType, formData, updateFormData }: EventD
               <FieldLabel htmlFor="venueMaps">Link de Google Maps</FieldLabel>
               <Input
                 id="venueMaps"
-                type="url"
-                pattern="^https?:\/\/(www\.)?(google\.com\/maps|maps\.app\.goo\.gl|goo\.gl\/maps).*"
-                title="Debe ser un enlace válido de Google Maps (ej: https://maps.app.goo.gl/...)"
                 value={formData.venueInfo?.maps_url || ''}
                 onChange={(e) => updateFormData({ 
                   venueInfo: { 
@@ -496,7 +493,7 @@ export function EventDetailsForm({ eventType, formData, updateFormData }: EventD
                     maps_url: e.target.value
                   }
                 })}
-                placeholder="https://maps.app.goo.gl/..."
+                placeholder="https://maps.google.com/..."
               />
             </Field>
           </div>
@@ -538,7 +535,7 @@ export function EventDetailsForm({ eventType, formData, updateFormData }: EventD
               id="invitationPhrase"
               value={formData.invitationPhrase}
               onChange={(e) => updateFormData({ invitationPhrase: e.target.value })}
-              placeholder="Escribe el texto de tu invitación o usa el boton de IA para generarlo automáticamente..."
+              placeholder="Escribe el texto de tu invitacion o usa el boton de IA para generarlo automáticamente..."
               rows={6}
             />
           </Field>
