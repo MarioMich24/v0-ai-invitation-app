@@ -72,7 +72,7 @@ export default async function EventsPage() {
                       <DropdownMenuItem asChild>
                         <Link href={`/i/${event.slug}`} target="_blank">
                           <ExternalLink className="mr-2 h-4 w-4" />
-                          Ver Invitacion
+                          Ver Invitación
                         </Link>
                       </DropdownMenuItem>
                     )}
