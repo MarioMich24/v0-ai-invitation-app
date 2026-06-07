@@ -162,7 +162,7 @@ export default function CreateEventPage() {
       <div className="mb-8">
         <div className="flex items-center justify-between mb-4">
           <div>
-            <h1 className="text-2xl font-bold text-foreground">Crear Nueva Invitacion</h1>
+            <h1 className="text-2xl font-bold text-foreground">Crear Nueva Invitación</h1>
             <p className="text-muted-foreground">
               Paso {currentStep} de {STEPS.length}: {STEPS[currentStep - 1].name}
             </p>
