@@ -41,7 +41,7 @@ interface InvitationContentProps {
       child_info: { name: string; parents?: string } | null
       padrinos: Array<{ name: string; role_type: string }> | null
       church_info: { name: string; address?: string; time?: string; maps_url?: string } | null
-      venue_info: { name: string; address?: string; city?: string; maps_url?: string } | null
+      venue_info: { name: string; address?: string; time?: string; maps_url?: string } | null
     }> | null
     gifts: Array<{
       id: string
@@ -308,16 +308,13 @@ export function InvitationContent({ event }: InvitationContentProps) {
                       <div className="flex items-center gap-2 mb-2">
                         <MapPin className="h-4 w-4 text-primary" />
                         <span className="font-medium">Recepción</span>
+                      {/* Agregamos el Badge de la hora de recepción */}
+                        {details.venue_info?.time && (
+                          <Badge variant="outline" className="ml-auto">
+                            {formatTime(details.venue_info.time)}
+                          </Badge>
+                        )}
                       </div>
-                      {details.venue_info?.name && (
-                        <p className="text-foreground">{details.venue_info.name}</p>
-                      )}
-                      {details.venue_info?.address && (
-                        <p className="text-sm text-muted-foreground mt-1">{details.venue_info.address}</p>
-                      )}
-                      {details.venue_info?.city && (
-                        <p className="text-sm text-muted-foreground">{details.venue_info.city}</p>
-                      )}
                       {details.venue_info?.maps_url && (
                         <Button asChild variant="link" size="sm" className="mt-2 px-0">
                           <a href={details.venue_info.maps_url} target="_blank" rel="noopener noreferrer">
