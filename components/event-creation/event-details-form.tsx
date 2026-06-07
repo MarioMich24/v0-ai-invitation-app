@@ -118,7 +118,7 @@ export function EventDetailsForm({ eventType, formData, updateFormData }: EventD
     <div className="space-y-6">
       {/* Basic Info */}
       <CardSection 
-        title="Informacion Basica" 
+        title="Información Básica" 
         description="Datos principales de tu evento"
         icon={<PartyPopper className="h-5 w-5" />}
       >
