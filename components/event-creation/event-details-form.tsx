@@ -129,7 +129,7 @@ export function EventDetailsForm({ eventType, formData, updateFormData }: EventD
               id="title"
               value={formData.title}
               onChange={(e) => updateFormData({ title: e.target.value })}
-              placeholder={`Ej: ${eventType === 'boda' ? 'Boda de Maria y Juan' : eventType === 'xv' ? 'XV Anos de Sofia' : 'Mi Evento Especial'}`}
+              placeholder={`Ej: ${eventType === 'boda' ? 'Boda de Maria y Juan' : eventType === 'xv' ? 'XV Años de Sofia' : 'Mi Evento Especial'}`}
             />
           </Field>
           <div className="grid gap-4 sm:grid-cols-2">
