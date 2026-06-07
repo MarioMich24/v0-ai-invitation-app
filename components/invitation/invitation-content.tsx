@@ -59,6 +59,8 @@ export function InvitationContent({ event }: InvitationContentProps) {
   
   const details = event.event_details?.[0]
   const hasGifts = event.gifts && event.gifts.length > 0
+  const hasChurch = details?.church_info && (details.church_info.name || details.church_info.address || details.church_info.maps_url);
+  const hasVenue = details?.venue_info && (details.venue_info.name || details.venue_info.address || details.venue_info.city || details.venue_info.maps_url);
 
   const formatDate = (dateStr: string) => {
     const date = new Date(dateStr + 'T00:00:00')
@@ -230,8 +232,8 @@ export function InvitationContent({ event }: InvitationContentProps) {
               </Card>
             )}
 
-            {/* Locations */}
-            {(details?.church_info || details?.venue_info) && (
+{/* Locations */}
+            {(hasChurch || hasVenue) && (
               <Card className="rounded-2xl">
                 <CardHeader>
                   <CardTitle className="flex items-center gap-2">
@@ -240,22 +242,24 @@ export function InvitationContent({ event }: InvitationContentProps) {
                   </CardTitle>
                 </CardHeader>
                 <CardContent className="space-y-4">
-                  {details?.church_info?.name && (
+                  {hasChurch && (
                     <div className="rounded-xl bg-muted/50 p-4">
                       <div className="flex items-center gap-2 mb-2">
                         <Church className="h-4 w-4 text-primary" />
                         <span className="font-medium">Ceremonia</span>
-                        {details.church_info.time && (
+                        {details.church_info?.time && (
                           <Badge variant="outline" className="ml-auto">
                             {formatTime(details.church_info.time)}
                           </Badge>
                         )}
                       </div>
-                      <p className="text-foreground">{details.church_info.name}</p>
-                      {details.church_info.address && (
+                      {details.church_info?.name && (
+                        <p className="text-foreground">{details.church_info.name}</p>
+                      )}
+                      {details.church_info?.address && (
                         <p className="text-sm text-muted-foreground mt-1">{details.church_info.address}</p>
                       )}
-                      {details.church_info.maps_url && (
+                      {details.church_info?.maps_url && (
                         <Button asChild variant="link" size="sm" className="mt-2 px-0">
                           <a href={details.church_info.maps_url} target="_blank" rel="noopener noreferrer">
                             <ExternalLink className="mr-2 h-4 w-4" />
@@ -265,20 +269,22 @@ export function InvitationContent({ event }: InvitationContentProps) {
                       )}
                     </div>
                   )}
-                  {details?.venue_info?.name && (
+                  {hasVenue && (
                     <div className="rounded-xl bg-muted/50 p-4">
                       <div className="flex items-center gap-2 mb-2">
                         <MapPin className="h-4 w-4 text-primary" />
-                        <span className="font-medium">Recepcion</span>
+                        <span className="font-medium">Recepción</span>
                       </div>
-                      <p className="text-foreground">{details.venue_info.name}</p>
-                      {details.venue_info.address && (
+                      {details.venue_info?.name && (
+                        <p className="text-foreground">{details.venue_info.name}</p>
+                      )}
+                      {details.venue_info?.address && (
                         <p className="text-sm text-muted-foreground mt-1">{details.venue_info.address}</p>
                       )}
-                      {details.venue_info.city && (
+                      {details.venue_info?.city && (
                         <p className="text-sm text-muted-foreground">{details.venue_info.city}</p>
                       )}
-                      {details.venue_info.maps_url && (
+                      {details.venue_info?.maps_url && (
                         <Button asChild variant="link" size="sm" className="mt-2 px-0">
                           <a href={details.venue_info.maps_url} target="_blank" rel="noopener noreferrer">
                             <ExternalLink className="mr-2 h-4 w-4" />
