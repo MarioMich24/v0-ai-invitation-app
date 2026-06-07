@@ -109,7 +109,7 @@ export default async function AdminPage() {
         </Card>
         <Card className="rounded-2xl">
           <CardHeader className="flex flex-row items-center justify-between pb-2">
-            <CardTitle className="text-sm font-medium text-muted-foreground">Conversion</CardTitle>
+            <CardTitle className="text-sm font-medium text-muted-foreground">Conversión</CardTitle>
             <Gift className="h-4 w-4 text-muted-foreground" />
           </CardHeader>
           <CardContent>
