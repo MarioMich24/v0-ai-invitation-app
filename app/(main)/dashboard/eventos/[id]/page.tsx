@@ -174,12 +174,12 @@ export default async function EventDetailPage({ params }: PageProps) {
           {/* Event Details */}
           <Card className="rounded-2xl">
             <CardHeader>
-              <CardTitle>Informacion del Evento</CardTitle>
+              <CardTitle>Información del Evento</CardTitle>
             </CardHeader>
             <CardContent className="space-y-4">
               {event.invitation_phrase && (
                 <div>
-                  <p className="text-sm font-medium text-muted-foreground mb-1">Mensaje de Invitacion</p>
+                  <p className="text-sm font-medium text-muted-foreground mb-1">Mensaje de Invitación</p>
                   <p className="text-foreground whitespace-pre-wrap">{event.invitation_phrase}</p>
                 </div>
               )}
