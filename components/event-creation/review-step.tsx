@@ -236,6 +236,10 @@ export function ReviewStep({ formData }: ReviewStepProps) {
                     </Badge>
                   )}
                 </div>
+                {formData.venueInfo?.name && <p className="text-foreground">{formData.venueInfo.name}</p>}
+                {formData.venueInfo?.address && (
+                  <p className="text-sm text-muted-foreground mt-1">{formData.venueInfo.address}</p>
+                )}
                 {formData.venueInfo?.maps_url && (
                   <Button asChild variant="link" size="sm" className="mt-2 px-0">
                     <a href={formData.venueInfo.maps_url} target="_blank" rel="noopener noreferrer">
