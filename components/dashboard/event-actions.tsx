@@ -111,7 +111,7 @@ export function EventActions({ event }: EventActionsProps) {
           <AlertDialogHeader>
             <AlertDialogTitle>Eliminar Evento</AlertDialogTitle>
             <AlertDialogDescription>
-              Esta accion no se puede deshacer. Se eliminara permanentemente el evento
+              Esta acción no se puede deshacer. Se eliminará permanentemente el evento
               &quot;{event.title}&quot; junto con todas sus confirmaciones y regalos.
             </AlertDialogDescription>
           </AlertDialogHeader>
