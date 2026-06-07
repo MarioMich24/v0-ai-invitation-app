@@ -97,7 +97,12 @@ export function EditEventForm({ initialEvent }: { initialEvent: any }) {
             <div className="grid gap-4 sm:grid-cols-2">
               <Field>
                 <FieldLabel>Fecha</FieldLabel>
-                <Input type="date" value={formData.eventDate} onChange={e => setFormData({ ...formData, eventDate: e.target.value })} />
+                <Input 
+                  type="date" 
+                  min={new Date().toISOString().split('T')[0]} 
+                  value={formData.eventDate} 
+                  onChange={e => setFormData({ ...formData, eventDate: e.target.value })} 
+                />
               </Field>
               <Field>
                 <FieldLabel>Hora</FieldLabel>
