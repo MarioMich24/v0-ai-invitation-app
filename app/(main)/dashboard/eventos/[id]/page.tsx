@@ -192,7 +192,7 @@ export default async function EventDetailPage({ params }: PageProps) {
                 )}
                 {event.guest_limit && (
                   <div>
-                    <p className="text-sm font-medium text-muted-foreground mb-1">Limite de Invitados</p>
+                    <p className="text-sm font-medium text-muted-foreground mb-1">Límite de Invitados</p>
                     <p className="text-foreground">{event.guest_limit}</p>
                   </div>
                 )}
