@@ -140,7 +140,7 @@ export default async function EventsPage() {
                 <Button asChild className="rounded-xl">
                   <Link href="/crear-evento">
                     <Plus className="mr-2 h-4 w-4" />
-                    Crear Invitacion
+                    Crear Invitación
                   </Link>
                 </Button>
               }
