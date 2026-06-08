@@ -57,8 +57,27 @@ export function GiftList({ gifts, eventId }: GiftListProps) {
   }
 
   const handleAddBank = async () => {
+    // 1. Validación de campos obligatorios
     if (!bankInfo.bank || !bankInfo.owner) {
       toast.error('El banco y titular son obligatorios')
+      return
+    }
+
+    // 2. Validación de 16 dígitos para Cuenta/Tarjeta
+    if (bankInfo.account && bankInfo.account.length !== 16) {
+      toast.error('El número de cuenta/tarjeta debe tener exactamente 16 dígitos')
+      return
+    }
+
+    // 3. Validación de 18 dígitos para CLABE
+    if (bankInfo.clabe && bankInfo.clabe.length !== 18) {
+      toast.error('La CLABE interbancaria debe tener exactamente 18 dígitos')
+      return
+    }
+
+    // 4. Se requiere al menos uno de los dos (Cuenta o CLABE)
+    if (!bankInfo.account && !bankInfo.clabe) {
+      toast.error('Debes proporcionar al menos el número de cuenta o la CLABE')
       return
     }
 
@@ -292,11 +311,21 @@ export function GiftList({ gifts, eventId }: GiftListProps) {
             </Field>
             <Field>
               <FieldLabel>Número de Cuenta o Tarjeta</FieldLabel>
-              <Input value={bankInfo.account} onChange={(e) => setBankInfo({ ...bankInfo, account: e.target.value })} placeholder="10 o 16 dígitos" />
+              <Input 
+                value={bankInfo.account} 
+                onChange={(e) => setBankInfo({ ...bankInfo, account: e.target.value.replace(/\D/g, '') })} 
+                placeholder="16 dígitos" 
+                maxLength={16} // Limita la entrada a 16 caracteres
+              />
             </Field>
             <Field>
               <FieldLabel>CLABE Interbancaria (Opcional)</FieldLabel>
-              <Input value={bankInfo.clabe} onChange={(e) => setBankInfo({ ...bankInfo, clabe: e.target.value })} placeholder="18 dígitos" />
+              <Input 
+                value={bankInfo.clabe} 
+                onChange={(e) => setBankInfo({ ...bankInfo, clabe: e.target.value.replace(/\D/g, '') })} 
+                placeholder="18 dígitos" 
+                maxLength={18} // Limita la entrada a 18 caracteres
+              />
             </Field>
           </FieldGroup>
           <DialogFooter>
