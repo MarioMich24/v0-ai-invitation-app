@@ -31,7 +31,7 @@ export default function ContactoPage() {
                 <Mail className="h-5 w-5 text-primary shrink-0 mt-0.5" />
                 <div>
                   <p className="font-medium text-foreground text-sm">Correo</p>
-                  <p className="text-sm text-muted-foreground break-all">galletitasdigitales@gmail.com</p>
+                  <p className="text-sm text-muted-foreground break-all">cookieprinthidalgo@gmail.com</p>
                 </div>
               </div>
               <div className="flex items-start gap-4">
@@ -52,7 +52,7 @@ export default function ContactoPage() {
               {/* Botones de Contacto */}
               <div className="flex gap-2 pt-2">
                 <Button variant="outline" size="sm" className="flex-1 rounded-xl bg-background" asChild>
-                  <a href="https://wa.me/527861298174" target="_blank" rel="noopener noreferrer">
+                  <a href="https://wa.link/xs3b0o" target="_blank" rel="noopener noreferrer">
                     <MessageCircle className="mr-2 h-4 w-4" />
                     WhatsApp
                   </a>
