@@ -11,7 +11,6 @@ import {
   MapPin, 
   Church, 
   Users, 
-  Gift, 
   Heart, 
   Sparkles, 
   Baby,
@@ -121,55 +120,48 @@ export function InvitationContent({ event }: InvitationContentProps) {
             {event.title}
           </h1>
           
-          {/* Names */}
+          {/* Nombres y Padres */}
           {event.event_type === 'boda' && details?.couple_info && (
             <>
               <p className="mt-4 text-2xl font-light text-muted-foreground sm:text-3xl">
                 {details.couple_info.partner1_name} & {details.couple_info.partner2_name}
               </p>
-              
-              {/* NUEVO BLOQUE PARA LA INVITACIÓN PÚBLICA */}
               {(details.couple_info.partner1_parents || details.couple_info.partner2_parents) && (
                 <div className="mt-8 text-muted-foreground text-sm sm:text-base font-light">
                   <p className="mb-2 uppercase tracking-widest text-xs">Con la bendición de nuestros padres</p>
                   <div className="flex flex-col sm:flex-row justify-center gap-2 sm:gap-12">
-                    {details.couple_info.partner1_parents && (
-                      <span>{details.couple_info.partner1_parents}</span>
-                    )}
-                    {details.couple_info.partner2_parents && (
-                      <span>{details.couple_info.partner2_parents}</span>
-                    )}
+                    {details.couple_info.partner1_parents && <span>{details.couple_info.partner1_parents}</span>}
+                    {details.couple_info.partner2_parents && <span>{details.couple_info.partner2_parents}</span>}
                   </div>
                 </div>
               )}
-              {/* FIN DEL NUEVO BLOQUE */}
             </>
           )}
           {event.event_type === 'xv' && details?.quinceanera_info && (
-            <div className="mt-4 text-center">
-              <p className="text-4xl font-light text-foreground sm:text-5xl">
+            <>
+              <p className="mt-4 text-2xl font-light text-muted-foreground sm:text-3xl">
                 {details.quinceanera_info.name}
               </p>
               {details.quinceanera_info.parents && (
-                <div className="mt-6 text-sm sm:text-base text-muted-foreground">
-                  <p className="font-medium text-foreground mb-1">En compañía de sus padres:</p>
+                <div className="mt-6 text-muted-foreground text-sm font-light">
+                  <p className="mb-1 uppercase tracking-widest text-xs">En compañía de mis padres</p>
                   <p>{details.quinceanera_info.parents}</p>
                 </div>
               )}
-            </div>
+            </>
           )}
           {event.event_type === 'bautizo' && details?.child_info && (
-            <div className="mt-4 text-center">
-              <p className="text-4xl font-light text-foreground sm:text-5xl">
+            <>
+              <p className="mt-4 text-2xl font-light text-muted-foreground sm:text-3xl">
                 {details.child_info.name}
               </p>
               {details.child_info.parents && (
-                <div className="mt-6 text-sm sm:text-base text-muted-foreground">
-                  <p className="font-medium text-foreground mb-1">En compañía de sus padres:</p>
+                <div className="mt-6 text-muted-foreground text-sm font-light">
+                  <p className="mb-1 uppercase tracking-widest text-xs">Padres</p>
                   <p>{details.child_info.parents}</p>
                 </div>
               )}
-            </div>
+            </>
           )}
 
           {/* Date & Time */}
@@ -266,7 +258,7 @@ export function InvitationContent({ event }: InvitationContentProps) {
               </Card>
             )}
 
-            {/* Locations */}
+            {/* Ubicaciones */}
             {(hasChurch || hasVenue) && (
               <Card className="rounded-2xl">
                 <CardHeader>
@@ -303,12 +295,14 @@ export function InvitationContent({ event }: InvitationContentProps) {
                       )}
                     </div>
                   )}
+                  
+                  {hasChurch && hasVenue && <Separator />}
+
                   {hasVenue && (
                     <div className="rounded-xl bg-muted/50 p-4">
                       <div className="flex items-center gap-2 mb-2">
                         <MapPin className="h-4 w-4 text-primary" />
                         <span className="font-medium">Recepción</span>
-                      {/* Agregamos el Badge de la hora de recepción */}
                         {details.venue_info?.time && (
                           <Badge variant="outline" className="ml-auto">
                             {formatTime(details.venue_info.time)}
