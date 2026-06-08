@@ -71,15 +71,8 @@ export default function ContactoPage() {
           <Card className="rounded-2xl border-none bg-primary/5 shadow-none">
             <CardHeader className="pb-2 pt-6 px-6">
               <CardTitle className="text-lg">Sucursal Queréndaro</CardTitle>
-            </Header>
+            </CardHeader>
             <CardContent className="p-6 pt-2 space-y-5">
-              <div className="flex items-start gap-4">
-                <Mail className="h-5 w-5 text-primary shrink-0 mt-0.5" />
-                <div>
-                  <p className="font-medium text-foreground text-sm">Correo</p>
-                  <p className="text-sm text-muted-foreground break-all">[Tu Correo de Queréndaro Aquí]</p>
-                </div>
-              </div>
               <div className="flex items-start gap-4">
                 <Phone className="h-5 w-5 text-primary shrink-0 mt-0.5" />
                 <div>
