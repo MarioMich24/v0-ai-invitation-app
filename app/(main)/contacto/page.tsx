@@ -73,12 +73,14 @@ export default function ContactoPage() {
               <CardTitle className="text-lg">Sucursal Queréndaro</CardTitle>
             </CardHeader>
             <CardContent className="p-6 pt-2 space-y-5">
-              <div className="flex items-start gap-4">
+                            <div className="flex items-start gap-4">
                 <Mail className="h-5 w-5 text-primary shrink-0 mt-0.5" />
                 <div>
                   <p className="font-medium text-foreground text-sm">Correo</p>
                   <p className="text-sm text-muted-foreground break-all">galletitasdigitales@gmail.com</p>
                 </div>
+              </div>
+              <div className="flex items-start gap-4">
                 <Phone className="h-5 w-5 text-primary shrink-0 mt-0.5" />
                 <div>
                   <p className="font-medium text-foreground text-sm">Teléfono</p>
