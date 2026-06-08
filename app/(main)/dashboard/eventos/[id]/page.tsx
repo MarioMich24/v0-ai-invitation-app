@@ -14,12 +14,14 @@ import {
   Users,
   Gift,
   Copy,
-  Check
+  Check,
+  Church
 } from 'lucide-react'
 import { EVENT_TYPE_LABELS, PADRINO_TYPE_LABELS } from '@/lib/types'
 import { EventActions } from '@/components/dashboard/event-actions'
 import { RsvpList } from '@/components/dashboard/rsvp-list'
 import { GiftList } from '@/components/dashboard/gift-list'
+import { Separator } from '@/components/ui/separator'
 
 interface PageProps {
   params: Promise<{ id: string }>
