@@ -173,10 +173,174 @@ export default async function EventDetailPage({ params }: PageProps) {
         </TabsList>
 
         <TabsContent value="details" className="space-y-4">
-          {/* Event Details */}
+          
+          {/* Festejados y Padres (Boda) */}
+          {event.event_type === 'boda' && event.event_details?.[0]?.couple_info && (
+            <Card className="rounded-2xl">
+              <CardHeader>
+                <CardTitle>La Pareja y Padres</CardTitle>
+              </CardHeader>
+              <CardContent className="space-y-4">
+                <div className="grid gap-4 sm:grid-cols-2">
+                  <div>
+                    <p className="text-sm font-medium text-muted-foreground mb-1">Nombre de la Novia</p>
+                    <p className="text-foreground font-medium">{event.event_details[0].couple_info.partner1_name || '-'}</p>
+                  </div>
+                  <div>
+                    <p className="text-sm font-medium text-muted-foreground mb-1">Nombre del Novio</p>
+                    <p className="text-foreground font-medium">{event.event_details[0].couple_info.partner2_name || '-'}</p>
+                  </div>
+                  {event.event_details[0].couple_info.partner1_parents && (
+                    <div>
+                      <p className="text-sm font-medium text-muted-foreground mb-1">Padres de la Novia</p>
+                      <p className="text-foreground">{event.event_details[0].couple_info.partner1_parents}</p>
+                    </div>
+                  )}
+                  {event.event_details[0].couple_info.partner2_parents && (
+                    <div>
+                      <p className="text-sm font-medium text-muted-foreground mb-1">Padres del Novio</p>
+                      <p className="text-foreground">{event.event_details[0].couple_info.partner2_parents}</p>
+                    </div>
+                  )}
+                </div>
+              </CardContent>
+            </Card>
+          )}
+
+          {/* Festejados y Padres (XV Años) */}
+          {event.event_type === 'xv' && event.event_details?.[0]?.quinceanera_info && (
+            <Card className="rounded-2xl">
+              <CardHeader>
+                <CardTitle>La Quinceañera y Padres</CardTitle>
+              </CardHeader>
+              <CardContent className="space-y-4">
+                <div className="grid gap-4 sm:grid-cols-2">
+                  <div>
+                    <p className="text-sm font-medium text-muted-foreground mb-1">Nombre de la Quinceañera</p>
+                    <p className="text-foreground font-medium">{event.event_details[0].quinceanera_info.name || '-'}</p>
+                  </div>
+                  {event.event_details[0].quinceanera_info.parents && (
+                    <div>
+                      <p className="text-sm font-medium text-muted-foreground mb-1">Padres</p>
+                      <p className="text-foreground">{event.event_details[0].quinceanera_info.parents}</p>
+                    </div>
+                  )}
+                </div>
+              </CardContent>
+            </Card>
+          )}
+
+          {/* Festejados y Padres (Bautizo) */}
+          {event.event_type === 'bautizo' && event.event_details?.[0]?.child_info && (
+            <Card className="rounded-2xl">
+              <CardHeader>
+                <CardTitle>El Bautizado y Padres</CardTitle>
+              </CardHeader>
+              <CardContent className="space-y-4">
+                <div className="grid gap-4 sm:grid-cols-2">
+                  <div>
+                    <p className="text-sm font-medium text-muted-foreground mb-1">Nombre del Bebé</p>
+                    <p className="text-foreground font-medium">{event.event_details[0].child_info.name || '-'}</p>
+                  </div>
+                  {event.event_details[0].child_info.parents && (
+                    <div>
+                      <p className="text-sm font-medium text-muted-foreground mb-1">Padres</p>
+                      <p className="text-foreground">{event.event_details[0].child_info.parents}</p>
+                    </div>
+                  )}
+                </div>
+              </CardContent>
+            </Card>
+          )}
+
+          {/* Ubicaciones (Aplica para TODOS los eventos) */}
+          {(event.event_details?.[0]?.church_info || event.event_details?.[0]?.venue_info) && (
+            <Card className="rounded-2xl">
+              <CardHeader>
+                <CardTitle>Ubicaciones del Evento</CardTitle>
+              </CardHeader>
+              <CardContent className="space-y-6">
+                {event.event_details[0].church_info && (event.event_details[0].church_info.name || event.event_details[0].church_info.address || event.event_details[0].church_info.maps_url) && (
+                  <div>
+                    <h3 className="text-base font-semibold text-foreground mb-3 flex items-center gap-2">
+                      <Church className="h-5 w-5 text-primary" /> Ceremonia Religiosa
+                    </h3>
+                    <div className="grid gap-3 sm:grid-cols-2 text-sm bg-muted/30 p-4 rounded-xl">
+                      <div>
+                        <p className="font-medium text-muted-foreground">Nombre de la Iglesia</p>
+                        <p>{event.event_details[0].church_info.name || '-'}</p>
+                      </div>
+                      {event.event_details[0].church_info.time && (
+                        <div>
+                          <p className="font-medium text-muted-foreground">Hora</p>
+                          <p>{event.event_details[0].church_info.time}</p>
+                        </div>
+                      )}
+                      {event.event_details[0].church_info.address && (
+                        <div className="sm:col-span-2">
+                          <p className="font-medium text-muted-foreground">Dirección</p>
+                          <p>{event.event_details[0].church_info.address}</p>
+                        </div>
+                      )}
+                      {event.event_details[0].church_info.maps_url && (
+                        <div className="sm:col-span-2 mt-2">
+                          <Button asChild variant="outline" size="sm" className="rounded-xl">
+                            <a href={event.event_details[0].church_info.maps_url} target="_blank" rel="noopener noreferrer">
+                              <ExternalLink className="mr-2 h-4 w-4" /> Abrir en Google Maps
+                            </a>
+                          </Button>
+                        </div>
+                      )}
+                    </div>
+                  </div>
+                )}
+
+                {(event.event_details[0].church_info?.name || event.event_details[0].church_info?.address) && (event.event_details[0].venue_info?.name || event.event_details[0].venue_info?.address) && (
+                  <Separator />
+                )}
+
+                {event.event_details[0].venue_info && (event.event_details[0].venue_info.name || event.event_details[0].venue_info.address || event.event_details[0].venue_info.maps_url) && (
+                  <div>
+                    <h3 className="text-base font-semibold text-foreground mb-3 flex items-center gap-2">
+                      <MapPin className="h-5 w-5 text-primary" /> Recepción / Lugar del Evento
+                    </h3>
+                    <div className="grid gap-3 sm:grid-cols-2 text-sm bg-muted/30 p-4 rounded-xl">
+                      <div>
+                        <p className="font-medium text-muted-foreground">Nombre del Lugar</p>
+                        <p>{event.event_details[0].venue_info.name || '-'}</p>
+                      </div>
+                      {event.event_details[0].venue_info.time && (
+                        <div>
+                          <p className="font-medium text-muted-foreground">Hora de Recepción</p>
+                          <p>{event.event_details[0].venue_info.time}</p>
+                        </div>
+                      )}
+                      {event.event_details[0].venue_info.address && (
+                        <div className="sm:col-span-2">
+                          <p className="font-medium text-muted-foreground">Dirección</p>
+                          <p>{event.event_details[0].venue_info.address}</p>
+                        </div>
+                      )}
+                      {event.event_details[0].venue_info.maps_url && (
+                        <div className="sm:col-span-2 mt-2">
+                          <Button asChild variant="outline" size="sm" className="rounded-xl">
+                            <a href={event.event_details[0].venue_info.maps_url} target="_blank" rel="noopener noreferrer">
+                              <ExternalLink className="mr-2 h-4 w-4" /> Abrir en Google Maps
+                            </a>
+                          </Button>
+                        </div>
+                      )}
+                    </div>
+                  </div>
+                )}
+              </CardContent>
+            </Card>
+          )}
+
+          {/* Información del Evento Adicional (La que ya tenías) */}
           <Card className="rounded-2xl">
             <CardHeader>
-              <CardTitle>Información del Evento</CardTitle>
+              <CardTitle>Información Adicional del Evento</CardTitle>
             </CardHeader>
             <CardContent className="space-y-4">
               {event.invitation_phrase && (
@@ -210,11 +374,11 @@ export default async function EventDetailPage({ params }: PageProps) {
             </CardContent>
           </Card>
 
-          {/* Padrinos */}
+          {/* Padrinos (El que ya tenías) */}
           {event.event_details?.[0]?.padrinos && event.event_details[0].padrinos.length > 0 && (
             <Card className="rounded-2xl">
               <CardHeader>
-                <CardTitle>Padrinos</CardTitle>
+                <CardTitle>Lista de Padrinos</CardTitle>
               </CardHeader>
               <CardContent>
                 <div className="grid gap-3 sm:grid-cols-2">
