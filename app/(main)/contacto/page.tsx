@@ -84,14 +84,14 @@ export default function ContactoPage() {
                 <Phone className="h-5 w-5 text-primary shrink-0 mt-0.5" />
                 <div>
                   <p className="font-medium text-foreground text-sm">Teléfono</p>
-                  <p className="text-sm text-muted-foreground">[Tu Teléfono Aquí]</p>
+                  <p className="text-sm text-muted-foreground">443 942 5741</p>
                 </div>
               </div>
               <div className="flex items-start gap-4">
                 <MapPin className="h-5 w-5 text-primary shrink-0 mt-0.5" />
                 <div>
                   <p className="font-medium text-foreground text-sm">Dirección</p>
-                  <p className="text-sm text-muted-foreground">Queréndaro, Mich.</p>
+                  <p className="text-sm text-muted-foreground">Calle Hidalgo 14B, Centro, Queréndaro, Mich.</p>
                 </div>
               </div>
 
