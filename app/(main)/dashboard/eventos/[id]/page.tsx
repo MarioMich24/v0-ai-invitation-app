@@ -2,9 +2,10 @@ import { createClient } from '@/lib/supabase/server'
 import { notFound } from 'next/navigation'
 import Link from 'next/link'
 import { Button } from '@/components/ui/button'
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card'
+import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
 import { Badge } from '@/components/ui/badge'
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs'
+import { Separator } from '@/components/ui/separator'
 import {
   ArrowLeft,
   ExternalLink,
@@ -14,14 +15,12 @@ import {
   Users,
   Gift,
   Copy,
-  Check,
   Church
 } from 'lucide-react'
 import { EVENT_TYPE_LABELS, PADRINO_TYPE_LABELS } from '@/lib/types'
 import { EventActions } from '@/components/dashboard/event-actions'
 import { RsvpList } from '@/components/dashboard/rsvp-list'
 import { GiftList } from '@/components/dashboard/gift-list'
-import { Separator } from '@/components/ui/separator'
 
 interface PageProps {
   params: Promise<{ id: string }>
@@ -337,7 +336,7 @@ export default async function EventDetailPage({ params }: PageProps) {
             </Card>
           )}
 
-          {/* Información del Evento Adicional (La que ya tenías) */}
+          {/* Información del Evento */}
           <Card className="rounded-2xl">
             <CardHeader>
               <CardTitle>Información Adicional del Evento</CardTitle>
@@ -374,7 +373,7 @@ export default async function EventDetailPage({ params }: PageProps) {
             </CardContent>
           </Card>
 
-          {/* Padrinos (El que ya tenías) */}
+          {/* Padrinos */}
           {event.event_details?.[0]?.padrinos && event.event_details[0].padrinos.length > 0 && (
             <Card className="rounded-2xl">
               <CardHeader>
