@@ -56,7 +56,9 @@ interface InvitationContentProps {
 export function InvitationContent({ event }: InvitationContentProps) {
   const [activeSection, setActiveSection] = useState<'info' | 'rsvp' | 'gifts'>('info')
   
-  const details = event.event_details?.[0]
+  // SOLUCIÓN: Normalizamos los detalles al igual que en el panel
+  const details = Array.isArray(event.event_details) ? event.event_details[0] : event.event_details;
+
   const hasGifts = event.gifts && event.gifts.length > 0
   const hasChurch = details?.church_info && (details.church_info.name || details.church_info.address || details.church_info.maps_url);
   const hasVenue = details?.venue_info && (details.venue_info.name || details.venue_info.address || details.venue_info.time || details.venue_info.maps_url);
