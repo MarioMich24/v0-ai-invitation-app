@@ -58,7 +58,7 @@ export default function ContactoPage() {
                   </a>
                 </Button>
                 <Button variant="outline" size="sm" className="flex-1 rounded-xl bg-background" asChild>
-                  <a href="#" target="_blank" rel="noopener noreferrer">
+                  <a href="https://www.facebook.com/share/1GDDCTShqP/" target="_blank" rel="noopener noreferrer">
                     <Facebook className="mr-2 h-4 w-4" />
                     Facebook
                   </a>
