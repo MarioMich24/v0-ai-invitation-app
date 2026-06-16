@@ -46,7 +46,7 @@ const initialFormData: EventFormData = {
   eventTime: '',
   padrinos: [],
   churchInfo: { name: '', address: '', time: '', maps_url: '' },
-  venueInfo: { name: '', address: '', city: '', maps_url: '' },
+  venueInfo: { name: '', address: '', maps_url: '' },
 }
 
 const STEPS = [

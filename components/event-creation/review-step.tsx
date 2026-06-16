@@ -34,7 +34,7 @@ export function ReviewStep({ formData }: ReviewStepProps) {
 
   // Constantes inteligentes para saber si hay información de ubicación (igual que en la invitación)
   const hasChurch = formData.churchInfo && (formData.churchInfo.name || formData.churchInfo.address || formData.churchInfo.maps_url);
-  const hasVenue = formData.venueInfo && (formData.venueInfo.name || formData.venueInfo.address || formData.venueInfo.city || formData.venueInfo.maps_url);
+  const hasVenue = formData.venueInfo && (formData.venueInfo.name || formData.venueInfo.address || formData.venueInfo.time || formData.venueInfo.maps_url);
 
   return (
     <div className="space-y-6">
@@ -116,6 +116,14 @@ export function ReviewStep({ formData }: ReviewStepProps) {
             <p className="text-xl font-semibold text-foreground">
               {formData.coupleInfo.partner1_name} & {formData.coupleInfo.partner2_name}
             </p>
+            {/* NUEVO BLOQUE PARA MOSTRAR A LOS PADRES */}
+            {(formData.coupleInfo.partner1_parents || formData.coupleInfo.partner2_parents) && (
+              <div className="mt-2 text-sm text-muted-foreground">
+                {formData.coupleInfo.partner1_parents && <p>Padres de la novia: {formData.coupleInfo.partner1_parents}</p>}
+                {formData.coupleInfo.partner2_parents && <p>Padres del novio: {formData.coupleInfo.partner2_parents}</p>}
+              </div>
+            )}
+            {/* FIN DEL NUEVO BLOQUE */}
             {formData.coupleInfo.story && (
               <p className="mt-2 text-muted-foreground">{formData.coupleInfo.story}</p>
             )}
@@ -221,13 +229,16 @@ export function ReviewStep({ formData }: ReviewStepProps) {
                 <div className="flex items-center gap-2 mb-2">
                   <MapPin className="h-4 w-4 text-primary" />
                   <span className="font-medium text-foreground">Recepción</span>
+                  {/* Agregamos el Badge de la hora aquí */}
+                  {formData.venueInfo?.time && (
+                    <Badge variant="outline" className="ml-auto">
+                      {formatTime(formData.venueInfo.time)}
+                    </Badge>
+                  )}
                 </div>
                 {formData.venueInfo?.name && <p className="text-foreground">{formData.venueInfo.name}</p>}
                 {formData.venueInfo?.address && (
                   <p className="text-sm text-muted-foreground mt-1">{formData.venueInfo.address}</p>
-                )}
-                {formData.venueInfo?.city && (
-                  <p className="text-sm text-muted-foreground">{formData.venueInfo.city}</p>
                 )}
                 {formData.venueInfo?.maps_url && (
                   <Button asChild variant="link" size="sm" className="mt-2 px-0">

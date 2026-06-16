@@ -38,7 +38,7 @@ export function EditEventForm({ initialEvent }: { initialEvent: any }) {
     childInfo: details.child_info || { name: '', parents: '' },
     padrinos: (details.padrinos || []) as Padrino[],
     churchInfo: details.church_info || { name: '', address: '', time: '', maps_url: '' },
-    venueInfo: details.venue_info || { name: '', address: '', city: '', maps_url: '' },
+    venueInfo: details.venue_info || { name: '', address: '', maps_url: '' },
   })
 
   const handleGenerateText = async () => {
@@ -81,7 +81,7 @@ export function EditEventForm({ initialEvent }: { initialEvent: any }) {
       case 'boda':
         return ['honor', 'velacion', 'lazo', 'arras', 'anillos', 'biblia', 'rosario', 'ramo', 'brindis', 'pastel']
       case 'xv':
-        return ['honor', 'vals', 'ultima_muneca', 'zapato', 'corona', 'cojin', 'brindis', 'pastel']
+        return ['honor', 'vals', 'ultima_muneca', 'zapato', 'corona', 'brindis', 'pastel']
       case 'bautizo':
         return ['honor', 'general']
       default:
@@ -198,6 +198,17 @@ export function EditEventForm({ initialEvent }: { initialEvent: any }) {
               <Field>
                 <FieldLabel>Nombre del Novio</FieldLabel>
                 <Input value={formData.coupleInfo.partner2_name} onChange={e => setFormData({ ...formData, coupleInfo: { ...formData.coupleInfo, partner2_name: e.target.value } })} />
+              </Field>
+            </div>
+            {/* NUEVO BLOQUE PARA LOS PADRES */}
+            <div className="grid gap-4 sm:grid-cols-2 mb-4">
+              <Field>
+                <FieldLabel>Padres de la Novia</FieldLabel>
+                <Input placeholder="Ej: Sr. Juan y Sra. María" value={formData.coupleInfo.partner1_parents || ''} onChange={e => setFormData({ ...formData, coupleInfo: { ...formData.coupleInfo, partner1_parents: e.target.value } })} />
+              </Field>
+              <Field>
+                <FieldLabel>Padres del Novio</FieldLabel>
+                <Input placeholder="Ej: Sr. Pedro y Sra. Ana" value={formData.coupleInfo.partner2_parents || ''} onChange={e => setFormData({ ...formData, coupleInfo: { ...formData.coupleInfo, partner2_parents: e.target.value } })} />
               </Field>
             </div>
             <Field>
@@ -349,7 +360,8 @@ export function EditEventForm({ initialEvent }: { initialEvent: any }) {
             <div className="grid gap-4 sm:grid-cols-2">
               <Field>
                 <FieldLabel>Ciudad</FieldLabel>
-                <Input value={formData.venueInfo?.city || ''} onChange={e => setFormData({ ...formData, venueInfo: { ...formData.venueInfo, city: e.target.value } })} placeholder="Ciudad" />
+                <FieldLabel htmlFor="venueTime">Hora de la Recepción</FieldLabel>
+                <Input id="venueTime" type="time" value={formData.venueInfo?.time || ''} onChange={e => setFormData({ ...formData, venueInfo: { ...formData.venueInfo, time: e.target.value } })} />
               </Field>
               <Field>
                 <FieldLabel htmlFor="venueMaps">Link de Google Maps</FieldLabel>

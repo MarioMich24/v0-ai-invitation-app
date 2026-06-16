@@ -2,9 +2,10 @@ import { createClient } from '@/lib/supabase/server'
 import { notFound } from 'next/navigation'
 import Link from 'next/link'
 import { Button } from '@/components/ui/button'
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card'
+import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
 import { Badge } from '@/components/ui/badge'
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs'
+import { Separator } from '@/components/ui/separator'
 import {
   ArrowLeft,
   ExternalLink,
@@ -14,7 +15,8 @@ import {
   Users,
   Gift,
   Copy,
-  Check
+  Church,
+  AlertTriangle
 } from 'lucide-react'
 import { EVENT_TYPE_LABELS, PADRINO_TYPE_LABELS } from '@/lib/types'
 import { EventActions } from '@/components/dashboard/event-actions'
@@ -48,6 +50,9 @@ export default async function EventDetailPage({ params }: PageProps) {
   if (error || !event) {
     notFound()
   }
+
+  // SOLUCIÓN: Normalizamos los detalles sin importar si Supabase devuelve un array o un objeto
+  const details = Array.isArray(event.event_details) ? event.event_details[0] : event.event_details;
 
   const confirmedRsvps = event.rsvps?.filter((r: { status: string }) => r.status === 'confirmed').length || 0
   const totalRsvps = event.rsvps?.length || 0
@@ -171,10 +176,181 @@ export default async function EventDetailPage({ params }: PageProps) {
         </TabsList>
 
         <TabsContent value="details" className="space-y-4">
-          {/* Event Details */}
+          
+          {!details && (
+             <div className="bg-amber-500/10 text-amber-600 p-4 rounded-xl flex items-center gap-3">
+               <AlertTriangle className="h-5 w-5 shrink-0" />
+               <p className="text-sm">Aún no has agregado detalles completos a este evento (Ubicaciones, Padrinos, etc). Edita el evento para añadirlos.</p>
+             </div>
+          )}
+
+          {/* Festejados y Padres (Boda) */}
+          {event.event_type === 'boda' && details?.couple_info && (
+            <Card className="rounded-2xl">
+              <CardHeader>
+                <CardTitle>La Pareja y Padres</CardTitle>
+              </CardHeader>
+              <CardContent className="space-y-4">
+                <div className="grid gap-4 sm:grid-cols-2">
+                  <div>
+                    <p className="text-sm font-medium text-muted-foreground mb-1">Nombre de la Novia</p>
+                    <p className="text-foreground font-medium">{details.couple_info.partner1_name || '-'}</p>
+                  </div>
+                  <div>
+                    <p className="text-sm font-medium text-muted-foreground mb-1">Nombre del Novio</p>
+                    <p className="text-foreground font-medium">{details.couple_info.partner2_name || '-'}</p>
+                  </div>
+                  {details.couple_info.partner1_parents && (
+                    <div>
+                      <p className="text-sm font-medium text-muted-foreground mb-1">Padres de la Novia</p>
+                      <p className="text-foreground">{details.couple_info.partner1_parents}</p>
+                    </div>
+                  )}
+                  {details.couple_info.partner2_parents && (
+                    <div>
+                      <p className="text-sm font-medium text-muted-foreground mb-1">Padres del Novio</p>
+                      <p className="text-foreground">{details.couple_info.partner2_parents}</p>
+                    </div>
+                  )}
+                </div>
+              </CardContent>
+            </Card>
+          )}
+
+          {/* Festejados y Padres (XV Años) */}
+          {event.event_type === 'xv' && details?.quinceanera_info && (
+            <Card className="rounded-2xl">
+              <CardHeader>
+                <CardTitle>La Quinceañera y Padres</CardTitle>
+              </CardHeader>
+              <CardContent className="space-y-4">
+                <div className="grid gap-4 sm:grid-cols-2">
+                  <div>
+                    <p className="text-sm font-medium text-muted-foreground mb-1">Nombre de la Quinceañera</p>
+                    <p className="text-foreground font-medium">{details.quinceanera_info.name || '-'}</p>
+                  </div>
+                  {details.quinceanera_info.parents && (
+                    <div>
+                      <p className="text-sm font-medium text-muted-foreground mb-1">Padres</p>
+                      <p className="text-foreground">{details.quinceanera_info.parents}</p>
+                    </div>
+                  )}
+                </div>
+              </CardContent>
+            </Card>
+          )}
+
+          {/* Festejados y Padres (Bautizo) */}
+          {event.event_type === 'bautizo' && details?.child_info && (
+            <Card className="rounded-2xl">
+              <CardHeader>
+                <CardTitle>El Bautizado y Padres</CardTitle>
+              </CardHeader>
+              <CardContent className="space-y-4">
+                <div className="grid gap-4 sm:grid-cols-2">
+                  <div>
+                    <p className="text-sm font-medium text-muted-foreground mb-1">Nombre del Bebé</p>
+                    <p className="text-foreground font-medium">{details.child_info.name || '-'}</p>
+                  </div>
+                  {details.child_info.parents && (
+                    <div>
+                      <p className="text-sm font-medium text-muted-foreground mb-1">Padres</p>
+                      <p className="text-foreground">{details.child_info.parents}</p>
+                    </div>
+                  )}
+                </div>
+              </CardContent>
+            </Card>
+          )}
+
+          {/* Ubicaciones (Aplica para TODOS los eventos) */}
+          {(details?.church_info || details?.venue_info) && (
+            <Card className="rounded-2xl">
+              <CardHeader>
+                <CardTitle>Ubicaciones del Evento</CardTitle>
+              </CardHeader>
+              <CardContent className="space-y-6">
+                {details.church_info && (details.church_info.name || details.church_info.address || details.church_info.maps_url) && (
+                  <div>
+                    <h3 className="text-base font-semibold text-foreground mb-3 flex items-center gap-2">
+                      <Church className="h-5 w-5 text-primary" /> Ceremonia Religiosa
+                    </h3>
+                    <div className="grid gap-3 sm:grid-cols-2 text-sm bg-muted/30 p-4 rounded-xl">
+                      <div>
+                        <p className="font-medium text-muted-foreground">Nombre de la Iglesia</p>
+                        <p>{details.church_info.name || '-'}</p>
+                      </div>
+                      {details.church_info.time && (
+                        <div>
+                          <p className="font-medium text-muted-foreground">Hora</p>
+                          <p>{details.church_info.time}</p>
+                        </div>
+                      )}
+                      {details.church_info.address && (
+                        <div className="sm:col-span-2">
+                          <p className="font-medium text-muted-foreground">Dirección</p>
+                          <p>{details.church_info.address}</p>
+                        </div>
+                      )}
+                      {details.church_info.maps_url && (
+                        <div className="sm:col-span-2 mt-2">
+                          <Button asChild variant="outline" size="sm" className="rounded-xl">
+                            <a href={details.church_info.maps_url} target="_blank" rel="noopener noreferrer">
+                              <ExternalLink className="mr-2 h-4 w-4" /> Abrir en Google Maps
+                            </a>
+                          </Button>
+                        </div>
+                      )}
+                    </div>
+                  </div>
+                )}
+
+                {(details.church_info?.name || details.church_info?.address) && (details.venue_info?.name || details.venue_info?.address) && (
+                  <Separator />
+                )}
+
+                {details.venue_info && (details.venue_info.name || details.venue_info.address || details.venue_info.maps_url) && (
+                  <div>
+                    <h3 className="text-base font-semibold text-foreground mb-3 flex items-center gap-2">
+                      <MapPin className="h-5 w-5 text-primary" /> Recepción / Lugar del Evento
+                    </h3>
+                    <div className="grid gap-3 sm:grid-cols-2 text-sm bg-muted/30 p-4 rounded-xl">
+                      <div>
+                        <p className="font-medium text-muted-foreground">Nombre del Lugar</p>
+                        <p>{details.venue_info.name || '-'}</p>
+                      </div>
+                      {details.venue_info.time && (
+                        <div>
+                          <p className="font-medium text-muted-foreground">Hora de Recepción</p>
+                          <p>{details.venue_info.time}</p>
+                        </div>
+                      )}
+                      {details.venue_info.address && (
+                        <div className="sm:col-span-2">
+                          <p className="font-medium text-muted-foreground">Dirección</p>
+                          <p>{details.venue_info.address}</p>
+                        </div>
+                      )}
+                      {details.venue_info.maps_url && (
+                        <div className="sm:col-span-2 mt-2">
+                          <Button asChild variant="outline" size="sm" className="rounded-xl">
+                            <a href={details.venue_info.maps_url} target="_blank" rel="noopener noreferrer">
+                              <ExternalLink className="mr-2 h-4 w-4" /> Abrir en Google Maps
+                            </a>
+                          </Button>
+                        </div>
+                      )}
+                    </div>
+                  </div>
+                )}
+              </CardContent>
+            </Card>
+          )}
+
+          {/* Información del Evento Adicional */}
           <Card className="rounded-2xl">
             <CardHeader>
-              <CardTitle>Información del Evento</CardTitle>
+              <CardTitle>Información Adicional del Evento</CardTitle>
             </CardHeader>
             <CardContent className="space-y-4">
               {event.invitation_phrase && (
@@ -209,14 +385,14 @@ export default async function EventDetailPage({ params }: PageProps) {
           </Card>
 
           {/* Padrinos */}
-          {event.event_details?.[0]?.padrinos && event.event_details[0].padrinos.length > 0 && (
+          {details?.padrinos && details.padrinos.length > 0 && (
             <Card className="rounded-2xl">
               <CardHeader>
-                <CardTitle>Padrinos</CardTitle>
+                <CardTitle>Lista de Padrinos</CardTitle>
               </CardHeader>
               <CardContent>
                 <div className="grid gap-3 sm:grid-cols-2">
-                  {event.event_details[0].padrinos.map((padrino: { name: string; role_type: string }, index: number) => (
+                  {details.padrinos.map((padrino: { name: string; role_type: string }, index: number) => (
                     <div key={index} className="flex items-center justify-between rounded-lg bg-muted/50 p-3">
                       <span className="font-medium">{padrino.name}</span>
                       <Badge variant="secondary" className="text-xs">

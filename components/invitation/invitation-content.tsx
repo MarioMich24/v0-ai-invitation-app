@@ -11,7 +11,6 @@ import {
   MapPin, 
   Church, 
   Users, 
-  Gift, 
   Heart, 
   Sparkles, 
   Baby,
@@ -36,12 +35,12 @@ interface InvitationContentProps {
     event_date: string | null
     event_time: string | null
     event_details: Array<{
-      couple_info: { partner1_name: string; partner2_name: string; story?: string } | null
+      couple_info: { partner1_name: string; partner2_name: string; partner1_parents?: string; partner2_parents?: string; story?: string } | null
       quinceanera_info: { name: string; parents?: string } | null
       child_info: { name: string; parents?: string } | null
       padrinos: Array<{ name: string; role_type: string }> | null
       church_info: { name: string; address?: string; time?: string; maps_url?: string } | null
-      venue_info: { name: string; address?: string; city?: string; maps_url?: string } | null
+      venue_info: { name: string; address?: string; time?: string; maps_url?: string } | null
     }> | null
     gifts: Array<{
       id: string
@@ -57,10 +56,12 @@ interface InvitationContentProps {
 export function InvitationContent({ event }: InvitationContentProps) {
   const [activeSection, setActiveSection] = useState<'info' | 'rsvp' | 'gifts'>('info')
   
-  const details = event.event_details?.[0]
+  // SOLUCIÓN: Normalizamos los detalles al igual que en el panel
+  const details = Array.isArray(event.event_details) ? event.event_details[0] : event.event_details;
+
   const hasGifts = event.gifts && event.gifts.length > 0
   const hasChurch = details?.church_info && (details.church_info.name || details.church_info.address || details.church_info.maps_url);
-  const hasVenue = details?.venue_info && (details.venue_info.name || details.venue_info.address || details.venue_info.city || details.venue_info.maps_url);
+  const hasVenue = details?.venue_info && (details.venue_info.name || details.venue_info.address || details.venue_info.time || details.venue_info.maps_url);
 
   const formatDate = (dateStr: string) => {
     const date = new Date(dateStr + 'T00:00:00')
@@ -121,21 +122,48 @@ export function InvitationContent({ event }: InvitationContentProps) {
             {event.title}
           </h1>
           
-          {/* Names */}
+          {/* Nombres y Padres */}
           {event.event_type === 'boda' && details?.couple_info && (
-            <p className="mt-4 text-2xl font-light text-muted-foreground sm:text-3xl">
-              {details.couple_info.partner1_name} & {details.couple_info.partner2_name}
-            </p>
+            <>
+              <p className="mt-4 text-2xl font-light text-muted-foreground sm:text-3xl">
+                {details.couple_info.partner1_name} & {details.couple_info.partner2_name}
+              </p>
+              {(details.couple_info.partner1_parents || details.couple_info.partner2_parents) && (
+                <div className="mt-8 text-muted-foreground text-sm sm:text-base font-light">
+                  <p className="mb-2 uppercase tracking-widest text-xs">Con la bendición de nuestros padres</p>
+                  <div className="flex flex-col sm:flex-row justify-center gap-2 sm:gap-12">
+                    {details.couple_info.partner1_parents && <span>{details.couple_info.partner1_parents}</span>}
+                    {details.couple_info.partner2_parents && <span>{details.couple_info.partner2_parents}</span>}
+                  </div>
+                </div>
+              )}
+            </>
           )}
           {event.event_type === 'xv' && details?.quinceanera_info && (
-            <p className="mt-4 text-2xl font-light text-muted-foreground sm:text-3xl">
-              {details.quinceanera_info.name}
-            </p>
+            <>
+              <p className="mt-4 text-2xl font-light text-muted-foreground sm:text-3xl">
+                {details.quinceanera_info.name}
+              </p>
+              {details.quinceanera_info.parents && (
+                <div className="mt-6 text-muted-foreground text-sm font-light">
+                  <p className="mb-1 uppercase tracking-widest text-xs">En compañía de mis padres</p>
+                  <p>{details.quinceanera_info.parents}</p>
+                </div>
+              )}
+            </>
           )}
           {event.event_type === 'bautizo' && details?.child_info && (
-            <p className="mt-4 text-2xl font-light text-muted-foreground sm:text-3xl">
-              {details.child_info.name}
-            </p>
+            <>
+              <p className="mt-4 text-2xl font-light text-muted-foreground sm:text-3xl">
+                {details.child_info.name}
+              </p>
+              {details.child_info.parents && (
+                <div className="mt-6 text-muted-foreground text-sm font-light">
+                  <p className="mb-1 uppercase tracking-widest text-xs">Padres</p>
+                  <p>{details.child_info.parents}</p>
+                </div>
+              )}
+            </>
           )}
 
           {/* Date & Time */}
@@ -232,7 +260,7 @@ export function InvitationContent({ event }: InvitationContentProps) {
               </Card>
             )}
 
-{/* Locations */}
+            {/* Ubicaciones */}
             {(hasChurch || hasVenue) && (
               <Card className="rounded-2xl">
                 <CardHeader>
@@ -269,20 +297,25 @@ export function InvitationContent({ event }: InvitationContentProps) {
                       )}
                     </div>
                   )}
+                  
+                  {hasChurch && hasVenue && <Separator />}
+
                   {hasVenue && (
                     <div className="rounded-xl bg-muted/50 p-4">
                       <div className="flex items-center gap-2 mb-2">
                         <MapPin className="h-4 w-4 text-primary" />
                         <span className="font-medium">Recepción</span>
+                        {details.venue_info?.time && (
+                          <Badge variant="outline" className="ml-auto">
+                            {formatTime(details.venue_info.time)}
+                          </Badge>
+                        )}
                       </div>
                       {details.venue_info?.name && (
                         <p className="text-foreground">{details.venue_info.name}</p>
                       )}
                       {details.venue_info?.address && (
                         <p className="text-sm text-muted-foreground mt-1">{details.venue_info.address}</p>
-                      )}
-                      {details.venue_info?.city && (
-                        <p className="text-sm text-muted-foreground">{details.venue_info.city}</p>
                       )}
                       {details.venue_info?.maps_url && (
                         <Button asChild variant="link" size="sm" className="mt-2 px-0">
