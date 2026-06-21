@@ -78,8 +78,7 @@ export function Navbar({ user }: NavbarProps) {
     alt="Logo Cookie Print"
     width={140}
     height={55}
-    className="hidden md:block object-contain w-auto h-auto"
-    priority
+    className="hidden md:block object-contain"
   />
 </Link>
 
